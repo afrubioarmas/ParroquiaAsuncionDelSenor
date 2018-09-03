@@ -12,9 +12,10 @@ public class UserDao implements IUserDao{
 
     public boolean create(UserBean input) {
         logger.debug("Debug: UserDao - create");
-        CallableStatement Sentence = Dao.getCallableSentence("{Call UserCreate (?,?,?,?,?,?,?)}");
-
+        CallableStatement Sentence = null;
+        boolean output = false;
         try {
+            Sentence = Dao.getCallableSentence("{Call UserCreate (?,?,?,?,?,?,?)}");
             Sentence.setString(1, input.getName());
             Sentence.setString(2, input.getLastName());
             Sentence.setString(3, input.getEmail());
@@ -22,14 +23,14 @@ public class UserDao implements IUserDao{
             Sentence.setString(5, input.getPassword());
             Sentence.setDate  (6, input.getBirthDate());
             Sentence.setString(7, input.getSex());
+            output = Dao.executeCall(Sentence);
+            Dao.close();
 
-        } catch (SQLException e) {
+        } catch (Exception e) {
             logger.error( "Method: ", "UserDao - create", e.toString() );
         }
 
-        boolean output = Dao.executeCall(Sentence);
 
-        Dao.close();
 
         return output;
     }
