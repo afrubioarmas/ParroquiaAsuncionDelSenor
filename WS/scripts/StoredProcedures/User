@@ -1,0 +1,25 @@
+-- Begin Create
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UserCreate $$
+    
+CREATE PROCEDURE UserCreate(
+	IN	 NAME 		varchar(50),
+	IN	 LASTNAME 	varchar(50),
+	IN	 EMAIL 	varchar(100),
+	IN	 USERNAME 	varchar(100),
+	IN	 PASSWORD 	varchar(100),
+	IN	 BIRTHDATE Date,
+	IN	 SEX 		char(1))
+	 
+BEGIN
+
+	INSERT INTO USER (NAME,LAST_NAME,EMAIL,USERNAME,PASSWORD,BIRTH_DATE,SEX)
+	VALUES (NAME,LASTNAME,EMAIL,USERNAME,PASSWORD,BIRTHDATE,SEX);
+
+END $$
+DELIMITER ;
+
+-- CALL UserCreate ("Andres","Rubio","andresfra92@gmail.com","provemed","11111111","1992/11/26","m");
+-- End Create
+
