@@ -19,6 +19,9 @@ public abstract class Dao
             Class.forName( Registry.BD_CLASS_FOR_NAME );
 
             _conn = DriverManager.getConnection( Registry.BD_URL, Registry.BD_USER, Registry.BD_PASSWORD );
+            if (_conn == null) {
+                throw new NullPointerException();
+            }
         }
         catch ( ClassNotFoundException | SQLException | NullPointerException e ){
             logger.error( "Method: ", "Dao - GetConnection", e.toString() );
@@ -39,7 +42,7 @@ public abstract class Dao
         try {
             connect();
             Sentence = _conn.prepareCall(statementDefinition);
-        } catch (SQLException e){
+        } catch (Exception e){
             logger.error( "Method: ", "Dao - getCallableSentence", e.toString() );
         }
         return Sentence;
