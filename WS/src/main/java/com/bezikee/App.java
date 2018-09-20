@@ -6,6 +6,8 @@ import com.bezikee.DataAccessLayer.User.IUserDao;
 import com.bezikee.DataAccessLayer.User.UserBean;
 import com.bezikee.DataAccessLayer.User.UserDao;
 import com.bezikee.ServiceLayer.MyFirstVerticle;
+import com.bezikee.ServiceLayer.ProductVerticle;
+import com.bezikee.ServiceLayer.UserVerticle;
 import io.vertx.core.Vertx;
 
 public class App 
@@ -13,7 +15,14 @@ public class App
     public static void main( String[] args )
     {
         Vertx vertx = Vertx.vertx();
-        MyFirstVerticle verticle = new MyFirstVerticle();
-        vertx.deployVerticle( verticle);
+
+        /*MyFirstVerticle first = new MyFirstVerticle();
+        vertx.deployVerticle( first);*/
+
+        UserVerticle user = new UserVerticle();
+        vertx.deployVerticle(user);
+
+        ProductVerticle product = new ProductVerticle();
+        vertx.deployVerticle(product);
     }
 }
