@@ -38,10 +38,11 @@ public class MyFirstVerticle extends AbstractVerticle {
 
 
 
-                            if(dao.create(user))
+                            if(dao.create(user)){
                                 request.response().write("Ok!");
-                            else
+                            }else {
                                 request.response().write("Failed...");
+                            }
 
                             response.end();
                         }
