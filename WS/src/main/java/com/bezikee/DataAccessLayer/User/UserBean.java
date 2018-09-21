@@ -23,6 +23,17 @@ public class UserBean {
         this.sex = sex;
     }
 
+    public UserBean(int id, String name, String lastName, String email, String username, String password, Date birthDate, String sex) {
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.birthDate = birthDate;
+        this.sex = sex;
+    }
+
     public int getId() {
         return id;
     }

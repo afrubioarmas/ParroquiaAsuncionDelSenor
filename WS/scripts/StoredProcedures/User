@@ -2,7 +2,7 @@
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS UserCreate $$
-    
+
 CREATE PROCEDURE UserCreate(
 	IN	 NAME 		varchar(50),
 	IN	 LASTNAME 	varchar(50),
@@ -10,11 +10,12 @@ CREATE PROCEDURE UserCreate(
 	IN	 USERNAME 	varchar(100),
 	IN	 PASSWORD 	varchar(100),
 	IN	 BIRTHDATE Date,
-	IN	 SEX 		char(1))
-	 
+	IN	 SEX 		char(1)
+	)
+
 BEGIN
 
-	INSERT INTO USER (NAME,LAST_NAME,EMAIL,USERNAME,PASSWORD,BIRTH_DATE,SEX)
+	INSERT INTO USER (NAME,LASTNAME,EMAIL,USERNAME,PASSWORD,BIRTHDATE,SEX)
 	VALUES (NAME,LASTNAME,EMAIL,USERNAME,PASSWORD,BIRTHDATE,SEX);
 
 END $$
@@ -22,4 +23,42 @@ DELIMITER ;
 
 -- CALL UserCreate ("Andres","Rubio","andresfra92@gmail.com","provemed","11111111","1992/11/26","m");
 -- End Create
+
+-- Begin Get All
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetAllUsers $$
+
+CREATE PROCEDURE GetAllUsers()
+	
+
+BEGIN
+
+	SELECT * FROM USER;
+
+END $$
+DELIMITER ;
+
+-- CALL GetAllUsers();
+-- End Get All
+
+-- Begin Get User
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetUser $$
+
+CREATE PROCEDURE GetUser(
+	IN	 ID 		int
+	)
+	
+
+BEGIN
+
+	SELECT * FROM USER WHERE USER.id = ID;
+
+END $$
+DELIMITER ;
+
+-- CALL GetUser(7);
+-- End Get User
 

@@ -1,10 +1,13 @@
 package com.bezikee.DataAccessLayer.User;
 
+import com.bezikee.Common.DateOps;
 import com.bezikee.DataAccessLayer.Dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserDao implements IUserDao{
 
@@ -35,11 +38,11 @@ public class UserDao implements IUserDao{
         return output;
     }
 
-   /* public BeanPregunta read(int id) {
+   public UserBean read(int id) {
 
-        BeanPregunta salida = null;
+       UserBean salida = null;
         ResultSet rs =null;
-        CallableStatement Sentencia = Dao.getCallableSentence("VPC_readPregunta ?");
+        CallableStatement Sentencia = Dao.getCallableSentence("{Call GetUser (?)}");
 
         try {
             Sentencia.setInt(1, id);
@@ -51,7 +54,7 @@ public class UserDao implements IUserDao{
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("SQL Exception: "+ e.getErrorCode()+900);
+            System.out.println("SQL Exception: "+ e.getErrorCode());
         }
         Dao.close();
 
@@ -60,13 +63,13 @@ public class UserDao implements IUserDao{
 
     }
 
-    public ArrayList<BeanPregunta> readAll(){
+    public ArrayList<UserBean> readAll(){
 
-        ArrayList<BeanPregunta> salida = null;
+        ArrayList<UserBean> salida = null;
         ResultSet rs =null;
 
-        CallableStatement Sentencia = Dao.getCallableSentence("VPC_readAllPregunta");
-        //Sentencia.setString(1, canal.getAutorizante());
+        CallableStatement Sentencia = Dao.getCallableSentence("{Call GetAllUsers ()} ");
+
 
         rs =Dao.executeQuery(Sentencia);
 
@@ -78,7 +81,7 @@ public class UserDao implements IUserDao{
         return salida;
     }
 
-    public boolean update(BeanPregunta pregunta) {
+   /* public boolean update(BeanPregunta pregunta) {
 
         CallableStatement Sentencia = Dao.getCallableSentence("VPC_updatePregunta ?,?,?,?,?,?,?,?,?");
 
@@ -94,7 +97,7 @@ public class UserDao implements IUserDao{
             Sentencia.setString(9, pregunta.getId());
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("SQL Exception: "+ e.getErrorCode()+900);
+            System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
         boolean salida = Dao.executeCall(Sentencia);
@@ -115,7 +118,7 @@ public class UserDao implements IUserDao{
             Sentencia.setInt(1, id);
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("SQL Exception: "+ e.getErrorCode()+900);
+            System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
         salida =Dao.executeCall(Sentencia);
@@ -126,53 +129,51 @@ public class UserDao implements IUserDao{
     }
 
 
+    */
 
+    private ArrayList<UserBean> getResponseArrayListBD(ResultSet rs){
 
-    private ArrayList<BeanPregunta> getResponseArrayListBD(ResultSet rs){
-
-        ArrayList<BeanPregunta> salida = new ArrayList<BeanPregunta>();
+        ArrayList<UserBean> salida = new ArrayList<UserBean>();
 
         try {
             while (rs.next()){
-                BeanPregunta p = new BeanPregunta();
-                p.setId(rs.getString("PR_ID"));
-                p.setEnunciado(rs.getString("PR_ENUNCIADO"));
-                p.setTitulo(rs.getString("PR_TITULO"));
-                p.setTipo(rs.getString("PR_TIPO"));
-                p.setAtributo(rs.getString("PR_ATRIBUTO"));
-                p.setValidacion(rs.getString("PR_VALIDACION"));
-                p.setDigitos(rs.getString("PR_DIGITOS"));
-                p.setAplica(rs.getString("PR_APLICA"));
-                p.setEstatus(rs.getString("PR_ESTATUS"));
-                salida.add(p);
+                UserBean aux = new UserBean(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("lastname"),
+                        rs.getString("email"),
+                        rs.getString("username"),
+                        rs.getString("password"),
+                        DateOps.convertToMysql(rs.getString("birthDate")),
+                        rs.getString("sex"));
+                salida.add(aux);
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("SQL Exception: "+ e.getErrorCode()+900);
+            System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
         return salida;
 
     }
 
-    private BeanPregunta getResponseBD(ResultSet rs) throws NullPointerException, SQLException{
-
-        BeanPregunta salida = new BeanPregunta();
+    private UserBean getResponseBD(ResultSet rs) throws NullPointerException, SQLException{
+        UserBean salida = null;
 
         while (rs.next()){
-            salida.setId(rs.getString("PR_ID"));
-            salida.setEnunciado(rs.getString("PR_ENUNCIADO"));
-            salida.setTitulo(rs.getString("PR_TITULO"));
-            salida.setTipo(rs.getString("PR_TIPO"));
-            salida.setAtributo(rs.getString("PR_ATRIBUTO"));
-            salida.setValidacion(rs.getString("PR_VALIDACION"));
-            salida.setDigitos(rs.getString("PR_DIGITOS"));
-            salida.setAplica(rs.getString("PR_APLICA"));
-            salida.setEstatus(rs.getString("PR_ESTATUS"));
+            salida = new UserBean(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("lastname"),
+                    rs.getString("email"),
+                    rs.getString("username"),
+                    rs.getString("password"),
+                    DateOps.convertToMysql(rs.getString("birthDate")),
+                    rs.getString("sex"));
         }
 
         return salida;
 
-    }*/
+    }
 
 }
