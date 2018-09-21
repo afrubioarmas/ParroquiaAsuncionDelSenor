@@ -2,9 +2,12 @@ package com.bezikee.ServiceLayer;
 
 
 import com.bezikee.Common.DateOps;
+import com.bezikee.Common.GsonOps;
 import com.bezikee.DataAccessLayer.DaoFactory;
 import com.bezikee.DataAccessLayer.User.IUserDao;
 import com.bezikee.DataAccessLayer.User.UserBean;
+import com.bezikee.DataAccessLayer.User.UserDao;
+import com.google.gson.Gson;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonArray;
@@ -13,6 +16,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,16 +39,20 @@ public class UserVerticle extends AbstractVerticle {
     }
 
     private void handleGetUser(RoutingContext routingContext) {
-        String productID = routingContext.request().getParam("userId");
+        String idToRead = routingContext.request().getParam("userId");
         HttpServerResponse response = routingContext.response();
-        if (productID == null) {
+        if (idToRead == null) {
             sendError(400, response);
         } else {
-            JsonObject product =null;
-            if (product == null) {
+
+            IUserDao dao = DaoFactory.instantiateUserDao();
+            UserBean user = dao.read(Integer.parseInt(idToRead));
+
+
+            if (user == null) {
                 sendError(404, response);
             } else {
-                response.putHeader("content-type", "application/json").end(product.encodePrettily());
+                response.putHeader("content-type", "application/json").end(GsonOps.toJson(user));
             }
         }
     }
@@ -53,7 +61,7 @@ public class UserVerticle extends AbstractVerticle {
 
         HttpServerResponse response = routingContext.response();
 
-        UserBean user = new UserBean(
+       UserBean user = new UserBean(
                 routingContext.request().getParam("name"),
                 routingContext.request().getParam("lastName"),
                 routingContext.request().getParam("email"),
@@ -68,20 +76,21 @@ public class UserVerticle extends AbstractVerticle {
         IUserDao dao = DaoFactory.instantiateUserDao();
 
         response.putHeader("Content-Type", "text/plain");
-        response.putHeader("Content-Length", String.valueOf(20));
             if (dao.create(user) == false) {
-                response.write("Failed...!");
+                response.end("Failed...!");
             } else {
-                response.write("OK!");
-                response.end();
+                response.end("OK!");
             }
+
+
 
     }
 
     private void handleGetAllUsers(RoutingContext routingContext) {
-        JsonArray arr = new JsonArray();
-        /*products.forEach((k, v) -> arr.add(v));*/
-        routingContext.response().putHeader("content-type", "application/json").end("GettingAllUsers");
+
+        IUserDao dao = DaoFactory.instantiateUserDao();
+
+        routingContext.response().putHeader("content-type", "application/json").end(GsonOps.toJson(dao.readAll()));
     }
 
     private void sendError(int statusCode, HttpServerResponse response) {
