@@ -3,10 +3,13 @@ package com.bezikee.ServiceLayer;
 
 import com.bezikee.Common.DateOps;
 import com.bezikee.Common.GsonOps;
+import com.bezikee.Common.LoggerOps;
 import com.bezikee.DataAccessLayer.DaoFactory;
 import com.bezikee.DataAccessLayer.User.IUserDao;
 import com.bezikee.DataAccessLayer.User.UserBean;
 import com.bezikee.DataAccessLayer.User.UserDao;
+import com.bezikee.DomainLogicLayer.CommandFactory;
+import com.bezikee.DomainLogicLayer.User.CreateUserCommand;
 import com.google.gson.Gson;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerResponse;
@@ -20,25 +23,25 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author <a href="http://tfox.org">Tim Fox</a>
- */
 public class UserVerticle extends AbstractVerticle {
 
     @Override
     public void start() {
+        LoggerOps.debug("Starting user Verticle.");
 
         Router router = Router.router(vertx);
 
         router.route().handler(BodyHandler.create());
         router.get("/user/:userId").handler(this::handleGetUser);
-        router.put("/user").handler(this::handleAddUser);
+        router.put("/user").handler(this::handleCreateUser);
         router.get("/user").handler(this::handleGetAllUsers);
 
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
     }
 
     private void handleGetUser(RoutingContext routingContext) {
+        LoggerOps.debug("Handeling Get User.");
+
         String idToRead = routingContext.request().getParam("userId");
         HttpServerResponse response = routingContext.response();
         if (idToRead == null) {
@@ -57,11 +60,12 @@ public class UserVerticle extends AbstractVerticle {
         }
     }
 
-    private void handleAddUser(RoutingContext routingContext) {
+    private void handleCreateUser(RoutingContext routingContext) {
+        LoggerOps.debug("Handeling Create User.");
 
         HttpServerResponse response = routingContext.response();
 
-       UserBean user = new UserBean(
+        UserBean user = new UserBean(
                 routingContext.request().getParam("name"),
                 routingContext.request().getParam("lastName"),
                 routingContext.request().getParam("email"),
@@ -73,6 +77,8 @@ public class UserVerticle extends AbstractVerticle {
 
 
         //Comando Agregar user
+        CreateUserCommand cmd = (CreateUserCommand) CommandFactory.instatiateCreateUser(user);
+
         IUserDao dao = DaoFactory.instantiateUserDao();
 
         response.putHeader("Content-Type", "text/plain");
@@ -87,6 +93,7 @@ public class UserVerticle extends AbstractVerticle {
     }
 
     private void handleGetAllUsers(RoutingContext routingContext) {
+        LoggerOps.debug("Handeling Get All Users.");
 
         IUserDao dao = DaoFactory.instantiateUserDao();
 
