@@ -81,11 +81,12 @@ public class UserVerticle extends AbstractVerticle {
 
         IUserDao dao = DaoFactory.instantiateUserDao();
 
-        response.putHeader("Content-Type", "text/plain");
+        response.putHeader("Content-Type", "application/json");
             if (dao.create(user) == false) {
-                response.end("Failed...!");
+                response.setStatusCode(400);
+                response.end(GsonOps.toJson("Failed...!"));
             } else {
-                response.end("OK!");
+                response.end(GsonOps.toJson("OK!"));
             }
 
 
