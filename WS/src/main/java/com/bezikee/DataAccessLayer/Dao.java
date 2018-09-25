@@ -1,30 +1,26 @@
 package com.bezikee.DataAccessLayer;
 
+import com.bezikee.Common.LoggerOps;
 import com.bezikee.Common.Registry;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 
 public abstract class Dao
 {
-    private static Logger logger = LoggerFactory.getLogger( Dao.class );
 
     private static Connection _conn;
 
     private static void  connect()
     {
-        try{
+         try{
 
             Class.forName( Registry.BD_CLASS_FOR_NAME );
 
             _conn = DriverManager.getConnection( Registry.BD_URL, Registry.BD_USER, Registry.BD_PASSWORD );
-            if (_conn == null) {
-                throw new NullPointerException();
-            }
+
         }
         catch ( ClassNotFoundException | SQLException | NullPointerException e ){
-            logger.error( "Method: ", "Dao - GetConnection", e.toString() );
+            LoggerOps.error( "Method: Dao - Connect -> " + e.toString() );
         }
     }
 
@@ -33,7 +29,7 @@ public abstract class Dao
         try{
             _conn.close();
         }catch ( SQLException e ){
-            logger.error( "Method: ", "Dao - Close", e.toString() );
+            LoggerOps.error( "Method: Dao - Close -> " + e.toString() );
         }
     }
 
@@ -43,7 +39,7 @@ public abstract class Dao
             connect();
             Sentence = _conn.prepareCall(statementDefinition);
         } catch (Exception e){
-            logger.error( "Method: ", "Dao - getCallableSentence", e.toString() );
+            LoggerOps.error( "Method: Dao - GetCallableSentence -> " + e.toString() );
         }
         return Sentence;
     }
@@ -54,7 +50,7 @@ public abstract class Dao
             res = statement.executeQuery();
             return res;
         }catch (SQLException e){
-            logger.error( "Method: ", "Dao - executeQuery", e.toString() );
+            LoggerOps.error( "Method: Dao - Execute Query -> " + e.toString() );
             return null;
         }
     }
@@ -64,7 +60,7 @@ public abstract class Dao
             statement.execute();
             return true;
         }catch (SQLException e){
-            logger.error( "Method: ", "Dao - executeCall", e.toString() );
+            LoggerOps.error( "Method: Dao - Execute Call -> " + e.toString() );
             return false;
         }
     }

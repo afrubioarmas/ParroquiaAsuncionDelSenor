@@ -1,6 +1,7 @@
 package com.bezikee.DataAccessLayer.User;
 
 import com.bezikee.Common.DateOps;
+import com.bezikee.Common.LoggerOps;
 import com.bezikee.DataAccessLayer.Dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +15,8 @@ public class UserDao implements IUserDao{
     private final static Logger logger = LoggerFactory.getLogger(UserDao.class);
 
     public boolean create(UserBean input) {
-        logger.debug("Debug: UserDao - create");
+        LoggerOps.debug("UserDao - create");
+
         CallableStatement Sentence = null;
         boolean output = false;
         try {
@@ -39,18 +41,19 @@ public class UserDao implements IUserDao{
     }
 
    public UserBean read(int id) {
+       LoggerOps.debug("UserDao - read");
 
-       UserBean salida = null;
+        UserBean output = null;
         ResultSet rs =null;
-        CallableStatement Sentencia = Dao.getCallableSentence("{Call GetUser (?)}");
+        CallableStatement Sentence = Dao.getCallableSentence("{Call GetUser (?)}");
 
         try {
-            Sentencia.setInt(1, id);
+            Sentence.setInt(1, id);
 
-            rs =Dao.executeQuery(Sentencia);
+            rs =Dao.executeQuery(Sentence);
 
             if(rs!=null)
-                salida = getResponseBD(rs);
+                output = getResponseBD(rs);
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -58,30 +61,32 @@ public class UserDao implements IUserDao{
         }
         Dao.close();
 
-        return salida;
+        return output;
 
 
     }
 
     public ArrayList<UserBean> readAll(){
+        LoggerOps.debug("UserDao - readAll");
 
-        ArrayList<UserBean> salida = null;
+        ArrayList<UserBean> output = null;
         ResultSet rs =null;
 
-        CallableStatement Sentencia = Dao.getCallableSentence("{Call GetAllUsers ()} ");
+        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllUsers ()} ");
 
 
-        rs =Dao.executeQuery(Sentencia);
+        rs =Dao.executeQuery(Sentence);
 
         if(rs!=null)
-            salida = getResponseArrayListBD(rs);
+            output = getResponseArrayListBD(rs);
 
         Dao.close();
 
-        return salida;
+        return output;
     }
 
    /* public boolean update(BeanPregunta pregunta) {
+        LoggerOps.debug("UserDao - update");
 
         CallableStatement Sentencia = Dao.getCallableSentence("VPC_updatePregunta ?,?,?,?,?,?,?,?,?");
 
@@ -108,6 +113,7 @@ public class UserDao implements IUserDao{
     }
 
     public boolean delete(int id) {
+        LoggerOps.debug("UserDao - delete");
 
 
         boolean salida = false;
@@ -132,8 +138,9 @@ public class UserDao implements IUserDao{
     */
 
     private ArrayList<UserBean> getResponseArrayListBD(ResultSet rs){
+        LoggerOps.debug("UserDao - getResponseArrayListBD");
 
-        ArrayList<UserBean> salida = new ArrayList<UserBean>();
+        ArrayList<UserBean> output = new ArrayList<UserBean>();
 
         try {
             while (rs.next()){
@@ -146,22 +153,24 @@ public class UserDao implements IUserDao{
                         rs.getString("password"),
                         DateOps.convertToMysql(rs.getString("birthDate")),
                         rs.getString("sex"));
-                salida.add(aux);
+                output.add(aux);
             }
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        return salida;
+        return output;
 
     }
 
     private UserBean getResponseBD(ResultSet rs) throws NullPointerException, SQLException{
-        UserBean salida = null;
+        LoggerOps.debug("UserDao - getResponseBD");
+
+        UserBean output = null;
 
         while (rs.next()){
-            salida = new UserBean(
+            output = new UserBean(
                     rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("lastname"),
@@ -172,7 +181,7 @@ public class UserDao implements IUserDao{
                     rs.getString("sex"));
         }
 
-        return salida;
+        return output;
 
     }
 
