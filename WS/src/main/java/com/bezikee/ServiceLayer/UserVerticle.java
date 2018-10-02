@@ -12,6 +12,7 @@ import com.bezikee.DomainLogicLayer.CommandFactory;
 import com.bezikee.DomainLogicLayer.User.CreateUserCommand;
 import com.google.gson.Gson;
 import io.vertx.core.AbstractVerticle;
+import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
@@ -40,7 +41,7 @@ public class UserVerticle extends AbstractVerticle {
     }
 
     private void handleGetUser(RoutingContext routingContext) {
-        LoggerOps.debug("Handeling Get User.");
+        LoggerOps.debug("Handling Get User.");
 
         String idToRead = routingContext.request().getParam("userId");
         HttpServerResponse response = routingContext.response();
@@ -61,36 +62,76 @@ public class UserVerticle extends AbstractVerticle {
     }
 
     private void handleCreateUser(RoutingContext routingContext) {
-        LoggerOps.debug("Handeling Create User.");
+        LoggerOps.debug("Handling Create User.");
 
         HttpServerResponse response = routingContext.response();
 
-        UserBean user = new UserBean(
-                routingContext.request().getParam("name"),
-                routingContext.request().getParam("lastName"),
-                routingContext.request().getParam("email"),
-                routingContext.request().getParam("username"),
-                routingContext.request().getParam("password"),
-                DateOps.convertToMysql( routingContext.request().getParam("birthDate")),
-                routingContext.request().getParam("sex")
-        );
-
-
-        //Comando Agregar user
-        CreateUserCommand cmd = (CreateUserCommand) CommandFactory.instatiateCreateUser(user);
-
-        IUserDao dao = DaoFactory.instantiateUserDao();
-
         response.putHeader("Content-Type", "application/json");
-            if (dao.create(user) == false) {
-                response.setStatusCode(400);
-                response.end(GsonOps.toJson("Failed...!"));
-            } else {
-                response.end(GsonOps.toJson("OK!"));
-            }
+
+        if(validateParametersCreate(routingContext.request())) {
+            response.setStatusCode(400).end(GsonOps.toJson("Parameter Error"));
+        } else {
+
+            UserBean user = new UserBean(
+                    routingContext.request().getParam("name"),
+                    routingContext.request().getParam("lastName"),
+                    routingContext.request().getParam("email"),
+                    routingContext.request().getParam("username"),
+                    routingContext.request().getParam("password"),
+                    DateOps.convertToMysql( routingContext.request().getParam("birthDate")),
+                    routingContext.request().getParam("sex")
+            );
 
 
+            //Comando Agregar user
+            CreateUserCommand cmd = (CreateUserCommand) CommandFactory.instatiateCreateUser(user);
 
+            cmd.execute();
+
+            response.setStatusCode(cmd.getStatus() ? 200 : 400).end(cmd.getMessage());
+        }
+
+    }
+
+    private boolean validateParametersCreate(HttpServerRequest request) {
+        LoggerOps.debug("Validating Parameters Create User.");
+        //False = no errors
+        //True = error
+
+        if ( (request.getParam("name") == null) || !(request.getParam("name").matches("[a-zA-Z]+$"))) {
+            LoggerOps.error("Wrong name: " + request.getParam("name"));
+            return true;
+        }
+        if ((request.getParam("lastName") == null) || !(request.getParam("lastName").matches("[a-zA-Z]+$"))) {
+            LoggerOps.error("Wrong lastName: " + request.getParam("lastName"));
+            return true;
+        }
+        if ((request.getParam("email") == null) || !(request.getParam("email").matches("^[-a-z0-9~!$%^&*_=+}{\\'?]+(\\.[-a-z0-9~!$%^&*_=+}{\\'?]+)" +
+                "*@([a-z0-9_][-a-z0-9_]*(\\.[-a-z0-9_]+)*\\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name" +
+                "|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]" +
+                "{1,5})?$"))) {
+            LoggerOps.error("Wrong email: " + request.getParam("email"));
+            return true;
+        }
+        if ((request.getParam("username") == null) || !(request.getParam("username").matches("[a-zA-Z0-9]+$"))) {
+            LoggerOps.error("Wrong username: " + request.getParam("username"));
+            return true;
+        }
+        if ((request.getParam("password") == null) || !(request.getParam("password").matches("[a-zA-Z0-9]{7,100}+$"))) {
+            LoggerOps.error("Wrong password: " + request.getParam("password"));
+            return true;
+        }
+        if ((request.getParam("birthDate") == null) || !(request.getParam("birthDate").matches("^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]" +
+                "))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$"))) {
+            LoggerOps.error("Wrong birthDate: " + request.getParam("birthDate"));
+            return true;
+        }
+        if ((request.getParam("sex") == null) || !(request.getParam("sex").matches("[m|f]$"))) {
+            LoggerOps.error("Wrong sex: " + request.getParam("sex"));
+            return true;
+        }
+
+        return false;
     }
 
     private void handleGetAllUsers(RoutingContext routingContext) {
