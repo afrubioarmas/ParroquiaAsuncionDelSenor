@@ -62,3 +62,50 @@ DELIMITER ;
 -- CALL GetUser(7);
 -- End Get User
 
+-- Begin Update
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS UserUpdate $$
+
+CREATE PROCEDURE UserUpdate(
+	IN	 NAME 		varchar(50),
+	IN	 LASTNAME 	varchar(50),
+	IN	 EMAIL 	varchar(100),
+	IN	 USERNAME 	varchar(100),
+	IN	 PASSWORD 	varchar(100),
+	IN	 BIRTHDATE Date,
+	IN	 SEX 		char(1),
+	IN	 ID 		integer
+	)
+
+BEGIN
+
+	UPDATE USER SET NAME=NAME,LASTNAME=LASTNAME,EMAIL=EMAIL,USERNAME=USERNAME,PASSWORD=PASSWORD,BIRTHDATE=BIRTHDATE,SEX=SEX
+	WHERE ID=ID;
+
+END $$
+DELIMITER ;
+
+-- CALL UserUpdate ("Juan","Rubio","andresfra92@gmail.com","provemed","11111111","1992/11/26","m",2);
+-- End Update
+
+-- Begin Delete User
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS DeleteUser $$
+
+CREATE PROCEDURE DeleteUser(
+	IN	 ID 		int
+	)
+	
+
+BEGIN
+
+	DELETE FROM USER WHERE USER.id = ID;
+
+END $$
+DELIMITER ;
+
+-- CALL DeleteUser(7);
+-- End Delete User
+

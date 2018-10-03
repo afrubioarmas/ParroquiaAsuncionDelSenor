@@ -4,25 +4,15 @@ package com.bezikee.ServiceLayer;
 import com.bezikee.Common.DateOps;
 import com.bezikee.Common.GsonOps;
 import com.bezikee.Common.LoggerOps;
-import com.bezikee.DataAccessLayer.DaoFactory;
-import com.bezikee.DataAccessLayer.User.IUserDao;
 import com.bezikee.DataAccessLayer.User.UserBean;
-import com.bezikee.DataAccessLayer.User.UserDao;
 import com.bezikee.DomainLogicLayer.CommandFactory;
-import com.bezikee.DomainLogicLayer.User.CreateUserCommand;
-import com.google.gson.Gson;
+import com.bezikee.DomainLogicLayer.User.*;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.http.HttpServerRequest;
 import io.vertx.core.http.HttpServerResponse;
-import io.vertx.core.json.JsonArray;
-import io.vertx.core.json.JsonObject;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class UserVerticle extends AbstractVerticle {
 
@@ -36,29 +26,47 @@ public class UserVerticle extends AbstractVerticle {
         router.get("/user/:userId").handler(this::handleGetUser);
         router.put("/user").handler(this::handleCreateUser);
         router.get("/user").handler(this::handleGetAllUsers);
+        router.post("/user").handler(this::handleUpdateUser);
+        router.delete("/user/:userId").handler(this::handleDeleteUser);
 
         vertx.createHttpServer().requestHandler(router::accept).listen(8080);
     }
 
     private void handleGetUser(RoutingContext routingContext) {
-        LoggerOps.debug("Handling Get User.");
+        LoggerOps.debug("STARTING - Handling Get User.");
 
-        String idToRead = routingContext.request().getParam("userId");
         HttpServerResponse response = routingContext.response();
-        if (idToRead == null) {
-            sendError(400, response);
+
+        response.putHeader("Content-Type", "application/json");
+
+        if(validateParametersGet(routingContext.request())) {
+            response.setStatusCode(400).end(GsonOps.toJson("Parameter Error"));
         } else {
 
-            IUserDao dao = DaoFactory.instantiateUserDao();
-            UserBean user = dao.read(Integer.parseInt(idToRead));
+            int userId = Integer.parseInt(routingContext.request().getParam("userId"));
 
 
-            if (user == null) {
-                sendError(404, response);
-            } else {
-                response.putHeader("content-type", "application/json").end(GsonOps.toJson(user));
-            }
+            //Comando Agregar user
+            GetUserCommand cmd = (GetUserCommand) CommandFactory.instantiateGetUser(userId);
+
+            cmd.execute();
+
+            LoggerOps.debug("ENDING - Responding Get User.");
+            response.setStatusCode(cmd.getStatus() ? 200 : 400).end(cmd.getMessage());
         }
+    }
+
+    private boolean validateParametersGet(HttpServerRequest request) {
+        LoggerOps.debug("Validating Parameters Get User.");
+        //False = no errors
+        //True = error
+
+        if ( (request.getParam("userId") == null) || !(request.getParam("userId").matches("[0-9]+$"))) {
+            LoggerOps.error("Wrong Id: " + request.getParam("userId"));
+            return true;
+        }
+
+        return false;
     }
 
     private void handleCreateUser(RoutingContext routingContext) {
@@ -84,10 +92,11 @@ public class UserVerticle extends AbstractVerticle {
 
 
             //Comando Agregar user
-            CreateUserCommand cmd = (CreateUserCommand) CommandFactory.instatiateCreateUser(user);
+            CreateUserCommand cmd = (CreateUserCommand) CommandFactory.instantiateCreateUser(user);
 
             cmd.execute();
 
+            LoggerOps.debug("ENDING - Responding Create User.");
             response.setStatusCode(cmd.getStatus() ? 200 : 400).end(cmd.getMessage());
         }
 
@@ -135,15 +144,90 @@ public class UserVerticle extends AbstractVerticle {
     }
 
     private void handleGetAllUsers(RoutingContext routingContext) {
-        LoggerOps.debug("Handeling Get All Users.");
+        LoggerOps.debug("STARTING - Handling Get All User.");
 
-        IUserDao dao = DaoFactory.instantiateUserDao();
+        HttpServerResponse response = routingContext.response();
 
-        routingContext.response().putHeader("content-type", "application/json").end(GsonOps.toJson(dao.readAll()));
+        response.putHeader("Content-Type", "application/json");
+
+        //Comando Agregar user
+        GetAllUserCommand cmd = (GetAllUserCommand) CommandFactory.instantiateGetAllUser();
+
+        cmd.execute();
+
+        LoggerOps.debug("ENDING - Responding Get All User.");
+        response.setStatusCode(cmd.getStatus() ? 200 : 400).end(cmd.getMessage());
+
     }
 
-    private void sendError(int statusCode, HttpServerResponse response) {
-        response.setStatusCode(statusCode).end();
+    private void handleUpdateUser(RoutingContext routingContext) {
+        LoggerOps.debug("Handling Update User.");
+
+        HttpServerResponse response = routingContext.response();
+
+        response.putHeader("Content-Type", "application/json");
+
+        if(validateParametersUpdate(routingContext.request())) {
+            response.setStatusCode(400).end(GsonOps.toJson("Parameter Error"));
+        } else {
+
+            UserBean user = new UserBean(
+                    Integer.parseInt(routingContext.request().getParam("userId")),
+                    routingContext.request().getParam("name"),
+                    routingContext.request().getParam("lastName"),
+                    routingContext.request().getParam("email"),
+                    routingContext.request().getParam("username"),
+                    routingContext.request().getParam("password"),
+                    DateOps.convertToMysql( routingContext.request().getParam("birthDate")),
+                    routingContext.request().getParam("sex")
+            );
+
+
+            //Comando Agregar user
+            UpdateUserCommand cmd = (UpdateUserCommand) CommandFactory.instantiateUpdateUser(user);
+
+            cmd.execute();
+
+            LoggerOps.debug("ENDING - Responding Update User.");
+            response.setStatusCode(cmd.getStatus() ? 200 : 400).end(cmd.getMessage());
+        }
+
+    }
+
+    private boolean validateParametersUpdate(HttpServerRequest request) {
+
+        return validateParametersGet(request) || validateParametersCreate(request);
+    }
+
+    private void handleDeleteUser(RoutingContext routingContext) {
+        LoggerOps.debug("Handling Delete User.");
+
+        HttpServerResponse response = routingContext.response();
+
+        response.putHeader("Content-Type", "application/json");
+
+        if(validateParametersDelete(routingContext.request())) {
+            response.setStatusCode(400).end(GsonOps.toJson("Parameter Error"));
+        } else {
+
+            int userId = Integer.parseInt(routingContext.request().getParam("userId"));
+
+
+
+            //Comando Agregar user
+            DeleteUserCommand cmd = (DeleteUserCommand) CommandFactory.instantiateDeleteUser(userId);
+
+            cmd.execute();
+
+            LoggerOps.debug("ENDING - Responding Delete User.");
+            response.setStatusCode(cmd.getStatus() ? 200 : 400).end(cmd.getMessage());
+        }
+
+    }
+
+    private boolean validateParametersDelete(HttpServerRequest request) {
+
+        return validateParametersGet(request);
     }
 
 }
