@@ -17,7 +17,7 @@ public class UserDao implements IUserDao{
     public boolean create(UserBean input) {
         LoggerOps.debug("UserDao - create");
 
-        CallableStatement Sentence = null;
+        CallableStatement Sentence;
         boolean output = false;
         try {
             Sentence = Dao.getCallableSentence("{Call UserCreate (?,?,?,?,?,?,?)}");
@@ -44,7 +44,7 @@ public class UserDao implements IUserDao{
        LoggerOps.debug("UserDao - read");
 
         UserBean output = null;
-        ResultSet rs =null;
+        ResultSet rs;
         CallableStatement Sentence = Dao.getCallableSentence("{Call GetUser (?)}");
 
         try {
@@ -70,7 +70,7 @@ public class UserDao implements IUserDao{
         LoggerOps.debug("UserDao - readAll");
 
         ArrayList<UserBean> output = null;
-        ResultSet rs =null;
+        ResultSet rs;
 
         CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllUsers ()} ");
 
@@ -85,57 +85,55 @@ public class UserDao implements IUserDao{
         return output;
     }
 
-   /* public boolean update(BeanPregunta pregunta) {
-        LoggerOps.debug("UserDao - update");
+   public boolean update(UserBean input) {
 
-        CallableStatement Sentencia = Dao.getCallableSentence("VPC_updatePregunta ?,?,?,?,?,?,?,?,?");
+       LoggerOps.debug("UserDao - update");
 
-        try {
-            Sentencia.setString(1, pregunta.getEnunciado());
-            Sentencia.setString(2, pregunta.getTitulo());
-            Sentencia.setString(3, pregunta.getTipo());
-            Sentencia.setString(4, pregunta.getAtributo());
-            Sentencia.setString(5, pregunta.getValidacion());
-            Sentencia.setString(6, pregunta.getDigitos());
-            Sentencia.setString(7, pregunta.getAplica());
-            Sentencia.setString(8, pregunta.getEstatus());
-            Sentencia.setString(9, pregunta.getId());
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("SQL Exception: "+ e.getErrorCode());
-        }
+       CallableStatement Sentence;
+       boolean output = false;
+       try {
+           Sentence = Dao.getCallableSentence("{Call UserUpdate (?,?,?,?,?,?,?,?)}");
+           Sentence.setString(1, input.getName());
+           Sentence.setString(2, input.getLastName());
+           Sentence.setString(3, input.getEmail());
+           Sentence.setString(4, input.getUsername());
+           Sentence.setString(5, input.getPassword());
+           Sentence.setDate  (6, input.getBirthDate());
+           Sentence.setString(7, input.getSex());
+           Sentence.setInt(8, input.getId());
+           output = Dao.executeCall(Sentence);
+           Dao.close();
 
-        boolean salida = Dao.executeCall(Sentencia);
+       } catch (Exception e) {
+           logger.error( "Method: ", "UserDao - Update", e.toString() );
+       }
 
-        Dao.close();
-
-        return salida;
+       return output;
     }
+
 
     public boolean delete(int id) {
         LoggerOps.debug("UserDao - delete");
 
 
-        boolean salida = false;
-        CallableStatement Sentencia = Dao.getCallableSentence("VPC_deletePregunta ?");
+        boolean salida;
+        CallableStatement Sentence = Dao.getCallableSentence("{Call DeleteUser (?)}");
 
 
         try {
-            Sentencia.setInt(1, id);
+            Sentence.setInt(1, id);
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        salida =Dao.executeCall(Sentencia);
+        salida = Dao.executeCall(Sentence);
 
         Dao.close();
 
         return salida;
     }
 
-
-    */
 
     private ArrayList<UserBean> getResponseArrayListBD(ResultSet rs){
         LoggerOps.debug("UserDao - getResponseArrayListBD");
@@ -147,7 +145,7 @@ public class UserDao implements IUserDao{
                 UserBean aux = new UserBean(
                         rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("lastname"),
+                        rs.getString("lastName"),
                         rs.getString("email"),
                         rs.getString("username"),
                         rs.getString("password"),
@@ -173,7 +171,7 @@ public class UserDao implements IUserDao{
             output = new UserBean(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getString("lastname"),
+                    rs.getString("lastName"),
                     rs.getString("email"),
                     rs.getString("username"),
                     rs.getString("password"),

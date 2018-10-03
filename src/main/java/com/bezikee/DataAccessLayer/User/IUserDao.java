@@ -9,4 +9,8 @@ public interface IUserDao {
     ArrayList<UserBean> readAll();
 
     UserBean read(int idToRead);
+
+    boolean update(UserBean user);
+
+    boolean delete(int userId);
 }
