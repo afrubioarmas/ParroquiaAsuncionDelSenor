@@ -107,11 +107,11 @@ public class UserVerticle extends AbstractVerticle {
         //False = no errors
         //True = error
 
-        if ( (request.getParam("name") == null) || !(request.getParam("name").matches("[a-zA-Z]+$"))) {
+        if ( (request.getParam("name") == null) || !(request.getParam("name").matches("[a-zA-Z ]+$"))) {
             LoggerOps.error("Wrong name: " + request.getParam("name"));
             return true;
         }
-        if ((request.getParam("lastName") == null) || !(request.getParam("lastName").matches("[a-zA-Z]+$"))) {
+        if ((request.getParam("lastName") == null) || !(request.getParam("lastName").matches("[a-zA-Z ]+$"))) {
             LoggerOps.error("Wrong lastName: " + request.getParam("lastName"));
             return true;
         }

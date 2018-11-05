@@ -1,14 +1,7 @@
 package com.bezikee;
 
-import com.bezikee.Common.DateOps;
 import com.bezikee.Common.LoggerOps;
-import com.bezikee.DataAccessLayer.DaoFactory;
-import com.bezikee.DataAccessLayer.User.IUserDao;
-import com.bezikee.DataAccessLayer.User.UserBean;
-import com.bezikee.DataAccessLayer.User.UserDao;
-import com.bezikee.ServiceLayer.MyFirstVerticle;
-import com.bezikee.ServiceLayer.ProductVerticle;
-import com.bezikee.ServiceLayer.UserVerticle;
+import com.bezikee.ServiceLayer.*;
 import io.vertx.core.Vertx;
 
 public class App 
@@ -19,13 +12,18 @@ public class App
 
         Vertx vertx = Vertx.vertx();
 
-        /*MyFirstVerticle first = new MyFirstVerticle();
-        vertx.deployVerticle( first);*/
+        DonationVerticle donation= new DonationVerticle();
+        vertx.deployVerticle(donation);
 
-        UserVerticle user = new UserVerticle();
-        vertx.deployVerticle(user);
+        CalendarVerticle calendar = new CalendarVerticle();
+        vertx.deployVerticle(calendar);
 
-        ProductVerticle product = new ProductVerticle();
-        vertx.deployVerticle(product);
+        NewVerticle news = new NewVerticle();
+        vertx.deployVerticle(news);
+
+
+
+
+
     }
 }

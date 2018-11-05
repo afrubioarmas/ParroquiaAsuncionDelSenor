@@ -72,7 +72,7 @@ public class UserDao implements IUserDao{
         ArrayList<UserBean> output = null;
         ResultSet rs;
 
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllUsers ()} ");
+        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllUser ()} ");
 
 
         rs =Dao.executeQuery(Sentence);
@@ -116,7 +116,7 @@ public class UserDao implements IUserDao{
         LoggerOps.debug("UserDao - delete");
 
 
-        boolean salida;
+        boolean output;
         CallableStatement Sentence = Dao.getCallableSentence("{Call DeleteUser (?)}");
 
 
@@ -127,11 +127,11 @@ public class UserDao implements IUserDao{
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        salida = Dao.executeCall(Sentence);
+        output = Dao.executeCall(Sentence);
 
         Dao.close();
 
-        return salida;
+        return output;
     }
 
 

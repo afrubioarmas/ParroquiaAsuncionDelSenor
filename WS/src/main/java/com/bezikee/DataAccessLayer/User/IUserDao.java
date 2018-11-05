@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public interface IUserDao {
 
-    boolean create (UserBean b);
+    boolean create (UserBean toCreate);
 
     ArrayList<UserBean> readAll();
 
     UserBean read(int idToRead);
 
-    boolean update(UserBean user);
+    boolean update(UserBean toUpdate);
 
     boolean delete(int userId);
 }

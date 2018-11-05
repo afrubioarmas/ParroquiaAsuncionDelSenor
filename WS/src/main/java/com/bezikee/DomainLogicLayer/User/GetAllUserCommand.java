@@ -17,7 +17,7 @@ public class GetAllUserCommand extends Command {
 
     @Override
     public void execute() {
-        LoggerOps.debug("Executing GetUserCommand");
+        LoggerOps.debug("Executing GetAllUserCommand");
 
         IUserDao dao = DaoFactory.instantiateUserDao();
 
