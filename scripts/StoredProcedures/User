@@ -9,7 +9,7 @@ CREATE PROCEDURE UserCreate(
 	IN	 EMAIL 	varchar(100),
 	IN	 USERNAME 	varchar(100),
 	IN	 PASSWORD 	varchar(100),
-	IN	 BIRTHDATE Date,
+	IN	 BIRTHDATE date,
 	IN	 SEX 		char(1)
 	)
 
@@ -27,9 +27,9 @@ DELIMITER ;
 -- Begin Get All
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS GetAllUsers $$
+DROP PROCEDURE IF EXISTS GetAllUser $$
 
-CREATE PROCEDURE GetAllUsers()
+CREATE PROCEDURE GetAllUser()
 	
 
 BEGIN
@@ -39,10 +39,10 @@ BEGIN
 END $$
 DELIMITER ;
 
--- CALL GetAllUsers();
+-- CALL GetAllUser();
 -- End Get All
 
--- Begin Get User
+-- Begin Get
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS GetUser $$
@@ -60,7 +60,7 @@ END $$
 DELIMITER ;
 
 -- CALL GetUser(7);
--- End Get User
+-- End Get
 
 -- Begin Update
 
@@ -81,7 +81,7 @@ CREATE PROCEDURE UserUpdate(
 BEGIN
 
 	UPDATE USER SET NAME=NAME,LASTNAME=LASTNAME,EMAIL=EMAIL,USERNAME=USERNAME,PASSWORD=PASSWORD,BIRTHDATE=BIRTHDATE,SEX=SEX
-	WHERE ID=ID;
+	WHERE USER.ID=ID;
 
 END $$
 DELIMITER ;
@@ -89,7 +89,7 @@ DELIMITER ;
 -- CALL UserUpdate ("Juan","Rubio","andresfra92@gmail.com","provemed","11111111","1992/11/26","m",2);
 -- End Update
 
--- Begin Delete User
+-- Begin Delete
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS DeleteUser $$
@@ -107,5 +107,5 @@ END $$
 DELIMITER ;
 
 -- CALL DeleteUser(7);
--- End Delete User
+-- End Delete
 

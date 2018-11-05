@@ -14,12 +14,10 @@ public abstract class Dao
     {
          try{
 
-            Class.forName( Registry.BD_CLASS_FOR_NAME );
-
             _conn = DriverManager.getConnection( Registry.BD_URL, Registry.BD_USER, Registry.BD_PASSWORD );
 
         }
-        catch ( ClassNotFoundException | SQLException | NullPointerException e ){
+        catch ( SQLException | NullPointerException e ){
             LoggerOps.error( "Method: Dao - Connect -> " + e.toString() );
         }
     }
