@@ -21,6 +21,13 @@ public class App
         NewVerticle news = new NewVerticle();
         vertx.deployVerticle(news);
 
+        ServiceVerticle service = new ServiceVerticle();
+        vertx.deployVerticle(service);
+
+        PaymentVerticle payment = new PaymentVerticle();
+        vertx.deployVerticle(payment);
+
+
 
 
 
