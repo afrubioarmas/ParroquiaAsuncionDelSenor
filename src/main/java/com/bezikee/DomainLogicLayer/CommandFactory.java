@@ -3,10 +3,14 @@ package com.bezikee.DomainLogicLayer;
 import com.bezikee.DataAccessLayer.Calendar.CalendarBean;
 import com.bezikee.DataAccessLayer.Donation.DonationBean;
 import com.bezikee.DataAccessLayer.New.NewBean;
+import com.bezikee.DataAccessLayer.Payment.PaymentBean;
+import com.bezikee.DataAccessLayer.Service.ServiceBean;
 import com.bezikee.DataAccessLayer.User.UserBean;
 import com.bezikee.DomainLogicLayer.Calendar.*;
 import com.bezikee.DomainLogicLayer.Donation.*;
 import com.bezikee.DomainLogicLayer.New.*;
+import com.bezikee.DomainLogicLayer.Payment.*;
+import com.bezikee.DomainLogicLayer.Service.*;
 import com.bezikee.DomainLogicLayer.User.*;
 
 public class CommandFactory {
@@ -107,4 +111,51 @@ public class CommandFactory {
 
     //END NEW
 
+    //BEGIN SERVICE
+
+    public static Object instantiateCreateService( ServiceBean bean) {
+        return new CreateServiceCommand(bean);
+    }
+
+    public static Object instantiateGetService ( int id) {
+        return new GetServiceCommand(id);
+    }
+
+    public static Object instantiateGetAllService() {
+        return new GetAllServiceCommand();
+    }
+
+    public static Object instantiateUpdateService(ServiceBean bean) {
+        return new UpdateServiceCommand(bean);
+    }
+
+    public static Object instantiateDeleteService(int id) {
+        return new DeleteServiceCommand(id);
+    }
+
+    //END SERVICE
+
+    //BEGIN SERVICE
+
+    public static Object instantiateCreatePayment( PaymentBean bean) {
+        return new CreatePaymentCommand(bean);
+    }
+
+    public static Object instantiateGetPayment ( int id) {
+        return new GetPaymentCommand(id);
+    }
+
+    public static Object instantiateGetAllPayment() {
+        return new GetAllPaymentCommand();
+    }
+
+    public static Object instantiateUpdatePayment(PaymentBean bean) {
+        return new UpdatePaymentCommand(bean);
+    }
+
+    public static Object instantiateDeletePayment(int id) {
+        return new DeletePaymentCommand(id);
+    }
+
+    //END SERVICE
 }

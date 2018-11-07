@@ -25,13 +25,13 @@ public class GetNewCommand extends Command {
 
         INewDao dao = DaoFactory.instantiateNewDao();
 
-        NewBean donation = dao.read(_id);
-        if ( donation == null) {
+        NewBean newBean = dao.read(_id);
+        if ( newBean == null) {
             setStatus(false);
             setMessage(GsonOps.toJson("Server Side Error"));
         } else {
             setStatus(true);
-            setMessage(GsonOps.toJson(donation));
+            setMessage(GsonOps.toJson(newBean));
         }
 
 

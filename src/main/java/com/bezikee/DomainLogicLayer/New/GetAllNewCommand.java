@@ -21,13 +21,13 @@ public class GetAllNewCommand extends Command {
 
         INewDao dao = DaoFactory.instantiateNewDao();
 
-        ArrayList<NewBean> donations = dao.readAll();
-        if ( donations == null) {
+        ArrayList<NewBean> news = dao.readAll();
+        if ( news == null) {
             setStatus(false);
             setMessage(GsonOps.toJson("Server Side Error"));
         } else {
             setStatus(true);
-            setMessage(GsonOps.toJson(donations));
+            setMessage(GsonOps.toJson(news));
         }
 
 
