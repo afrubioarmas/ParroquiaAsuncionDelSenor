@@ -1,6 +1,7 @@
 package com.bezikee.ServiceLayer;
 
 
+import com.bezikee.App;
 import com.bezikee.Common.DateOps;
 import com.bezikee.Common.GsonOps;
 import com.bezikee.Common.LoggerOps;
@@ -20,16 +21,16 @@ public class DonationVerticle extends AbstractVerticle {
     public void start() {
         LoggerOps.debug("Starting donation Verticle.");
 
-        Router router = Router.router(vertx);
+       
 
-        router.route().handler(BodyHandler.create());
-        router.get("/donation/:donationId").handler(this::handleGetDonation);
-        router.put("/donation").handler(this::handleCreateDonation);
-        router.get("/donation").handler(this::handleGetAllDonations);
-        router.post("/donation").handler(this::handleUpdateDonation);
-        router.delete("/donation/:donationId").handler(this::handleDeleteDonation);
+        App.router.route().handler(BodyHandler.create());
+        App.router.get("/donation/:donationId").handler(this::handleGetDonation);
+        App.router.put("/donation").handler(this::handleCreateDonation);
+        App.router.get("/donation").handler(this::handleGetAllDonations);
+        App.router.post("/donation").handler(this::handleUpdateDonation);
+        App.router.delete("/donation/:donationId").handler(this::handleDeleteDonation);
 
-        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+        vertx.createHttpServer().requestHandler(App.router::accept).listen(8080);
     }
 
     private void handleGetDonation(RoutingContext routingContext) {
