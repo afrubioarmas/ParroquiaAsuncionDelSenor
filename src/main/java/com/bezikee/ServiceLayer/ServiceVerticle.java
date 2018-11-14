@@ -1,6 +1,7 @@
 package com.bezikee.ServiceLayer;
 
 
+import com.bezikee.App;
 import com.bezikee.Common.DateOps;
 import com.bezikee.Common.GsonOps;
 import com.bezikee.Common.LoggerOps;
@@ -20,16 +21,16 @@ public class ServiceVerticle extends AbstractVerticle {
     public void start() {
         LoggerOps.debug("Starting service Verticle.");
 
-        Router router = Router.router(vertx);
+        
 
-        router.route().handler(BodyHandler.create());
-        router.get("/service/:id").handler(this::handleGet);
-        router.put("/service").handler(this::handleCreate);
-        router.get("/service").handler(this::handleGetAll);
-        router.post("/service").handler(this::handleUpdate);
-        router.delete("/service/:id").handler(this::handleDelete);
+        App.router.route().handler(BodyHandler.create());
+        App.router.get("/service/:id").handler(this::handleGet);
+        App.router.put("/service").handler(this::handleCreate);
+        App.router.get("/service").handler(this::handleGetAll);
+        App.router.post("/service").handler(this::handleUpdate);
+        App.router.delete("/service/:id").handler(this::handleDelete);
 
-        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+        vertx.createHttpServer().requestHandler(App.router::accept).listen(8080);
     }
 
     private void handleGet(RoutingContext routingContext) {

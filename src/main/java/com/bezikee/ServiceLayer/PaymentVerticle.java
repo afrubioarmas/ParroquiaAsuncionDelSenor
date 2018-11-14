@@ -1,6 +1,7 @@
 package com.bezikee.ServiceLayer;
 
 
+import com.bezikee.App;
 import com.bezikee.Common.DateOps;
 import com.bezikee.Common.GsonOps;
 import com.bezikee.Common.LoggerOps;
@@ -20,16 +21,16 @@ public class PaymentVerticle extends AbstractVerticle {
     public void start() {
         LoggerOps.debug("Starting payment Verticle.");
 
-        Router router = Router.router(vertx);
 
-        router.route().handler(BodyHandler.create());
-        router.get("/payment/:id").handler(this::handleGet);
-        router.put("/payment").handler(this::handleCreate);
-        router.get("/payment").handler(this::handleGetAll);
-        router.post("/payment").handler(this::handleUpdate);
-        router.delete("/payment/:id").handler(this::handleDelete);
 
-        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+        App.router.route().handler(BodyHandler.create());
+        App.router.get("/payment/:id").handler(this::handleGet);
+        App.router.put("/payment").handler(this::handleCreate);
+        App.router.get("/payment").handler(this::handleGetAll);
+        App.router.post("/payment").handler(this::handleUpdate);
+        App.router.delete("/payment/:id").handler(this::handleDelete);
+
+        vertx.createHttpServer().requestHandler(App.router::accept).listen(8080);
     }
 
     private void handleGet(RoutingContext routingContext) {

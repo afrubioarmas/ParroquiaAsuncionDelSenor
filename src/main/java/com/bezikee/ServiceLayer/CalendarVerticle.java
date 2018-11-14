@@ -1,6 +1,7 @@
 package com.bezikee.ServiceLayer;
 
 
+import com.bezikee.App;
 import com.bezikee.Common.DateOps;
 import com.bezikee.Common.GsonOps;
 import com.bezikee.Common.LoggerOps;
@@ -21,17 +22,16 @@ public class CalendarVerticle extends AbstractVerticle {
     @Override
     public void start() {
         LoggerOps.debug("Starting calendar Verticle.");
+        
 
-        Router router = Router.router(vertx);
+        App.router.route().handler(BodyHandler.create());
+        App.router.get("/calendar/:id").handler(this::handleGetCalendar);
+        App.router.put("/calendar").handler(this::handleCreateCalendar);
+        App.router.get("/calendar").handler(this::handleGetAllCalendar);
+        App.router.post("/calendar").handler(this::handleUpdateCalendar);
+        App.router.delete("/calendar/:id").handler(this::handleDeleteCalendar);
 
-        router.route().handler(BodyHandler.create());
-        router.get("/calendar/:id").handler(this::handleGetCalendar);
-        router.put("/calendar").handler(this::handleCreateCalendar);
-        router.get("/calendar").handler(this::handleGetAllCalendar);
-        router.post("/calendar").handler(this::handleUpdateCalendar);
-        router.delete("/calendar/:id").handler(this::handleDeleteCalendar);
-
-        vertx.createHttpServer().requestHandler(router::accept).listen(8080);
+        vertx.createHttpServer().requestHandler(App.router::accept).listen(8080);
     }
 
     private void handleGetCalendar(RoutingContext routingContext) {
