@@ -1280,6 +1280,13 @@ form input[type="submit"], form button, form input[type="reset"] {
       cursor: pointer; }
       .hero .flex-control-nav a.flex-active {
         background: url(../images/pagination-current.png); }
+        .hero .slides #slide-1 {
+          background: url(../images/slide-1.jpg);
+        }
+        .hero .slides #slide-2 {
+          background: url(../images/slide-1.jpg);
+        }
+        
 
 .page-head {
   background-size: cover;
@@ -1296,6 +1303,9 @@ form input[type="submit"], form button, form input[type="reset"] {
       .page-head .page-title {
         font-size: 48px;
         font-size: 3.4285714286em; } }
+        .page-head #events-title {
+          background: url(../images/page-head-1.jpg);
+        }
 
 .fullwidth-block {
   padding: 50px 0; }
