@@ -20,7 +20,7 @@ public class CalendarDao implements ICalendarDao{
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call CalendarCreate (?,?,?)}");
+            Sentence = Dao.getCallableSentence("{Call CreateCalendar (?,?,?)}");
             Sentence.setDate  (1, input.getStartDate());
             Sentence.setDate  (2, input.getEndDate());
             Sentence.setString(3, input.getName());
