@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import Home from './containers/Home/Home';
-import Events from './containers/Events/Events';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Dashboard from './layouts/Dashboard';
+import Main from './layouts/Main';
 
 class App extends Component {
   render() {
@@ -12,15 +10,12 @@ class App extends Component {
 		<React.Fragment>
 			<BrowserRouter>
 				<React.Fragment>
-					<Header />
 					<Switch>
-						<Route path="/" exact component={Home} />
-						<Route path="/events" exact component={Events} />
-						<Route render={() => <h1>Not Found!</h1>} />
+						<Route path="/dashboard" component={Dashboard} />
+						<Route render={() => <Main/>} />
 					</Switch>
 				</React.Fragment>
 			</BrowserRouter>
-				<Footer />
 		</React.Fragment>
 
     );

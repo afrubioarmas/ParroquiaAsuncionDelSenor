@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import axios from '../../Axios';
+import axios from '../../../Axios';
 
-import Event from '../../components/Event/Event';
+import Event from '../../../components/Main/Event/Event';
 
 class Calendar extends Component {
 

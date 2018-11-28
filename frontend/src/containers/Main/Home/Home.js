@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import Carroussel from '../../components/Carroussel/Carroussel';
+import Carroussel from '../../../components/Main/Carroussel/Carroussel';
 import News from '../News/News';
 import Calendar from '../Calendar/Calendar';
-import Map from '../../components/Map/Map';
+import Map from '../../../components/Main/Map/Map';
 
 class Home extends Component {
     render() {

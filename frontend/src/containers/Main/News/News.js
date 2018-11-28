@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import axios from '../../Axios';
-import NewInstance from '../../components/NewInstance/NewInstance'; 
+import axios from '../../../Axios';
+import NewInstance from '../../../components/Main/NewInstance/NewInstance'; 
 
 class News extends Component {
 
