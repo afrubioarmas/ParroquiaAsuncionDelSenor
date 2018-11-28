@@ -9,6 +9,7 @@ const event = (props) => {
                     <span><i className="fa fa-calendar"></i>{props.date}</span>
                     <span><i className="fa fa-map-marker"></i>Location ? </span>
                 </span>
+                {props.showDescription ? <p>{props.description}</p> : null}
             </a>
         </li>
     );

@@ -5,7 +5,7 @@ const header = () => (
 
     <header className="site-header">
         <div className="container">
-        <a href="#" className="branding">
+        <a href="#" className="branding"> 
             <img src="images/logo.png" alt="" className="logo"/>
             <h1 className="site-title">La Anunciación del Señor</h1>
         </a>
@@ -13,12 +13,13 @@ const header = () => (
         <div className="main-navigation">
             <button className="menu-toggle"><i className="fa fa-bars"></i> Menu</button>
             <ul className="menu">
-            <li className="menu-item current-menu-item"><NavLink to="/" exact>Inicio</NavLink></li>
-            <li className="menu-item"><a href="#">Pastors</a></li>
-            <li className="menu-item"><a href="seremons.html">Seremons</a></li>
-            <li className="menu-item"><NavLink to="/events" exact>Events</NavLink></li>
-            <li className="menu-item"><a href="families.html">Families</a></li>
-            <li className="menu-item"><a href="#">Contact</a></li>
+                <li className="menu-item"><NavLink to="/" exact activeClassName="active-menu">Inicio</NavLink></li>
+                <li className="menu-item"><NavLink to="/organizacion" exact activeClassName="active-menu">Organización Eclesiástica</NavLink></li>
+                <li className="menu-item"><NavLink to="/noticias" exact activeClassName="active-menu">Noticias</NavLink></li>
+                <li className="menu-item"><NavLink to="/calendario" exact activeClassName="active-menu">Calendario</NavLink></li>
+                <li className="menu-item"><NavLink to="/donaciones" exact activeClassName="active-menu">Donaciones</NavLink></li>
+                <li className="menu-item"><NavLink to="/pagos" exact activeClassName="active-menu">Servicios de Pagos</NavLink></li>
+                <li className="menu-item"><NavLink to="/contacto" exact activeClassName="active-menu">Contacto</NavLink></li>
             </ul>
         </div>
 

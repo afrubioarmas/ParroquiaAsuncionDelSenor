@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import Carroussel from '../../../components/Main/Carroussel/Carroussel';
-import News from '../News/News';
-import Calendar from '../Calendar/Calendar';
+import News from './News';
+import Calendar from './Calendar';
 import Map from '../../../components/Main/Map/Map';
 
 class Home extends Component {
