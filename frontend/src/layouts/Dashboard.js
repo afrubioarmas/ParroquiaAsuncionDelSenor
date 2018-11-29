@@ -27,7 +27,7 @@ class Dashboard extends Component {
                         <Route path="/dashboard/services" exact component={Services} />
                         <Route path="/dashboard/payments" exact component={Payments} />
                         <Route path="/dashboard/content" exact component={Content} />
-						<Route render={() => <h1>Not Found!</h1>} />
+                        <Route render={() => <h1>Not Found!</h1>} />
 					</Switch>
 				</React.Fragment>
 			</BrowserRouter>

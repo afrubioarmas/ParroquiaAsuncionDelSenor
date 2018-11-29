@@ -1,64 +1,63 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import {NavLink,Link} from 'react-router-dom';
 
 const leftMenu = () => (
 
   <div className="sidebar" data-background-color="white" data-active-color="danger">
     <div className="sidebar-wrapper">
           <div className="logo">
-              <a href="http://www.creative-tim.com" className="simple-text">
+              <Link to="/" className="simple-text">
                   Parroquia La Asunsión del Señor
-              </a>
+              </Link>
           </div>
-
           <ul className="nav">
-              <li className="active">
-                  <a href="/dashboard">
+              <li>
+                  <NavLink to="/dashboard" exact activeClassName="active">
                       <i className="ti-dashboard"></i>
                       <p>Panel principal</p>
-                  </a>
+                  </NavLink>
               </li>
               <li>
-                  <a href="/dashboard/users">
+                  <NavLink to="/dashboard/users" exact activeClassName="active">
                       <i className="ti-user"></i>
                       <p>Admin usuarios</p>
-                  </a>
+                  </NavLink>
               </li>
               <li>
-                  <a href="/dashboard/events">
+                  <NavLink to="/dashboard/events" exact activeClassName="active">
                       <i className="ti-alarm-clock"></i>
                       <p>Admin eventos</p>
-                  </a>
+                  </NavLink>
               </li>
               <li>
-                  <a href="/dashboard/news">
+                  <NavLink to="/dashboard/news" exact activeClassName="active">
                       <i className="ti-announcement"></i>
                       <p>Admin noticias</p>
-                  </a>
+                  </NavLink>
               </li>
               <li>
-                  <a href="/dashboard/services">
+                  <NavLink to="/dashboard/services" exact activeClassName="active">
                       <i className="ti-archive"></i>
                       <p>Admin servicios</p>
-                  </a>
+                  </NavLink>
               </li>
               <li>
-                  <a href="/dashboard/payments">
+                  <NavLink to="/dashboard/payments" exact activeClassName="active">
                       <i className="ti-money"></i>
                       <p>Admin pagos</p>
-                  </a>
+                  </NavLink>
               </li>
               <li>
-                  <a href="/dashboard/content">
+                  <NavLink to="/dashboard/content" exact activeClassName="active">
                       <i className="ti-write"></i>
                       <p>Admin contenido</p>
-                  </a>
+                  </NavLink>
               </li>
               <li className="active-pro">
-                  <a href="/dashboard/logout">
+                  <NavLink to="/dashboard/logout" exact activeClassName="active">
                       <i className="ti-export"></i>
                       <p>Salir</p>
-                  </a>
+                  </NavLink>
               </li>
           </ul>
     </div>

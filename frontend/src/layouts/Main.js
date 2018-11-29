@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
 import Home from '../containers/Main/Home/Home';
-import Events from '../containers/Main/Events/Events';
 import News from '../containers/Main/News/News';
 import Calendar from '../containers/Main/Calendar/Calendar';
 import Donations from '../containers/Main/Donations/Donations';
