@@ -18,12 +18,6 @@ const leftMenu = () => (
                   </NavLink>
               </li>
               <li>
-                  <NavLink to="/dashboard/users" exact activeClassName="active">
-                      <i className="ti-user"></i>
-                      <p>Admin usuarios</p>
-                  </NavLink>
-              </li>
-              <li>
                   <NavLink to="/dashboard/events" exact activeClassName="active">
                       <i className="ti-alarm-clock"></i>
                       <p>Admin eventos</p>
@@ -45,12 +39,6 @@ const leftMenu = () => (
                   <NavLink to="/dashboard/payments" exact activeClassName="active">
                       <i className="ti-money"></i>
                       <p>Admin pagos</p>
-                  </NavLink>
-              </li>
-              <li>
-                  <NavLink to="/dashboard/content" exact activeClassName="active">
-                      <i className="ti-write"></i>
-                      <p>Admin contenido</p>
                   </NavLink>
               </li>
               <li className="active-pro">

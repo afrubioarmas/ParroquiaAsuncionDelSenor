@@ -21,12 +21,10 @@ class Dashboard extends Component {
                     <LeftMenu/>
 					<Switch>
 						<Route path="/dashboard" exact component={Home} />
-                        <Route path="/dashboard/users" exact component={Users} />
                         <Route path="/dashboard/events" exact component={Events} />
                         <Route path="/dashboard/news" exact component={News} />
                         <Route path="/dashboard/services" exact component={Services} />
                         <Route path="/dashboard/payments" exact component={Payments} />
-                        <Route path="/dashboard/content" exact component={Content} />
                         <Route render={() => <h1>Not Found!</h1>} />
 					</Switch>
 				</React.Fragment>
