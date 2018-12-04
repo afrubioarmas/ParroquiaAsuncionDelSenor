@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 const editEvent = (props) => (
-    <div className="col-lg-6 col-md-5">
+    <div className="col-lg-6 col-md-6">
         <div className="card">
             <div className="header">
                 <h4 className="title">Editar Evento</h4>

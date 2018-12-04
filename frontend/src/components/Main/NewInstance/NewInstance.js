@@ -5,10 +5,10 @@ const NewInstance = (props) => {
     let instance = (
         <li>
             <img src="images/thumb-1-120.png" alt=""/>
-            <div class="seremon-detail">
-                <h3 class="seremon-title">{props.title}</h3>
-                <div class="seremon-meta">
-                    <div class="date"><i class="fa fa-calendar"></i> 18 mar 2014</div>
+            <div className="seremon-detail">
+                <h3 className="seremon-title">{props.title}</h3>
+                <div className="seremon-meta">
+                    <div className="date"><i className="fa fa-calendar"></i> 18 mar 2014</div>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam molestiae doloribus deserunt minus a dicta labore beatae maiores assumenda. Laudantium nihil, maxime molestiae soluta doloribus magnam eum. Nesciunt, ea, sint.</p>
             </div>

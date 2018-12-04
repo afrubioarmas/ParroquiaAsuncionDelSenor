@@ -31,7 +31,7 @@ class Services extends Component {
 
     render() {
         return (
-            <React.Fragment>
+            <div className="services">
                 <Modal show={this.state.paying} modalClosed={this.paymentCancelHandler}>
                     <ServiceSummary service={this.state.selectedService} price={this.state.selectedPrice}/>
                 </Modal>
@@ -113,7 +113,7 @@ class Services extends Component {
                         </div>
                     </div>
                 </main>
-            </React.Fragment>
+            </div>
         );
     }
 }

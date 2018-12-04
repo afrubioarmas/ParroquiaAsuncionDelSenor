@@ -12,7 +12,7 @@ import Services from '../containers/Main/Services/Services';
 class Main extends Component {
   render() {
     return (
-		<React.Fragment>
+		<div className="main">
 			<BrowserRouter>
 				<React.Fragment>
 					<Header />
@@ -26,8 +26,8 @@ class Main extends Component {
 					</Switch>
 				</React.Fragment>
 			</BrowserRouter>
-				<Footer />
-		</React.Fragment>
+			<Footer />
+		</div>
 
     );
   }

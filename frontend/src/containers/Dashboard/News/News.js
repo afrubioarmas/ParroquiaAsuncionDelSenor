@@ -17,7 +17,7 @@ class News extends Component {
         error: false
     }
 
-    componentDidMount () {
+    componentWillMount () {
         //console.log(this.props);
         axios.get( '/new' )
             .then( response => {
@@ -35,6 +35,13 @@ class News extends Component {
                 //console.log(error);
                 this.setState({error: true});
             });
+        }
+
+    componentDidMount () {
+        const $ = window.$;
+        $(document).ready( function () {
+            $('#newsTable').DataTable();
+        } );
     }
 
     render() {

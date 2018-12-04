@@ -16,7 +16,7 @@ class Events extends Component {
         error: false
     }
 
-    componentDidMount () {
+    componentWillMount () {
         //console.log(this.props);
         axios.get( '/calendar' )
             .then( response => {
@@ -34,6 +34,13 @@ class Events extends Component {
                 //console.log(error);
                 this.setState({error: true});
             });
+    }
+
+    componentDidMount () {
+        const $ = window.$;
+        $(document).ready( function () {
+            $('#eventsTable').DataTable();
+        } );
     }
 
     render() {
@@ -60,11 +67,13 @@ class Events extends Component {
                 <TopNav title={"Administración de eventos"}/>
                 <div className="content">
                     <div className="container-fluid">
-                        <AllEvents>
-                            {events}
-                        </AllEvents>    
-                        <CreateEvent/>
-                        <EditEvent/>
+                        <div className="row">
+                            <AllEvents>
+                                {events}
+                            </AllEvents>    
+                            <CreateEvent/>
+                            <EditEvent/>
+                        </div>
                     </div>
                 </div>
             </div>

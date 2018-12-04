@@ -14,7 +14,7 @@
 
  */
 
-
+const $ = window.$;
 var fixedTop = false;
 var transparent = true;
 var navbar_initialized = false;

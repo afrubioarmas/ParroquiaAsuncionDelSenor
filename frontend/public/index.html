@@ -11,6 +11,7 @@
 		 
 
     
+
     <!-- Bootstrap core CSS     -->
     <link href="dashboard/css/bootstrap.min.css" rel="stylesheet" />
 
@@ -20,17 +21,22 @@
     <!--  Paper Dashboard core CSS    -->
     <link href="dashboard/css/paper-dashboard.css" rel="stylesheet"/>
 
-    <!--  Fonts and icons    
+    <!--  Fonts and icons  -->   
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'> -->
+    <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="dashboard/css/themify-icons.css" rel="stylesheet">
     
-		<!-- Loading third party fonts 
+		<!-- Loading third party fonts -->
 		<link href="fonts/novecento-font/novecento-font.css" rel="stylesheet" type="text/css">
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-		<!-- Loading main css file -->
+    <!-- Loading main css file -->
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+
+
+		
 		
 
   </head>
@@ -41,8 +47,10 @@
     <div id="root"></div>
   
 
-
-    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    
+    <script>jQuery.fn.load = function(callback){ $(window).on("load", callback) };</script>
 		<script src="js/plugins.js"></script>
     <script src="js/app.js"></script>
     

@@ -1,4 +1,4 @@
-.Modal {
+.main .services .Modal {
     position: fixed;
     z-index: 500;
     background-color: white;
@@ -10,11 +10,11 @@
     top: 30%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
-}
-
-@media (min-width: 600px) {
-    .Modal {
-        width: 500px;
-        left: calc(50% - 250px);
+  }
+  @media (min-width: 600px) {
+    .main .services .Modal {
+      width: 500px;
+      left: calc(50% - 250px);
     }
-}
+  }
+  

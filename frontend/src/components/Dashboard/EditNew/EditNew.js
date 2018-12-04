@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 const createNew = (props) => (
-    <div className="col-lg-6 col-md-5">
+    <div className="col-lg-6 col-md-6">
         <div className="card">
             <div className="header">
                 <h4 className="title">Editar Noticia</h4>
@@ -18,11 +18,11 @@ const createNew = (props) => (
                         </div>
                     </div>
 
-                   <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
+                   <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
                                 <label>Contenido</label>
-                                <textarea rows="5" class="form-control border-input" placeholder="Contenido de la noticia">
+                                <textarea rows="5" className="form-control border-input" placeholder="Contenido de la noticia">
                                 </textarea>
                             </div>
                         </div>

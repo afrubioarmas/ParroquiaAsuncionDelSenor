@@ -11,7 +11,7 @@ const AllNews = (props) => (
                     <p className="category">Lista de todos las noticias existentes.</p>
                 </div>
                 <div className="content table-responsive table-full-width">
-                    <table className="table table-striped">
+                    <table id="newsTable" className="table table-striped hover">
                         <thead>
                             <tr>
                                 <th>ID</th>

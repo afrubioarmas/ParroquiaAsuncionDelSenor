@@ -14,23 +14,23 @@ class Dashboard extends Component {
   render() {
     return (
         
-        <div className="wrapper">
+      <div className="wrapper dashboard">
             
-			<BrowserRouter>
-				<React.Fragment>
-                    <LeftMenu/>
-					<Switch>
-						<Route path="/dashboard" exact component={Home} />
-                        <Route path="/dashboard/events" exact component={Events} />
-                        <Route path="/dashboard/news" exact component={News} />
-                        <Route path="/dashboard/services" exact component={Services} />
-                        <Route path="/dashboard/payments" exact component={Payments} />
-                        <Route render={() => <h1>Not Found!</h1>} />
-					</Switch>
-				</React.Fragment>
-			</BrowserRouter>
+        <BrowserRouter>
+          <React.Fragment>
+            <LeftMenu/>
+            <Switch>
+              <Route path="/dashboard" exact component={Home} />
+                          <Route path="/dashboard/events" exact component={Events} />
+                          <Route path="/dashboard/news" exact component={News} />
+                          <Route path="/dashboard/services" exact component={Services} />
+                          <Route path="/dashboard/payments" exact component={Payments} />
+                          <Route render={() => <h1>Not Found!</h1>} />
+            </Switch>
+          </React.Fragment>
+        </BrowserRouter>
            
-        </div>
+      </div>
 		
 
     );
