@@ -1,11 +1,40 @@
 import React, { Component } from 'react';
 
+import Modal from '../../../components/Main/UI/Modal/Modal';
+import ServiceSummary from '../../../components/Main/ServiceSummary/ServiceSummary';
+
 import './Services.css';
 
 class Services extends Component {
+
+    state = {
+        paying: false,
+        selectedService: "",
+        selectedPrice: 0
+    }
+
+    paymentHandler = (service, price) => {
+        this.setState({
+            paying: true,
+            selectedService: service,
+            selectedPrice: price
+        });
+    }
+
+    paymentCancelHandler = () => {
+        this.setState({
+            paying: false,
+            selectedService: "",
+            selectedPrice: 0
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
+                <Modal show={this.state.paying} modalClosed={this.paymentCancelHandler}>
+                    <ServiceSummary service={this.state.selectedService} price={this.state.selectedPrice}/>
+                </Modal>
                 <div className="page-head">
                     <div className="container">
                         <h2 className="page-title">Servicios</h2>
@@ -26,30 +55,27 @@ class Services extends Component {
                                     <div class="column">
                                         <div class="card">
                                             <h3>Pago Inicial</h3>
-                                            <p>Some text</p>
-                                            <input type='text'></input>
+                                            <p>Informacion</p>
                                             <div className="text-center">
-                                                <a href="#" className="button">Pagar</a>
+                                                <button className="payment-button" onClick={() => this.paymentHandler("Inicial",100)}>Pagar</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="column">
                                         <div class="card">
                                             <h3>Pago Anual</h3>
-                                            <p>Some text</p>
-                                            <input type='text'></input>
+                                            <p>Informacion</p>
                                             <div className="text-center">
-                                                <a href="#" className="button">Pagar</a>
+                                                <button className="payment-button" onClick={() => this.paymentHandler("Anual",100)}>Pagar</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="column">
                                         <div class="card">
                                             <h3>Pago Mantenimiento</h3>
-                                            <p>Some text</p>
-                                            <input type='text'></input>
+                                            <p>Informacion</p>
                                             <div className="text-center">
-                                                <a href="#" className="button">Pagar</a>
+                                                <button className="payment-button" onClick={() => this.paymentHandler("Mantenimiento",100)}>Pagar</button>
                                             </div>
                                         </div>
                                     </div>
