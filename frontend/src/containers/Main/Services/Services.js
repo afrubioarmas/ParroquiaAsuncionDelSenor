@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Modal from '../../../components/Main/UI/Modal/Modal';
 import ServiceSummary from '../../../components/Main/ServiceSummary/ServiceSummary';
+import Service from '../../../components/Main/Service/Service';
 
 import './Services.css';
 
@@ -52,33 +53,24 @@ class Services extends Component {
                                 </div>
                                 <p className="donation-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis arcu id ex commodo, et imperdiet nulla placerat. Fusce tellus enim, eleifend sit amet ex vitae, consequat tempus quam. Etiam nec nisl at justo maximus laoreet in a eros. Cras semper lorem metus, id ultricies dui convallis vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent eu gravida mauris, id dictum tellus. Etiam sed ullamcorper elit, vitae pharetra neque. Fusce facilisis fermentum tincidunt. Maecenas non massa vel arcu porta vehicula. Phasellus quis dui vitae dolor consequat consequat.</p>
                                 <div class="row">
-                                    <div class="column">
-                                        <div class="card">
-                                            <h3>Pago Inicial</h3>
-                                            <p>Informacion</p>
-                                            <div className="text-center">
-                                                <button className="payment-button" onClick={() => this.paymentHandler("Inicial",100)}>Pagar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="column">
-                                        <div class="card">
-                                            <h3>Pago Anual</h3>
-                                            <p>Informacion</p>
-                                            <div className="text-center">
-                                                <button className="payment-button" onClick={() => this.paymentHandler("Anual",100)}>Pagar</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="column">
-                                        <div class="card">
-                                            <h3>Pago Mantenimiento</h3>
-                                            <p>Informacion</p>
-                                            <div className="text-center">
-                                                <button className="payment-button" onClick={() => this.paymentHandler("Mantenimiento",100)}>Pagar</button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <Service 
+                                        name="Pago Inicial"
+                                        information="Informacion"
+                                        price={100}
+                                        clicked={this.paymentHandler}
+                                    />
+                                    <Service 
+                                        name="Pago Anual"
+                                        information="Informacion"
+                                        price={50}
+                                        clicked={this.paymentHandler}
+                                    />
+                                    <Service 
+                                        name="Mantenimiento"
+                                        information="Informacion"
+                                        price={75}
+                                        clicked={this.paymentHandler}
+                                    />
                                 </div>
                             </div>
                             <hr className="p-separator"/>

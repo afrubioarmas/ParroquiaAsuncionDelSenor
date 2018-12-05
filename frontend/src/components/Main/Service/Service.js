@@ -1,0 +1,17 @@
+import React from 'react';
+
+const service = (props) => {
+    return (
+        <div class="column">
+            <div class="card">
+                <h3>{props.name}</h3>
+                <p>{props.information}</p>
+                <div className="text-center">
+                    <button className="payment-button" onClick={() => props.clicked(props.name,props.price)}>Pagar</button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default service;
