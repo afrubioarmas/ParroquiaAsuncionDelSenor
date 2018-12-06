@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from '../../../Axios';
 
 import Modal from '../../../components/Main/UI/Modal/Modal';
 import ServiceSummary from '../../../components/Main/ServiceSummary/ServiceSummary';
@@ -11,7 +12,29 @@ class Services extends Component {
     state = {
         paying: false,
         selectedService: "",
-        selectedPrice: 0
+        selectedPrice: 0,
+        services: [],
+        error: false
+    }
+
+    componentDidMount () {
+        //console.log(this.props);
+        axios.get( '/service' )
+            .then( response => {
+                const services = response.data;
+                const updatedServices = services.map(service => {
+                    return {
+                        ...service
+                    }
+                });
+                this.setState({services: updatedServices}); 
+                //console.log(this.state.events);
+                //console.log("response" + response );
+            } )
+            .catch(error => {
+                //console.log(error);
+                this.setState({error: true});
+            });
     }
 
     paymentHandler = (service, price) => {
@@ -31,6 +54,22 @@ class Services extends Component {
     }
 
     render() {
+
+        let services = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
+        if (!this.state.error) {
+            services = this.state.services.map(service => {
+                return (
+                    <Service 
+                        key={service.id}
+                        name={service.name}
+                        information="Informacion"
+                        price={service.basePrice}
+                        clicked={this.paymentHandler}
+                    />
+                );
+            });
+        }
+
         return (
             <div className="services">
                 <Modal show={this.state.paying} modalClosed={this.paymentCancelHandler}>
@@ -77,29 +116,12 @@ class Services extends Component {
                             <div className="donation-div">
                                 <div className="row">
                                     <div className="content col-md-12">
-                                        <h2 className="section-title">Caritas</h2>
+                                        <h2 className="section-title">Servicios</h2>
                                     </div>
                                 </div>
                                 <p className="donation-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis arcu id ex commodo, et imperdiet nulla placerat. Fusce tellus enim, eleifend sit amet ex vitae, consequat tempus quam. Etiam nec nisl at justo maximus laoreet in a eros. Cras semper lorem metus, id ultricies dui convallis vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent eu gravida mauris, id dictum tellus. Etiam sed ullamcorper elit, vitae pharetra neque. Fusce facilisis fermentum tincidunt. Maecenas non massa vel arcu porta vehicula. Phasellus quis dui vitae dolor consequat consequat.</p>
-                                <div className="row">
-                                    <div className="col-md-4 col-sm-6">
-                                        <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg"></img>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 col-sm-6">
-                                        <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg"></img>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 col-sm-6">
-                                        <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg"></img>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="text-center">
-                                    <a href="#" className="button">Donar</a>
+                                <div class="row">
+                                    {services}
                                 </div>
                             </div>
                         </div>

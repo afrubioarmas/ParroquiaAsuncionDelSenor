@@ -14,7 +14,7 @@ class News extends Component {
         //console.log(this.props);
         axios.get( '/new' )
             .then( response => {
-                const news = response.data.slice(0, 4);
+                const news = response.data;
                 const updatedNews = news.map(newAux => {
                     return {
                         ...newAux

@@ -14,7 +14,7 @@ class Calendar extends Component {
         //console.log(this.props);
         axios.get( '/calendar' )
             .then( response => {
-                const events = response.data.slice(0, 4);
+                const events = response.data;
                 const updatedEvents = events.map(event => {
                     return {
                         ...event
