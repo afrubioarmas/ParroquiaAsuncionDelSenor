@@ -1,9 +1,38 @@
 import React, { Component } from 'react';
 
+
+import DonationSummary from '../../../components/Main/PaymentSummary/DonationSummary';
+import Modal from '../../../components/Main/UI/Modal/Modal';
+
+import './Donations.css';
+
 class Donations extends Component {
+
+    state = {
+        paying: false,
+        selectedDonation: ""
+    }
+
+    paymentHandler = (donation) => {
+        this.setState({
+            paying: true,
+            selectedDonation: donation
+        });
+    }
+
+    paymentCancelHandler = () => {
+        this.setState({
+            paying: false,
+            selectedDonation: ""
+        });
+    }
+
     render() {
         return (
-            <React.Fragment>
+            <div className="donations">
+                <Modal show={this.state.paying} modalClosed={this.paymentCancelHandler}>
+                    <DonationSummary donation={this.state.selectedDonation}/>
+                </Modal>
                 <div className="page-head">
                     <div className="container">
                         <h2 className="page-title">Donaciones</h2>
@@ -38,7 +67,11 @@ class Donations extends Component {
                                     </div>
                                 </div>
                                 <div className="text-center">
-                                    <a href="#" className="button">Donar</a>
+                                    <button 
+                                        className="payment-button" 
+                                        onClick={() => this.paymentHandler("Parroquia")}>
+                                            Donar
+                                    </button>
                                 </div>
                             </div>
                             <hr className="p-separator"/>
@@ -67,13 +100,17 @@ class Donations extends Component {
                                     </div>
                                 </div>
                                 <div className="text-center">
-                                    <a href="#" className="button">Donar</a>
+                                    <button 
+                                        className="payment-button" 
+                                        onClick={() => this.paymentHandler("Caritas")}>
+                                            Donar
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
-            </React.Fragment>
+            </div>
         );
     }
 }

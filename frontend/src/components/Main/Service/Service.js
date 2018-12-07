@@ -2,8 +2,8 @@ import React from 'react';
 
 const service = (props) => {
     return (
-        <div class="column">
-            <div class="card">
+        <div className="column">
+            <div className="card">
                 <h3>{props.name}</h3>
                 <p>{props.information}</p>
                 <div className="text-center">

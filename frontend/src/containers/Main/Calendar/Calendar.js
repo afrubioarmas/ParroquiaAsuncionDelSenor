@@ -47,19 +47,19 @@ class Calendar extends Component {
 
         return (
             <React.Fragment>
-                <div class="page-head">
-                    <div class="container">
-                        <h2 class="page-title">Calendario</h2>
+                <div className="page-head">
+                    <div className="container">
+                        <h2 className="page-title">Calendario</h2>
                     </div>
                 </div>
 
-                <main class="main-content">
-                    <div class="fullwidth-block">
-                        <div class="container">
-                            <div class="row">
-                                <div class="content col-md-12">
-                                    <h2 class="section-title">Proximos Eventos</h2>
-                                    <ul class="event-list large">
+                <main className="main-content">
+                    <div className="fullwidth-block">
+                        <div className="container">
+                            <div className="row">
+                                <div className="content col-md-12">
+                                    <h2 className="section-title">Proximos Eventos</h2>
+                                    <ul className="event-list large">
                                         {events}
                                     </ul>
                                 </div>
