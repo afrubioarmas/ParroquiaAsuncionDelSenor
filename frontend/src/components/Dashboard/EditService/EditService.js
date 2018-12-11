@@ -1,7 +1,7 @@
 import React from 'react';
 
 const editService = (props) => (
-    <div className="col-lg-6 col-md-6">
+    <div className= {props.edit.toggle ? "col-lg-6 col-md-6" : "col-lg-6 col-md-6 disabled"} >
         <div className="card">
             <div className="header">
                 <h4 className="title">Editar Servicio</h4>
@@ -12,7 +12,7 @@ const editService = (props) => (
                         <div className="col-md-12">
                             <div className="form-group">
                                 <label>Nombre</label>
-                                <input type="text" className="form-control border-input" placeholder="Nombre del servicio"/>
+                                <input type="text" className="form-control border-input" placeholder="Nombre del servicio" defaultValue={props.edit.name} onChange={(evt) => { props.edit.name = evt.target.value }}/>
                             </div>
                         </div>
                     </div>
@@ -21,20 +21,20 @@ const editService = (props) => (
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Moneda</label>
-                                <input type="text" className="form-control border-input" placeholder="Moneda" />
+                                <input type="text" className="form-control border-input" placeholder="Moneda" defaultValue={props.edit.currency} onChange={(evt) => { props.edit.currency = evt.target.value }}/>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Precio Base</label>
-                                <input type="text" className="form-control border-input" placeholder="Precio Base"/>
+                                <input type="text" className="form-control border-input" placeholder="Precio Base" defaultValue={props.edit.basePrice} onChange={(evt) => { props.edit.basePrice = evt.target.value }}/>
                             </div>
                         </div>
                     </div>
 
                     
                     <div className="text-center">
-                        <button type="submit" className="btn btn-info btn-fill btn-wd">Editar</button>
+                        <button type="submit" className="btn btn-info btn-fill btn-wd" onClick={props.handleEdit}>Editar</button>
                     </div>
                     <div className="clearfix"></div>
                 </form>

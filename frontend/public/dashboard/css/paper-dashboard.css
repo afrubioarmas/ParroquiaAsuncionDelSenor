@@ -2996,3 +2996,27 @@
 .dashboard table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover{
   background-color:rgba(235,94,40, 0.5) ;
 }
+
+.dashboard table button.datatable-button{
+  background: none;
+  border: none;
+}
+
+.dashboard table button.datatable-button:hover{
+  color: #FFFFFF;
+}
+
+.dashboard table button.datatable-button i{
+  font-size: 20px;
+  font-weight: lighter;
+}
+
+div.disabled
+{
+  pointer-events: none;
+
+  /* for "disabled" effect */
+  opacity: 0.3;
+}
+
+

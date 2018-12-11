@@ -17,6 +17,7 @@ const AllServices = (props) => (
                             <th>Nombre</th>
                             <th>Moneda</th>
                             <th>Precio Base</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

@@ -15,6 +15,7 @@ class Services extends Component {
    
     state = {
         create:{name:'',currency:'',basePrice:''},
+        edit:{toggle:false,id:'',name:'',currency:'',basePrice:''},
         services: [],
         error: false
     }
@@ -34,26 +35,63 @@ class Services extends Component {
         axios.put('/service',data,config)
             .then(response => {
                 //handle success
-                
-                console.log(response);
+                this.setState({services:[]});
+                //console.log(response);
             })
             .catch(response => {
                 //handle error
-                console.log(response);
+                //console.log(response);
             });
     }
 
-    
-
-    handleEdit(e){
+    handleToggleEdit=(edit)=>(e)=>{
         e.preventDefault();
-        console.log('The link edit was clicked.');
+        
+        this.setState({edit:{toggle:true,id:edit.id,name:edit.name,currency:edit.currency,basePrice:edit.basePrice}});
 
     }
 
-    handleDelete(e){
+    handleEdit=(e)=>{
         e.preventDefault();
-        console.log('The link delete was clicked.');
+
+        e.preventDefault();
+
+        let data = new FormData();
+
+        data.append('id', this.state.edit.id);
+        data.append('name', this.state.edit.name);
+        data.append('currency', this.state.edit.currency);
+        data.append('basePrice', this.state.edit.basePrice);
+
+
+        const config = { headers: {'Content-Type': 'multipart/form-data'}}
+
+        axios.post('/service',data,config)
+            .then(response => {
+                //handle success
+                this.setState({services:[],edit:{toggle:false,id:'',name:'',currency:'',basePrice:''}});
+                //console.log(response);
+            })
+            .catch(response => {
+                //handle error
+                //console.log(response);
+            });
+    }
+
+    handleDelete = (id)=>(e) =>{
+        e.preventDefault();
+        
+
+        axios.delete('/service/'+id)
+            .then(response => {
+                //handle success
+                this.setState({services:[]});
+                //console.log(response);
+            })
+            .catch(response => {
+                //handle error
+                //console.log(response);
+            });
 
     }
 
@@ -68,14 +106,11 @@ class Services extends Component {
                     }
                 });
                 this.setState({services: updatedServices}); 
-                console.log(this.state.services);
+                //console.log(this.state.services);
                 //console.log( "respose" + response );
                 const $ = window.$;
                 $(document).ready( function () {
                     $('#servicesTable').DataTable();
-                    buttons: [
-                        'copy', 'excel', 'pdf'
-                    ]
                 } );
             } )
             .catch(error => {
@@ -83,6 +118,14 @@ class Services extends Component {
                 this.setState({error: true});
             });
         }
+
+        
+        componentDidUpdate(){
+            if(this.state.services.length===0){
+            this.componentDidMount();
+            }
+        }
+
 
    
 
@@ -99,6 +142,10 @@ class Services extends Component {
                         name={service.name}
                         currency={service.currency}
                         basePrice={service.basePrice}
+
+                        handleDelete={this.handleDelete}
+
+                        handleToggleEdit={this.handleToggleEdit}
                         />
                 );
             });
@@ -107,11 +154,11 @@ class Services extends Component {
             <div className="main-panel">
                 <TopNav title={"Administración de Servicios"}/>
                 <div className="content">
-                        <AllServices>
+                        <AllServices >
                             {services}
                         </AllServices>    
                         <CreateService handleCreate={this.handleCreate} create={this.state.create}/>
-                        <EditService/>
+                        <EditService handleEdit={this.handleEdit} edit={this.state.edit} />
                 </div>
             </div>
            
