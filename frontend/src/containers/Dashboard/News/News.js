@@ -13,23 +13,27 @@ import axios from '../../../Axios';
 class News extends Component {
 
     state = {
-        events: [],
+        news: [],
         error: false
     }
 
-    componentWillMount () {
+    componentDidMount () {
         //console.log(this.props);
         axios.get( '/new' )
             .then( response => {
-                const events = response.data.slice(0, 4);
-                const updatedEvents = events.map(event => {
+                const news = response.data;
+                const updatedNews = news.map(newAux => {
                     return {
-                        ...event
+                        ...newAux
                     }
                 });
-                this.setState({events: updatedEvents}); 
+                this.setState({news: updatedNews}); 
                 //console.log(this.state.events);
                 //console.log( "respose" + response );
+                const $ = window.$;
+                $(document).ready( function () {
+                $('#newsTable').DataTable();
+        } );
             } )
             .catch(error => {
                 //console.log(error);
@@ -37,17 +41,12 @@ class News extends Component {
             });
         }
 
-    componentDidMount () {
-        const $ = window.$;
-        $(document).ready( function () {
-            $('#newsTable').DataTable();
-        } );
-    }
+    
 
     render() {
-        let news = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
+        let news;
         if (!this.state.error) {
-            news = this.state.events.map(newAux => {
+            news = this.state.news.map(newAux => {
                 console.log(newAux);
                 return (
                     

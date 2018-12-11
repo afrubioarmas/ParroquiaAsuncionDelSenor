@@ -16,11 +16,11 @@ class Events extends Component {
         error: false
     }
 
-    componentWillMount () {
+    componentDidMount () {
         //console.log(this.props);
         axios.get( '/calendar' )
             .then( response => {
-                const events = response.data.slice(0, 4);
+                const events = response.data;
                 const updatedEvents = events.map(event => {
                     return {
                         ...event
@@ -29,6 +29,10 @@ class Events extends Component {
                 this.setState({events: updatedEvents}); 
                 //console.log(this.state.events);
                 //console.log( "respose" + response );
+                const $ = window.$;
+                $(document).ready( function () {
+                $('#eventsTable').DataTable();
+        } );
             } )
             .catch(error => {
                 //console.log(error);
@@ -36,16 +40,11 @@ class Events extends Component {
             });
     }
 
-    componentDidMount () {
-        const $ = window.$;
-        $(document).ready( function () {
-            $('#eventsTable').DataTable();
-        } );
-    }
+   
 
     render() {
 
-        let events = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
+        let events;
         if (!this.state.error) {
             events = this.state.events.map(event => {
                 console.log(event);
