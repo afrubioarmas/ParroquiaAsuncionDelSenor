@@ -52,17 +52,17 @@ class Donations extends Component {
                                 <div className="row">
                                     <div className="col-md-4 col-sm-6">
                                         <div className="donation">
-                                            <img className="donation-image" src="images/news-thumb-1.jpg"></img>
+                                            <img className="donation-image" src="images/news-thumb-1.jpg" alt=""></img>
                                         </div>
                                     </div>
                                     <div className="col-md-4 col-sm-6">
                                         <div className="donation">
-                                            <img className="donation-image" src="images/news-thumb-1.jpg"></img>
+                                            <img className="donation-image" src="images/news-thumb-1.jpg" alt=""></img>
                                         </div>
                                     </div>
                                     <div className="col-md-4 col-sm-6">
                                         <div className="donation">
-                                            <img className="donation-image" src="images/news-thumb-1.jpg"></img>
+                                            <img className="donation-image" src="images/news-thumb-1.jpg" alt=""></img>
                                         </div>
                                     </div>
                                 </div>
@@ -85,17 +85,17 @@ class Donations extends Component {
                                 <div className="row">
                                     <div className="col-md-4 col-sm-6">
                                         <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg"></img>
+                                            <img className="news-image" src="images/news-thumb-1.jpg" alt=""></img>
                                         </div>
                                     </div>
                                     <div className="col-md-4 col-sm-6">
                                         <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg"></img>
+                                            <img className="news-image" src="images/news-thumb-1.jpg" alt=""></img>
                                         </div>
                                     </div>
                                     <div className="col-md-4 col-sm-6">
                                         <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg"></img>
+                                            <img className="news-image" src="images/news-thumb-1.jpg" alt=""></img>
                                         </div>
                                     </div>
                                 </div>

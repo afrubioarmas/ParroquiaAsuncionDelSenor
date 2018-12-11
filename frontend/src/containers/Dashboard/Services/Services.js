@@ -73,6 +73,9 @@ class Services extends Component {
                 const $ = window.$;
                 $(document).ready( function () {
                     $('#servicesTable').DataTable();
+                    buttons: [
+                        'copy', 'excel', 'pdf'
+                    ]
                 } );
             } )
             .catch(error => {

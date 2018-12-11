@@ -1,5 +1,4 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 
 const createNew = (props) => (
     <div className="col-lg-6 col-md-6">

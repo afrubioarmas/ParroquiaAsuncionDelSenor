@@ -1,6 +1,4 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import service from '../Service/Service';
 
 const createService = (props) => (
     <div className="col-lg-6 col-md-6">

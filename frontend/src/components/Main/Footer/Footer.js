@@ -20,12 +20,12 @@ const footer = () => (
                     <div className="widget">
                         <h3 className="widget-title">Topics from last meeting</h3>
                         <ul className="bullet">
-                            <li><a href="#">Lorem ipsum dolor sit amet</a></li>
-                            <li><a href="#">Consectetur adipisicing elit quis nostrud</a></li>
-                            <li><a href="#">Eiusmod tempor incididunt ut labore et dolore magna</a></li> 
-                            <li><a href="#">Ut enim ad minim veniam cillum</a></li>
-                            <li><a href="#">Exercitation ullamco laboris nisi ut aliquip</a></li> 
-                            <li><a href="#">Duis aute irure dolor in reprehenderit in voluptate</a></li>
+                            <li><a href="">Lorem ipsum dolor sit amet</a></li>
+                            <li><a href="">Consectetur adipisicing elit quis nostrud</a></li>
+                            <li><a href="">Eiusmod tempor incididunt ut labore et dolore magna</a></li> 
+                            <li><a href="">Ut enim ad minim veniam cillum</a></li>
+                            <li><a href="">Exercitation ullamco laboris nisi ut aliquip</a></li> 
+                            <li><a href="">Duis aute irure dolor in reprehenderit in voluptate</a></li>
                         </ul>
                     </div>
                 </div>

@@ -9,7 +9,7 @@ const carroussel = () => (
                     <div className="slide-content">
                         <small className="slide-subtitle">True Church</small>
                         <h2 className="slide-title">Place with a real love</h2>
-                        <a href="#" className="button">See our families</a>
+                        <a href="" className="button">See our families</a>
                     </div>
                 </div>
             </li>
@@ -19,7 +19,7 @@ const carroussel = () => (
                     <div className="slide-content">
                         <small className="slide-subtitle">True Church</small>
                         <h2 className="slide-title">Place with a real love</h2>
-                        <a href="#" className="button">See our families</a>
+                        <a href="" className="button">See our families</a>
                     </div>
                 </div>
             </li>

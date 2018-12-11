@@ -4,11 +4,9 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import LeftMenu from '../components/Dashboard/LeftMenu/LeftMenu';
 import Home from '../containers/Dashboard/Home/Home';
 import Events from '../containers/Dashboard/Events/Events';
-import Users from '../containers/Dashboard/Users/Users';
 import News from '../containers/Dashboard/News/News';
 import Services from '../containers/Dashboard/Services/Services';
 import Payments from '../containers/Dashboard/Payments/Payments';
-import Content from '../containers/Dashboard/Content/Content';
 
 class Dashboard extends Component {
   render() {

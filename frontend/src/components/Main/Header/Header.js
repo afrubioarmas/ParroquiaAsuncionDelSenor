@@ -5,7 +5,7 @@ const header = () => (
 
     <header className="site-header">
         <div className="container">
-        <a href="#" className="branding"> 
+        <a href="" className="branding"> 
             <img src="images/logo.png" alt="" className="logo"/>
             <h1 className="site-title">La Anunciación del Señor</h1>
         </a>

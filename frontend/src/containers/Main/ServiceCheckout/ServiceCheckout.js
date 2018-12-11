@@ -11,7 +11,6 @@ class ServiceCheckout extends Component {
 
     componentWillMount() {
         const query = new URLSearchParams(this.props.location.search);
-        const service = {};
         for (let param of query.entries()) {
             console.log(param);
             if (param[0] === 'service') {
