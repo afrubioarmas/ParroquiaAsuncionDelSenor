@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from '../../../Axios';
 
 import Modal from '../../../components/Main/UI/Modal/Modal';
-import ServiceSummary from '../../../components/Main/ServiceSummary/ServiceSummary';
+import ServiceSummary from '../../../components/Main/PaymentSummary/ServiceSummary';
 import Service from '../../../components/Main/Service/Service';
 
 import './Services.css';
@@ -10,6 +10,7 @@ import './Services.css';
 class Services extends Component {
 
     state = {
+        accepted: false,
         paying: false,
         selectedService: "",
         selectedPrice: 0,
@@ -49,8 +50,22 @@ class Services extends Component {
         this.setState({
             paying: false,
             selectedService: "",
-            selectedPrice: 0
+            selectedPrice: 0,
+            accepted: false
         });
+    }
+
+    acceptDisclaimerHandler = () => {
+        this.setState({accepted: true});
+    }
+
+    acceptPaymentHandler = () => {
+        const queryParams = 'service=' + this.state.selectedService + '&price=' + this.state.selectedPrice;
+            this.props.history.push({
+                pathname: '/pago-servicio',
+                search: '?' + queryParams
+            });
+        //console.log(this.state);
     }
 
     render() {
@@ -70,10 +85,23 @@ class Services extends Component {
             });
         }
 
+        let summary = (
+            <div>
+                <p>Disclaimer de aceptar que habló con la Iglesia previamente</p>
+                <button className="payment-button" onClick={this.acceptDisclaimerHandler}>Si hablé con la iglesia</button>
+            </div>
+        );
+        if (this.state.accepted) {
+            summary = <ServiceSummary 
+                service={this.state.selectedService} 
+                price={this.state.selectedPrice}
+                clicked={this.acceptPaymentHandler} />;
+        }
+
         return (
             <div className="services">
                 <Modal show={this.state.paying} modalClosed={this.paymentCancelHandler}>
-                    <ServiceSummary service={this.state.selectedService} price={this.state.selectedPrice}/>
+                    {summary}
                 </Modal>
                 <div className="page-head">
                     <div className="container">

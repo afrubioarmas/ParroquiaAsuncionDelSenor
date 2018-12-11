@@ -1,10 +1,13 @@
 import React from 'react';
 
+import './ServiceSummary.css';
+
 const serviceSummary = (props) => {
     return (
         <div>
-            <p>Servicio a pagar: {props.service}</p>
-            <p>Precio Base: {props.price}</p>
+            <p className="summary-p">Servicio a pagar: <strong>{props.service}</strong></p>
+            <p className="summary-p">Precio Base: <strong>{props.price}</strong></p>
+            <button className="payment-button" onClick={props.clicked}>Realizar Pago</button>
         </div>
     );
 };

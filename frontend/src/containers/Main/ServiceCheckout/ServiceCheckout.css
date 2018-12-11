@@ -1,0 +1,12 @@
+.main .payment-form .text-input {
+    border-radius: 6px;
+    border-style: solid;
+    width: 200px;
+    display: block;
+    border-bottom-width: 3px;
+    border-color: #DCC2A0;
+    border-bottom-color: #94826b;
+    box-shadow: 1px 1px #94826b;
+    margin-bottom: 5px;
+    height: 30px;
+}
