@@ -10,3 +10,15 @@
     margin-bottom: 5px;
     height: 30px;
 }
+
+.main .bank-info {
+    text-align: center;
+}
+
+.main .bank-info-row {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.main .service-payment input {
+}

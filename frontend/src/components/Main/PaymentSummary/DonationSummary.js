@@ -3,7 +3,8 @@ import React from 'react';
 const donationSummary = (props) => {
     return (
         <div>
-            <p>Donar a: {props.donation}</p>
+            <p className="summary-p">Donar a: <strong>{props.donation}</strong></p>
+            <button className="payment-button" onClick={props.clicked}>Realizar Donación</button>
         </div>
     );
 };

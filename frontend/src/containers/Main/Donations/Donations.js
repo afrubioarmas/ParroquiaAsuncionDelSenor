@@ -27,11 +27,20 @@ class Donations extends Component {
         });
     }
 
+    acceptPaymentHandler = () => {
+        const queryParams = 'donation=' + this.state.selectedDonation;
+            this.props.history.push({
+                pathname: '/pago-donacion',
+                search: '?' + queryParams
+            });
+        //console.log(this.state);
+    }
+
     render() {
         return (
             <div className="donations">
                 <Modal show={this.state.paying} modalClosed={this.paymentCancelHandler}>
-                    <DonationSummary donation={this.state.selectedDonation}/>
+                    <DonationSummary donation={this.state.selectedDonation} clicked={this.acceptPaymentHandler}/>
                 </Modal>
                 <div className="page-head">
                     <div className="container">
