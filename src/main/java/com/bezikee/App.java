@@ -8,7 +8,11 @@ import io.vertx.core.Verticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.spi.VerticleFactory;
 import io.vertx.ext.web.Router;
+import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.maven.MavenVerticleFactory;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class App
 {
@@ -18,6 +22,14 @@ public class App
 
     public static void main(String [ ] args) {
        LoggerOps.debug("Starting vertx.");
+
+
+        Set<String> allowedHeaders = new HashSet<>();
+        allowedHeaders.add("Access-Control-Allow-Origin");
+        allowedHeaders.add("origin");
+        allowedHeaders.add("Content-Type");
+        allowedHeaders.add("accept");
+        router.route().handler(CorsHandler.create("*").allowedHeaders(allowedHeaders));
 
 
        DeploymentOptions options = new DeploymentOptions().setWorker(true);
