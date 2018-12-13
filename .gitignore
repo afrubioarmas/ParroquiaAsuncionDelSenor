@@ -2,3 +2,7 @@ WS/\.idea/
 WS/target/
 WS/\.idea/
 WS/scripts/DataBase/ER\.mwb\.bak
+
+frontend/public/dashboard/js/bootstrap-datetimepicker\.min\.js
+
+frontend/public/dashboard/css/bootstrap-datetimepicker\.min\.css

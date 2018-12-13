@@ -1,14 +1,14 @@
 import React from 'react';
-import {NavLink,Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 const leftMenu = () => (
 
   <div className="sidebar" data-background-color="white" data-active-color="danger">
     <div className="sidebar-wrapper">
           <div className="logo">
-              <Link to="/" className="simple-text">
+              <a href="http://localhost:3000/" className="simple-text">
                   Parroquia La Asunsión del Señor
-              </Link>
+              </a>
           </div>
           <ul className="nav">
               <li>

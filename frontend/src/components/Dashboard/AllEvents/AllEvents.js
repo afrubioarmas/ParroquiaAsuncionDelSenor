@@ -17,6 +17,7 @@ const AllEvents = (props) => (
                             <th>Nombre</th>
                             <th>Fecha Inicio</th>
                             <th>Fecha Fin</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
