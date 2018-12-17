@@ -9,7 +9,7 @@ CREATE PROCEDURE UserCreate(
 	IN	 EMAIL 	varchar(100),
 	IN	 USERNAME 	varchar(100),
 	IN	 PASSWORD 	varchar(100),
-	IN	 BIRTHDATE date,
+	IN	 BIRTHDATE Timestamp,
 	IN	 SEX 		char(1)
 	)
 
@@ -73,7 +73,7 @@ CREATE PROCEDURE UserUpdate(
 	IN	 EMAIL 	varchar(100),
 	IN	 USERNAME 	varchar(100),
 	IN	 PASSWORD 	varchar(100),
-	IN	 BIRTHDATE Date,
+	IN	 BIRTHDATE Timestamp,
 	IN	 SEX 		char(1),
 	IN	 ID 		integer
 	)

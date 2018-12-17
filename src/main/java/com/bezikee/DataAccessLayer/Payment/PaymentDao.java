@@ -26,7 +26,7 @@ public class PaymentDao implements IPaymentDao {
             Sentence.setString(2, input.getName());
             Sentence.setFloat(3, input.getPersonalId());
             Sentence.setFloat(4, input.getAmount());
-            Sentence.setDate(5,input.getDate());
+            Sentence.setString(5,input.getDate());
             output = Dao.executeCall(Sentence);
             Dao.close();
 
@@ -97,7 +97,7 @@ public class PaymentDao implements IPaymentDao {
             Sentence.setString(2, input.getName());
             Sentence.setFloat(3, input.getPersonalId());
             Sentence.setFloat(4, input.getAmount());
-            Sentence.setDate(5,input.getDate());
+            Sentence.setString(5,input.getDate());
             Sentence.setInt(6, input.getId());
             output = Dao.executeCall(Sentence);
             Dao.close();
@@ -146,7 +146,7 @@ public class PaymentDao implements IPaymentDao {
                         rs.getString("name"),
                         rs.getInt("personalId"),
                         rs.getFloat("amount"),
-                        DateOps.convertToMysql(rs.getString("date"))
+                        rs.getString("date")
                 );
                 output.add(aux);
             }
@@ -171,7 +171,7 @@ public class PaymentDao implements IPaymentDao {
                     rs.getString("name"),
                     rs.getInt("personalId"),
                     rs.getFloat("amount"),
-                    DateOps.convertToMysql(rs.getString("date"))
+                    rs.getString("date")
             );
         }
 

@@ -84,7 +84,7 @@ public class NewVerticle extends AbstractVerticle {
                     routingContext.request().getParam("content"),
                     routingContext.request().getParam("image"),
                     routingContext.request().getParam("video"),
-                    DateOps.convertToMysql( routingContext.request().getParam("date"))
+                    routingContext.request().getParam("date")
             );
 
             CreateNewCommand cmd = (CreateNewCommand) CommandFactory.instantiateCreateNew(bean);
@@ -149,7 +149,7 @@ public class NewVerticle extends AbstractVerticle {
                     routingContext.request().getParam("content"),
                     routingContext.request().getParam("image"),
                     routingContext.request().getParam("video"),
-                    DateOps.convertToMysql( routingContext.request().getParam("date"))
+                    routingContext.request().getParam("date")
             );
 
 

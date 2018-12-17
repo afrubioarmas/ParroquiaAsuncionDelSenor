@@ -7,7 +7,7 @@ CREATE PROCEDURE CreatePayment(
      IN name varchar(45),
      IN personalId int,
      IN amount float,
-     IN date date
+     IN date Timestamp
 ) BEGIN
 
 INSERT INTO PAYMENT (service_id,name,personalId,amount,date)
@@ -54,7 +54,7 @@ CREATE PROCEDURE UpdatePayment(
      IN name varchar(45),
      IN personalId int,
      IN amount float,
-     IN date date,
+     IN date timestamp,
      IN ID int
 ) BEGIN
 

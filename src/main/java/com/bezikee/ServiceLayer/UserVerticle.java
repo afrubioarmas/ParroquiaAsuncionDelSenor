@@ -86,7 +86,7 @@ public class UserVerticle extends AbstractVerticle {
                     routingContext.request().getParam("email"),
                     routingContext.request().getParam("username"),
                     routingContext.request().getParam("password"),
-                    DateOps.convertToMysql( routingContext.request().getParam("birthDate")),
+                    routingContext.request().getParam("birthDate"),
                     routingContext.request().getParam("sex")
             );
 
@@ -178,7 +178,7 @@ public class UserVerticle extends AbstractVerticle {
                     routingContext.request().getParam("email"),
                     routingContext.request().getParam("username"),
                     routingContext.request().getParam("password"),
-                    DateOps.convertToMysql( routingContext.request().getParam("birthDate")),
+                    routingContext.request().getParam("birthDate"),
                     routingContext.request().getParam("sex")
             );
 

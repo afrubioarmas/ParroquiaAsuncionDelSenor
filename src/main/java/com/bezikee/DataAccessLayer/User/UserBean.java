@@ -1,6 +1,7 @@
 package com.bezikee.DataAccessLayer.User;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class UserBean {
 
@@ -10,10 +11,10 @@ public class UserBean {
     private String email;
     private String username;
     private String password;
-    private Date birthDate;
+    private String birthDate;
     private String sex;
 
-    public UserBean(String name, String lastName, String email, String username, String password, Date birthDate, String sex) {
+    public UserBean(String name, String lastName, String email, String username, String password, String birthDate, String sex) {
         this.name = name;
         this.lastName = lastName;
         this.email = email;
@@ -23,7 +24,7 @@ public class UserBean {
         this.sex = sex;
     }
 
-    public UserBean(int id, String name, String lastName, String email, String username, String password, Date birthDate, String sex) {
+    public UserBean(int id, String name, String lastName, String email, String username, String password, String birthDate, String sex) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -82,11 +83,11 @@ public class UserBean {
         this.password = password;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

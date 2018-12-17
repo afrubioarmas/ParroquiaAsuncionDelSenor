@@ -1,21 +1,22 @@
 package com.bezikee.DataAccessLayer.Calendar;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class CalendarBean {
 
     private int id;
-    private Date StartDate;
-    private Date EndDate;
+    private String StartDate;
+    private String EndDate;
     private String name;
 
-    public CalendarBean(Date startDate, Date endDate, String name) {
+    public CalendarBean(String startDate, String endDate, String name) {
         StartDate = startDate;
         EndDate = endDate;
         this.name = name;
     }
 
-    public CalendarBean(int id, Date startDate, Date endDate, String name) {
+    public CalendarBean(int id, String startDate, String endDate, String name) {
         this.id = id;
         StartDate = startDate;
         EndDate = endDate;
@@ -30,19 +31,19 @@ public class CalendarBean {
         this.id = id;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return StartDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         StartDate = startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return EndDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(String endDate) {
         EndDate = endDate;
     }
 

@@ -7,7 +7,7 @@ CREATE PROCEDURE CreateNew(
      IN content varchar(450),
      IN image varchar(200),
      IN video varchar(200),
-     IN date date
+     IN date timestamp
 ) BEGIN
 
 INSERT INTO NEW (title,content,image,video,date)
@@ -54,7 +54,7 @@ CREATE PROCEDURE UpdateNew(
      IN content varchar(450),
      IN image varchar(200),
      IN video varchar(200),
-     IN date date,
+     IN date timestamp,
      IN ID int
 ) BEGIN
 

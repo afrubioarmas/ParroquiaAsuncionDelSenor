@@ -21,8 +21,8 @@ public class CalendarDao implements ICalendarDao{
         boolean output = false;
         try {
             Sentence = Dao.getCallableSentence("{Call CreateCalendar (?,?,?)}");
-            Sentence.setDate  (1, input.getStartDate());
-            Sentence.setDate  (2, input.getEndDate());
+            Sentence.setString(1, input.getStartDate());
+            Sentence.setString(2, input.getEndDate());
             Sentence.setString(3, input.getName());
             output = Dao.executeCall(Sentence);
             Dao.close();
@@ -89,8 +89,8 @@ public class CalendarDao implements ICalendarDao{
         boolean output = false;
         try {
             Sentence = Dao.getCallableSentence("{Call CalendarUpdate (?,?,?,?)}");
-            Sentence.setDate(1, input.getStartDate());
-            Sentence.setDate(2, input.getEndDate());
+            Sentence.setString(1, input.getStartDate());
+            Sentence.setString(2, input.getEndDate());
             Sentence.setString(3, input.getName());
             Sentence.setInt(4, input.getId());
             output = Dao.executeCall(Sentence);
@@ -109,7 +109,7 @@ public class CalendarDao implements ICalendarDao{
 
 
         boolean output;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call CalendarDelete (?)}");
+        CallableStatement Sentence = Dao.getCallableSentence("{Call DeleteCalendar (?)}");
 
 
         try {
@@ -136,8 +136,8 @@ public class CalendarDao implements ICalendarDao{
             while (rs.next()){
                 CalendarBean aux = new CalendarBean(
                         rs.getInt("id"),
-                        DateOps.convertToMysql(rs.getString("StartDate")),
-                        DateOps.convertToMysql(rs.getString("EndDate")),
+                        rs.getString("StartDate"),
+                        rs.getString("EndDate"),
                         rs.getString("name")
                 );
                 output.add(aux);
@@ -159,8 +159,8 @@ public class CalendarDao implements ICalendarDao{
         while (rs.next()){
             output = new CalendarBean(
                     rs.getInt("id"),
-                    DateOps.convertToMysql(rs.getString("StartDate")),
-                    DateOps.convertToMysql(rs.getString("EndDate")),
+                    rs.getString("StartDate"),
+                    rs.getString("EndDate"),
                     rs.getString("name")
             );
         }
