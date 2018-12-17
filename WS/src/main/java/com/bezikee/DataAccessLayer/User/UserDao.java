@@ -26,7 +26,7 @@ public class UserDao implements IUserDao{
             Sentence.setString(3, input.getEmail());
             Sentence.setString(4, input.getUsername());
             Sentence.setString(5, input.getPassword());
-            Sentence.setDate  (6, input.getBirthDate());
+            Sentence.setString(6, input.getBirthDate());
             Sentence.setString(7, input.getSex());
             output = Dao.executeCall(Sentence);
             Dao.close();
@@ -98,7 +98,7 @@ public class UserDao implements IUserDao{
            Sentence.setString(3, input.getEmail());
            Sentence.setString(4, input.getUsername());
            Sentence.setString(5, input.getPassword());
-           Sentence.setDate  (6, input.getBirthDate());
+           Sentence.setString(6, input.getBirthDate());
            Sentence.setString(7, input.getSex());
            Sentence.setInt(8, input.getId());
            output = Dao.executeCall(Sentence);
@@ -149,7 +149,7 @@ public class UserDao implements IUserDao{
                         rs.getString("email"),
                         rs.getString("username"),
                         rs.getString("password"),
-                        DateOps.convertToMysql(rs.getString("birthDate")),
+                        rs.getString("birthDate"),
                         rs.getString("sex"));
                 output.add(aux);
             }
@@ -175,7 +175,7 @@ public class UserDao implements IUserDao{
                     rs.getString("email"),
                     rs.getString("username"),
                     rs.getString("password"),
-                    DateOps.convertToMysql(rs.getString("birthDate")),
+                    rs.getString("birthDate"),
                     rs.getString("sex"));
         }
 

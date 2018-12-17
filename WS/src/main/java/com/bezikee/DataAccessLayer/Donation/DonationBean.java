@@ -1,6 +1,7 @@
 package com.bezikee.DataAccessLayer.Donation;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class DonationBean {
 
@@ -10,9 +11,9 @@ public class DonationBean {
     private String description;
     private String purpose;
     private String currency;
-    private Date date;
+    private String date;
 
-    public DonationBean(String name, float account, String description, String purpose, String currency, Date date){
+    public DonationBean(String name, float account, String description, String purpose, String currency, String date){
 
         this.name = name;
         this.amount = account;
@@ -23,7 +24,7 @@ public class DonationBean {
 
     }
 
-    public DonationBean(int id, String name, float account, String description, String purpose, String currency, Date date){
+    public DonationBean(int id, String name, float account, String description, String purpose, String currency, String date){
 
         this.id = id;
         this.name = name;
@@ -86,11 +87,11 @@ public class DonationBean {
         this.currency = currency;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

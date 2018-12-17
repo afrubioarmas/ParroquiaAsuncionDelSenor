@@ -1,6 +1,7 @@
 package com.bezikee.DataAccessLayer.New;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class NewBean {
 
@@ -9,9 +10,9 @@ public class NewBean {
     private String content;
     private String image;
     private String video;
-    private Date date;
+    private String date;
 
-    public NewBean(int id, String title, String content, String image, String video, Date date) {
+    public NewBean(int id, String title, String content, String image, String video, String date) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -20,7 +21,7 @@ public class NewBean {
         this.date = date;
     }
 
-    public NewBean(String title, String content, String image, String video, Date date) {
+    public NewBean(String title, String content, String image, String video, String date) {
         this.title = title;
         this.content = content;
         this.image = image;
@@ -68,11 +69,11 @@ public class NewBean {
         this.video = video;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

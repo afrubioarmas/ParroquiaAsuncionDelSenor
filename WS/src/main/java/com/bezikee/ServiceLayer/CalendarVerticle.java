@@ -81,8 +81,8 @@ public class CalendarVerticle extends AbstractVerticle {
         } else {
 
             CalendarBean calendar = new CalendarBean(
-                    DateOps.convertToMysql( routingContext.request().getParam("startDate")),
-                    DateOps.convertToMysql( routingContext.request().getParam("endDate")),
+                    routingContext.request().getParam("startDate"),
+                    routingContext.request().getParam("endDate"),
                     routingContext.request().getParam("name")
             );
 
@@ -103,14 +103,14 @@ public class CalendarVerticle extends AbstractVerticle {
         //False = no errors
         //True = error
 
-        if ((request.getParam("startDate") == null) || !(request.getParam("startDate").matches("^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]" +
-                "))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$"))) {
+        if ((request.getParam("startDate") == null) || !(request.getParam("startDate").matches("^\\d\\d\\d\\d-" +
+                "(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (00|[0-9]|1[0-9]|2[0-3]):([0-9]|[0-5][0-9])$"))) {
             LoggerOps.error("Wrong startDate: " + request.getParam("startDate"));
             return true;
         }
 
-        if ((request.getParam("endDate") == null) || !(request.getParam("endDate").matches("^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]" +
-                "))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$"))) {
+        if ((request.getParam("endDate") == null) || !(request.getParam("endDate").matches("^\\d\\d\\d\\d-" +
+                "(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01]) (00|[0-9]|1[0-9]|2[0-3]):([0-9]|[0-5][0-9])$"))) {
             LoggerOps.error("Wrong endDate: " + request.getParam("endDate"));
             return true;
         }
@@ -155,8 +155,8 @@ public class CalendarVerticle extends AbstractVerticle {
 
             CalendarBean calendar = new CalendarBean(
                     Integer.parseInt(routingContext.request().getParam("id")),
-                    DateOps.convertToMysql( routingContext.request().getParam("startDate")),
-                    DateOps.convertToMysql( routingContext.request().getParam("endDate")),
+                    routingContext.request().getParam("startDate"),
+                    routingContext.request().getParam("endDate"),
                     routingContext.request().getParam("name")
             );
 

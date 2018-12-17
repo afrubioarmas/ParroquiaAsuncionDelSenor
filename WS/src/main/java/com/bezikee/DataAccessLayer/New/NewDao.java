@@ -26,7 +26,7 @@ public class NewDao implements INewDao {
             Sentence.setString(2, input.getContent());
             Sentence.setString(3, input.getImage());
             Sentence.setString(4, input.getVideo());
-            Sentence.setDate  (5, input.getDate());
+            Sentence.setString(5, input.getDate());
             output = Dao.executeCall(Sentence);
             Dao.close();
 
@@ -97,7 +97,7 @@ public class NewDao implements INewDao {
             Sentence.setString(2, input.getContent());
             Sentence.setString(3, input.getImage());
             Sentence.setString(4, input.getVideo());
-            Sentence.setDate  (5, input.getDate());
+            Sentence.setString(5, input.getDate());
             Sentence.setInt(6, input.getId());
             output = Dao.executeCall(Sentence);
             Dao.close();
@@ -146,7 +146,7 @@ public class NewDao implements INewDao {
                         rs.getString("content"),
                         rs.getString("image"),
                         rs.getString("video"),
-                        DateOps.convertToMysql(rs.getString("date"))
+                        rs.getString("date")
                 );
                 output.add(aux);
             }
@@ -171,7 +171,7 @@ public class NewDao implements INewDao {
                     rs.getString("content"),
                     rs.getString("image"),
                     rs.getString("video"),
-                    DateOps.convertToMysql(rs.getString("date"))
+                    rs.getString("date")
             );
         }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as moment from 'moment';
 
 import TopNav from '../../../components/Dashboard/TopNav/TopNav';
 import AllEvents from '../../../components/Dashboard/AllEvents/AllEvents';
@@ -12,21 +13,22 @@ import axios from '../../../Axios';
 class Events extends Component {
 
     state = {
-        create:{name:'',startDate:'',endDate:''},
+        create:{name:'',startDate:moment(),endDate:moment()},
         edit:{toggle:false,id:'',name:'',startDate:'',endDate:''},
+        hide:false,
         events: [],
         error: false
     }
 
-    handleCreate= (e) =>{
+    handleCreate= (create) => (e) =>{
         e.preventDefault();
         console.log(this.state.create.name);
 
         let data = new FormData();
 
-        data.append('name', this.state.create.name);
-        data.append('startDate', this.state.create.startDate);
-        data.append('endDate', this.state.create.endDate);
+        data.append('name', create.name);
+        data.append('startDate', create.startDate.format('YYYY-MM-DD HH:mm'));
+        data.append('endDate', create.endDate.format('YYYY-MM-DD HH:mm'));
 
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
@@ -93,7 +95,7 @@ class Events extends Component {
             });
 
     }
-
+    
     componentDidMount () {
         //console.log(this.props);
         axios.get( '/calendar' )
@@ -124,6 +126,7 @@ class Events extends Component {
             this.componentDidMount();
             }
         }
+
 
    
 
@@ -159,7 +162,9 @@ class Events extends Component {
                             <AllEvents>
                                 {events}
                             </AllEvents>    
-                            <CreateEvent handleCreate={this.handleCreate} create={this.state.create}/>
+                            <CreateEvent 
+                                handleCreate={this.handleCreate}
+                            />
                             <EditEvent handleEdit={this.handleEdit} edit={this.state.edit}/>
                         </div>
                     </div>

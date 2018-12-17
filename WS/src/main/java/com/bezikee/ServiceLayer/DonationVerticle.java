@@ -85,7 +85,7 @@ public class DonationVerticle extends AbstractVerticle {
                     routingContext.request().getParam("description"),
                     routingContext.request().getParam("purpose"),
                     routingContext.request().getParam("currency"),
-                    DateOps.convertToMysql( routingContext.request().getParam("date"))
+                    routingContext.request().getParam("date")
 
             );
 
@@ -170,7 +170,7 @@ public class DonationVerticle extends AbstractVerticle {
                     routingContext.request().getParam("description"),
                     routingContext.request().getParam("purpose"),
                     routingContext.request().getParam("currency"),
-                    DateOps.convertToMysql( routingContext.request().getParam("date"))
+                    routingContext.request().getParam("date")
 
             );
 

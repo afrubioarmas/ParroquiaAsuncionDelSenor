@@ -1,6 +1,7 @@
 package com.bezikee.DataAccessLayer.Payment;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class PaymentBean {
 
@@ -10,9 +11,9 @@ public class PaymentBean {
     private String name;
     private int personalId;
     private float amount;
-    private Date date;
+    private String date;
 
-    public PaymentBean(int id, int serviceId, String name, int personalId, float amount, Date date) {
+    public PaymentBean(int id, int serviceId, String name, int personalId, float amount, String date) {
         this.id = id;
         this.serviceId = serviceId;
         this.name = name;
@@ -21,7 +22,7 @@ public class PaymentBean {
         this.date = date;
     }
 
-    public PaymentBean(int serviceId, String name, int personalId, float amount, Date date) {
+    public PaymentBean(int serviceId, String name, int personalId, float amount, String date) {
         this.serviceId = serviceId;
         this.name = name;
         this.personalId = personalId;
@@ -69,11 +70,11 @@ public class PaymentBean {
         this.amount = amount;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

@@ -9,7 +9,7 @@ CREATE PROCEDURE DonationCreate(
 	IN	 DESCRIPTION	varchar(45),
 	IN	 PURPOSE 		varchar(45),
 	IN	 CURRENCY 		varchar(45),
-	IN	 DATE 		date
+	IN	 DATE 		timestamp
 )
 
 BEGIN
@@ -72,7 +72,7 @@ CREATE PROCEDURE DonationUpdate(
 	IN	 DESCRIPTION	varchar(45),
 	IN	 PURPOSE 		varchar(45),
 	IN	 CURRENCY 		varchar(45),
-	IN	 DATE 			date,
+	IN	 DATE 			timestamp,
 	IN	 ID 			integer
 	)
 

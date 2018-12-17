@@ -3,8 +3,8 @@
 DELIMITER $$
 DROP PROCEDURE IF EXISTS CreateCalendar $$
 CREATE PROCEDURE CreateCalendar(
-     IN StartDate date,
-     IN EndDate date,
+     IN StartDate timestamp,
+     IN EndDate timestamp,
      IN Name varchar(45)
 ) BEGIN
 
@@ -14,7 +14,7 @@ VALUES (StartDate,EndDate,Name);
 END $$
 DELIMITER ;
 
--- CALL CreateCalendar('2018-9-4','2018-9-4','string');
+-- CALL CreateCalendar('2018-9-4 15:08;15','2018-9-4 15:08;15','string');
 -- End Create
 -- Begin Get all
 
@@ -48,8 +48,8 @@ DELIMITER ;
 DELIMITER $$
 DROP PROCEDURE IF EXISTS UpdateCalendar $$
 CREATE PROCEDURE UpdateCalendar(
-     IN StartDate date,
-     IN EndDate date,
+     IN StartDate timestamp,
+     IN EndDate timestamp,
      IN Name varchar(45),
      IN ID int
 ) BEGIN

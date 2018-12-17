@@ -87,7 +87,7 @@ public class PaymentVerticle extends AbstractVerticle {
                     routingContext.request().getParam("name"),
                     Integer.parseInt(routingContext.request().getParam("personalId")),
                     Float.parseFloat(routingContext.request().getParam("amount")),
-                    DateOps.convertToMysql( routingContext.request().getParam("date"))
+                    routingContext.request().getParam("date")
             );
 
             CreatePaymentCommand cmd = (CreatePaymentCommand) CommandFactory.instantiateCreatePayment(bean);
@@ -166,7 +166,7 @@ public class PaymentVerticle extends AbstractVerticle {
                     routingContext.request().getParam("name"),
                     Integer.parseInt(routingContext.request().getParam("personalId")),
                     Float.parseFloat(routingContext.request().getParam("amount")),
-                    DateOps.convertToMysql( routingContext.request().getParam("date"))
+                    routingContext.request().getParam("date")
             );
 
 

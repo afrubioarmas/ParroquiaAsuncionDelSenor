@@ -26,7 +26,7 @@ public class MyFirstVerticle extends AbstractVerticle {
                                     request.getParam("email"),
                                     request.getParam("username"),
                                     request.getParam("password"),
-                                    DateOps.convertToMysql( request.getParam("birthDate")),
+                                    request.getParam("birthDate"),
                                     request.getParam("sex")
 
                             );
