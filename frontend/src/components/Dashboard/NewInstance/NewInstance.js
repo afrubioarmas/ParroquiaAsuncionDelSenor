@@ -4,7 +4,7 @@ const newInstance = (props) => {
 
     var edit ={
         id:props.id,
-        title:props.name,
+        title:props.title,
         content:props.content,
         image:props.image,
         video:props.video,
@@ -17,7 +17,6 @@ const newInstance = (props) => {
             <td>{props.title}</td>
             <td>{props.content}</td>
             <td>{props.image}</td>
-            <td>{props.video}</td>
             <td>{props.date}</td>
             <td align="center">
                 <button className="datatable-button" onClick={props.handleDelete(props.id)}><i className="ti-trash"></i></button>

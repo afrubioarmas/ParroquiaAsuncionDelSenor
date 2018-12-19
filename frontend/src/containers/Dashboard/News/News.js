@@ -16,22 +16,21 @@ class News extends Component {
     state = {
         create:{title:'',content:'',image:'',video:'',date:moment()},
         edit:{toggle:false,id:'',title:'',content:'',image:'',video:'',date:moment()},
-        hide:false,
         news: [],
         error: false
     }
 
-    handleCreate= (create) => (e) =>{
+    handleCreate= (e) =>{
         e.preventDefault();
         console.log(this.state.create.title);
 
         let data = new FormData();
 
-        data.append('name', create.title);
-        data.append('content', create.content);
-        data.append('image', create.image);
-        data.append('video', create.video);
-        data.append('date', create.date.format('YYYY-MM-DD HH:mm'));
+        data.append('title', this.state.create.title);
+        data.append('content',  this.state.create.content);
+        data.append('image',  this.state.create.image);
+        data.append('video', '');
+        data.append('date', moment().format('YYYY-MM-DD HH:mm'));
 
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
@@ -61,19 +60,25 @@ class News extends Component {
                         date:edit.date}
                     });
 
+        console.log("Edit: "+edit);
+                  
+
+                    
+
     }
 
-    handleEdit=(edit)=>(e)=>{
+    handleEdit= (e)=>{
         e.preventDefault();
 
+        console.log(this.state.edit);  
         let data = new FormData();
 
-        data.append('id',edit.id);
-        data.append('name', edit.title);
-        data.append('content', edit.content);
-        data.append('image', edit.image);
-        data.append('video',edit.video);
-        data.append('date', edit.date.format('YYYY-MM-DD HH:mm'));
+        data.append('id',this.state.edit.id);
+        data.append('name', this.state.edit.title);
+        data.append('content', this.state.edit.content);
+        data.append('image', this.state.edit.image);
+        data.append('video',this.state.edit.video);
+        data.append('date', moment().format('YYYY-MM-DD HH:mm'));
 
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
@@ -81,7 +86,7 @@ class News extends Component {
         axios.post('/new',data,config)
             .then(response => {
                 //handle success
-                this.setState({events:[],edit:{toggle:false,id:'',title:'',content:'',image:'',video:'',date:moment()}});
+                this.setState({news:[],edit:{toggle:false,id:'',title:'',content:'',image:'',video:'',date:moment()}});
                 //console.log(response);
             })
             .catch(response => {
@@ -97,7 +102,7 @@ class News extends Component {
         axios.delete('/new/'+id)
             .then(response => {
                 //handle success
-                this.setState({events:[]});
+                this.setState({news:[]});
                 //console.log(response);
             })
             .catch(response => {
@@ -122,8 +127,8 @@ class News extends Component {
                 //console.log( "respose" + response );
                 const $ = window.$;
                 $(document).ready( function () {
-                $('#newsTable').DataTable();
-        } );
+                    $('#newsTable').DataTable();
+                } );
             } )
             .catch(error => {
                 //console.log(error);
@@ -143,7 +148,7 @@ class News extends Component {
         let news;
         if (!this.state.error) {
             news = this.state.news.map(newAux => {
-                console.log(newAux);
+                //console.log(newAux);
                 return (
                     
                     <NewInstance 
@@ -169,8 +174,8 @@ class News extends Component {
                         <AllNews>
                             {news}
                         </AllNews>    
-                        <CreateNew  handleCreate={this.handleCreate}/>
-                        <EditNew/>
+                        <CreateNew handleCreate={this.handleCreate} create={this.state.create}/>
+                        <EditNew  handleEdit={this.handleEdit} edit={this.state.edit}/>
                 </div>
             </div>
            

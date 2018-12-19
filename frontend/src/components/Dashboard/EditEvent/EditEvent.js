@@ -1,7 +1,60 @@
 import React, { Component } from 'react';
+import InputMoment from 'input-moment';
+import * as moment from 'moment';
 
 class EditEvent extends Component {
-  
+
+    state={
+        edit:{id:this.props.edit.id,name:this.props.edit.name,startDate:this.props.edit.startDate,endDate:this.props.edit.endDate},
+        startDateVisibility:false,
+        endDateVisibility:false
+    }
+
+    componentWillReceiveProps(NextProps){
+
+       
+        NextProps.edit.startDate=moment(NextProps.edit.startDate);
+        NextProps.edit.endDate=moment(NextProps.edit.endDate);
+
+        this.setState({edit:NextProps.edit});
+    }
+
+    handleSaveStart = () => {
+        this.setState({startDateVisibility:!this.state.startDateVisibility});
+        this.setState({endDateVisibility:false});
+    };
+
+
+    handleChangeStart = m => {
+        //console.log('saved',  this.state.create.startDate.format('YYYY-MM-DD HH:mm:ss'));
+        let aux = this.state.edit;
+        aux.startDate = m;
+        this.setState({edit:aux});
+        console.log(this.state);
+
+    };
+
+    handleSaveEnd = () => {
+        this.setState({endDateVisibility:!this.state.endDateVisibility});
+        this.setState({startDateVisibility:false});
+    };
+
+
+    handleChangeEnd = m=> {
+        //console.log('saved',  this.state.create.endDate.format('YYYY-MM-DD HH:mm:ss'));
+        let aux = this.state.edit;
+        aux.endDate = m;
+        this.setState({edit:aux});
+        console.log(this.state);
+
+    };
+
+    handleChangeName = (name)=>{
+
+        let aux = this.state.edit;
+        aux.name = name;
+        this.setState({edit:aux});
+    }
 
     render(){
         return(
@@ -16,7 +69,7 @@ class EditEvent extends Component {
                                 <div className="col-md-12">
                                     <div className="form-group">
                                         <label>Nombre</label>
-                                        <input type="text" className="form-control border-input" placeholder="Nombre del envento" defaultValue={this.props.edit.name} onChange={(evt) => { this.props.edit.name = evt.target.value }}/>
+                                        <input type="text" className="form-control border-input" placeholder="Nombre del envento" value={this.state.edit.name} onChange={(evt) => { this.handleChangeName(evt.target.value) }}/>
                                     </div>
                                 </div>
                             </div>
@@ -25,13 +78,33 @@ class EditEvent extends Component {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label>Fecha Inicio</label>
-                                        <input type="text" className="form-control border-input" placeholder="Fecha inicio" defaultValue={this.props.edit.startDate} onChange={(evt) => { this.props.edit.startDate = evt.target.value }}/>
+                                        <input type="text" className="form-control border-input" placeholder="Fecha inicio" value={this.state.edit.startDate.format('llll')} onClick={this.handleSaveStart} readOnly/>
+                                        <InputMoment 
+                                            style= {{display: this.state.startDateVisibility ? "block" : "none"}}
+                                            moment={this.state.edit.startDate}
+                                            onChange={this.handleChangeStart}
+                                            onSave={this.handleSaveStart}
+                                            minStep={15} // default
+                                            hourStep={1} // default
+                                            prevMonthIcon="ion-ios-arrow-left" // default
+                                            nextMonthIcon="ion-ios-arrow-right" // default
+                                        />
                                     </div>
                                 </div>
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label>Fecha Fin</label>
-                                        <input type="text" className="form-control border-input" placeholder="Fecha fin" defaultValue={this.props.edit.endDate} onChange={(evt) => { this.props.edit.endDate = evt.target.value }}/>
+                                        <input type="text" className="form-control border-input" placeholder="Fecha fin" value={this.state.edit.endDate.format('llll')} onClick={this.handleSaveEnd} readOnly/>
+                                        <InputMoment
+                                            style= {{display: this.state.endDateVisibility ? "block" : "none"}}
+                                            moment={this.state.edit.endDate}
+                                            onChange={this.handleChangeEnd}
+                                            onSave={this.handleSaveEnd}
+                                            minStep={15} // default
+                                            hourStep={1} // default
+                                            prevMonthIcon="ion-ios-arrow-left" // default
+                                            nextMonthIcon="ion-ios-arrow-right" // default
+                                        />
                                     </div>
                                 </div>
                             </div>

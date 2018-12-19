@@ -12,7 +12,7 @@ const createNew = (props) => (
                         <div className="col-md-12">
                             <div className="form-group">
                                 <label>Titulo</label>
-                                <input type="text" className="form-control border-input" placeholder="Titulo de la noticia"/>
+                                <input type="text" className="form-control border-input" placeholder="Titulo de la noticia" onChange={(evt) => { props.create.title = evt.target.value }}/>
                             </div>
                         </div>
                     </div>
@@ -21,7 +21,7 @@ const createNew = (props) => (
                         <div className="col-md-12">
                             <div className="form-group">
                                 <label>Contenido</label>
-                                <textarea rows="5" className="form-control border-input" placeholder="Contenido de la noticia">
+                                <textarea rows="5" className="form-control border-input" placeholder="Contenido de la noticia" onChange={(evt) => { props.create.content = evt.target.value }}>
                                 </textarea>
                             </div>
                         </div>
@@ -31,23 +31,12 @@ const createNew = (props) => (
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Imagen</label>
-                                <input type="text" className="form-control border-input" placeholder="Subir imagen"/>
+                                <input type="text" className="form-control border-input" placeholder="Subir imagen" onChange={(evt) => { props.create.image = evt.target.value }}/>
                             </div>
                         </div>
                     </div>
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="form-group">
-                                <label>Video</label>
-                                <input type="text" className="form-control border-input" placeholder="Subir video"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    
                     <div className="text-center">
-                        <button type="submit" className="btn btn-info btn-fill btn-wd">Crear</button>
+                        <button type="submit" className="btn btn-info btn-fill btn-wd" onClick={props.handleCreate}>Crear</button>
                     </div>
                     <div className="clearfix"></div>
                 </form>

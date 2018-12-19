@@ -14,8 +14,7 @@ class Events extends Component {
 
     state = {
         create:{name:'',startDate:moment(),endDate:moment()},
-        edit:{toggle:false,id:'',name:'',startDate:'',endDate:''},
-        hide:false,
+        edit:{toggle:false,id:'',name:'',startDate:moment(),endDate:moment()},
         events: [],
         error: false
     }
@@ -61,8 +60,8 @@ class Events extends Component {
 
         data.append('id', this.state.edit.id);
         data.append('name', this.state.edit.name);
-        data.append('startDate', this.state.edit.startDate);
-        data.append('endDate', this.state.edit.endDate);
+        data.append('startDate', this.state.edit.startDate.format('YYYY-MM-DD HH:mm'));
+        data.append('endDate', this.state.edit.endDate.format('YYYY-MM-DD HH:mm'));
 
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
@@ -70,7 +69,7 @@ class Events extends Component {
         axios.post('/calendar',data,config)
             .then(response => {
                 //handle success
-                this.setState({events:[],edit:{toggle:false,id:'',name:'',startDate:'',endDate:''}});
+                this.setState({events:[],edit:{toggle:false,id:'',name:'',startDate:moment(),endDate:moment()}});
                 //console.log(response);
             })
             .catch(response => {

@@ -54,8 +54,6 @@ class Services extends Component {
     handleEdit=(e)=>{
         e.preventDefault();
 
-        e.preventDefault();
-
         let data = new FormData();
 
         data.append('id', this.state.edit.id);

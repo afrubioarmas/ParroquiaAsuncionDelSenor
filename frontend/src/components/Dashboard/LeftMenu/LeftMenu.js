@@ -7,16 +7,10 @@ const leftMenu = () => (
     <div className="sidebar-wrapper">
           <div className="logo">
               <a href="http://localhost:3000/" className="simple-text">
-                  Parroquia La Asunsión del Señor
+                  Parroquia La Anunciación del Señor
               </a>
           </div>
           <ul className="nav">
-              <li>
-                  <NavLink to="/dashboard" exact activeClassName="active">
-                      <i className="ti-dashboard"></i>
-                      <p>Panel principal</p>
-                  </NavLink>
-              </li>
               <li>
                   <NavLink to="/dashboard/events" exact activeClassName="active">
                       <i className="ti-alarm-clock"></i>

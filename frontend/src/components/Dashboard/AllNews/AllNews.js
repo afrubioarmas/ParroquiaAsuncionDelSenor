@@ -17,8 +17,8 @@ const AllNews = (props) => (
                                 <th>Titulo</th>
                                 <th>Contenido</th>
                                 <th>Imagen</th>
-                                <th>Video</th>
                                 <th>Fecha</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
