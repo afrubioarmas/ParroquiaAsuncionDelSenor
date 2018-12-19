@@ -41,7 +41,7 @@ public class CalendarDao implements ICalendarDao{
 
         CalendarBean output = null;
         ResultSet rs;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call CalendarGet (?)}");
+        CallableStatement Sentence = Dao.getCallableSentence("{Call GetCalendar (?)}");
 
         try {
             Sentence.setInt(1, id);
@@ -88,7 +88,7 @@ public class CalendarDao implements ICalendarDao{
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call CalendarUpdate (?,?,?,?)}");
+            Sentence = Dao.getCallableSentence("{Call UpdateCalendar (?,?,?,?)}");
             Sentence.setString(1, input.getStartDate());
             Sentence.setString(2, input.getEndDate());
             Sentence.setString(3, input.getName());
