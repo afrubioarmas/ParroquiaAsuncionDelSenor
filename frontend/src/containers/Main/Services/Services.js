@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from '../../../Axios';
+import {withRouter} from 'react-router';
 
 import Modal from '../../../components/Main/UI/Modal/Modal';
 import ServiceSummary from '../../../components/Main/PaymentSummary/ServiceSummary';
@@ -10,6 +11,7 @@ import './Services.css';
 class Services extends Component {
 
     state = {
+        selectedServiceId: '',
         accepted: false,
         paying: false,
         selectedService: "",
@@ -38,9 +40,11 @@ class Services extends Component {
             });
     }
 
-    paymentHandler = (service, price) => {
+    paymentHandler = (serviceId, service, price) => {
+        console.log(serviceId);
         this.setState({
             paying: true,
+            selectedServiceId: serviceId,
             selectedService: service,
             selectedPrice: price
         });
@@ -60,10 +64,13 @@ class Services extends Component {
     }
 
     acceptPaymentHandler = () => {
-        const queryParams = 'service=' + this.state.selectedService + '&price=' + this.state.selectedPrice;
             this.props.history.push({
                 pathname: '/pago-servicio',
-                search: '?' + queryParams
+                state: {
+                    serviceId: this.state.selectedServiceId,
+                    service: this.state.selectedService,
+                    price: this.state.selectedPrice
+                }
             });
         //console.log(this.state);
     }
@@ -76,6 +83,7 @@ class Services extends Component {
                 return (
                     <Service 
                         key={service.id}
+                        id={service.id}
                         name={service.name}
                         information="Informacion"
                         price={service.basePrice}
@@ -93,6 +101,7 @@ class Services extends Component {
         );
         if (this.state.accepted) {
             summary = <ServiceSummary 
+                serviceId={this.state.selectedServiceId}
                 service={this.state.selectedService} 
                 price={this.state.selectedPrice}
                 clicked={this.acceptPaymentHandler} />;
@@ -160,4 +169,4 @@ class Services extends Component {
     }
 }
 
-export default Services;
+export default withRouter(Services);

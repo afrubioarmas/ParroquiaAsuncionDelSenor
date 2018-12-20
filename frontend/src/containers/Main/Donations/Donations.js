@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router';
 
 
 import DonationSummary from '../../../components/Main/PaymentSummary/DonationSummary';
@@ -28,10 +29,9 @@ class Donations extends Component {
     }
 
     acceptPaymentHandler = () => {
-        const queryParams = 'donation=' + this.state.selectedDonation;
             this.props.history.push({
                 pathname: '/pago-donacion',
-                search: '?' + queryParams
+                state: this.state.selectedDonation
             });
         //console.log(this.state);
     }
@@ -124,4 +124,4 @@ class Donations extends Component {
     }
 }
 
-export default Donations;
+export default withRouter(Donations);

@@ -7,7 +7,7 @@ const service = (props) => {
                 <h3>{props.name}</h3>
                 <p>{props.information}</p>
                 <div className="text-center">
-                    <button className="payment-button" onClick={() => props.clicked(props.name,props.price)}>Pagar</button>
+                    <button className="payment-button" onClick={() => props.clicked(props.id, props.name, props.price)}>Pagar</button>
                 </div>
             </div>
         </div>
