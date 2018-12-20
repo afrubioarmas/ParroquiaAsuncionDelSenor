@@ -22,7 +22,7 @@ public class CalendarVerticle extends AbstractVerticle {
     @Override
     public void start() {
         LoggerOps.debug("Starting calendar Verticle.");
-        
+
 
         App.router.route().handler(BodyHandler.create());
         App.router.get("/calendar/:id").handler(this::handleGetCalendar);
@@ -87,6 +87,8 @@ public class CalendarVerticle extends AbstractVerticle {
             );
 
 
+
+
             //Comando Agregar user
             CreateCalendarCommand cmd = (CreateCalendarCommand) CommandFactory.instantiateCreateCalendar(calendar);
 
@@ -103,7 +105,7 @@ public class CalendarVerticle extends AbstractVerticle {
         //False = no errors
         //True = error
 
-        
+
 
         if ( (request.getParam("name") == null) || !(request.getParam("name").matches("[a-zA-Z ]+$"))) {
             LoggerOps.error("Wrong name: " + request.getParam("name"));
