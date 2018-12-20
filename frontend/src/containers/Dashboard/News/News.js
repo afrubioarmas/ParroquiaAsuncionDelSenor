@@ -22,7 +22,7 @@ class News extends Component {
 
     handleCreate= (e) =>{
         e.preventDefault();
-        console.log(this.state.create.title);
+        //console.log(this.state.create.title);
 
         let data = new FormData();
 
@@ -59,22 +59,16 @@ class News extends Component {
                         video:edit.video,
                         date:edit.date}
                     });
-
-        console.log("Edit: "+edit);
-                  
-
-                    
-
+              
     }
 
     handleEdit= (e)=>{
         e.preventDefault();
 
-        console.log(this.state.edit);  
         let data = new FormData();
 
         data.append('id',this.state.edit.id);
-        data.append('name', this.state.edit.title);
+        data.append('title', this.state.edit.title);
         data.append('content', this.state.edit.content);
         data.append('image', this.state.edit.image);
         data.append('video',this.state.edit.video);

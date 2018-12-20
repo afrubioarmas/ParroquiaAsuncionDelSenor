@@ -15,7 +15,7 @@ const AllNews = (props) => (
                             <tr>
                                 <th>ID</th>
                                 <th>Titulo</th>
-                                <th>Contenido</th>
+                                <th style={{width:'50%'}}>Contenido</th>
                                 <th>Imagen</th>
                                 <th>Fecha</th>
                                 <th></th>

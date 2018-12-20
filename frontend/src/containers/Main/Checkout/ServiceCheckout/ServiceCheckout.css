@@ -1,111 +1,106 @@
-
-form {
-    max-width: 80%;
-    text-align: center;
-    margin: 20px auto;
-  }
-  .service-payment .service-form input, form textarea {
-    background-color: #F4F3EF;
-    border: 0;
-    outline: 0;
-    padding: 1em;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    display: block;
-    width: 100%;
-    margin-bottom: 1em;
-    font-family: 'Merriweather', sans-serif;
-    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    resize: none;
-  }
-  form input:focus, form textarea:focus {
-    -moz-box-shadow: 0 0px 2px #C5A275 !important;
-    -webkit-box-shadow: 0 0px 2px #C5A275 !important;
-    box-shadow: 0 0px 2px #C5A275 !important;
-  }
-  form #input-submit {
-    color: white;
-    background: #C5A275;
-    cursor: pointer;
-  }
-  form #input-submit:hover {
-    -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
-    -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
-    box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
-  }
-  form textarea {
-    height: 126px;
-  }
-  .half-right-cf {
-    margin-bottom: 20px;
-  }
-
-  .service-payment .service-form .payment-button {
-      margin-bottom: 20px;
-      margin-top: 20px;
-  }
-  
-  @media (max-width: 480px) {
-    .half {
-      width: 100%;
-      float: none;
-      margin-bottom: 0;
-    }
-  }
+.main {
   /* Clearfix */
-  .cf:before,
-  .cf:after {
-    content: " ";
-    /* 1 */
-    display: table;
-    /* 2 */
-  }
-  
-  .cf:after {
-    clear: both;
-  }
-
-.main .service-payment .service-form {
-    margin-left: 30px;
-    margin-right: 30px;
-    box-shadow: 0px 2px 20px 0.5px #ccc;
-    border-radius: 4px;
 }
-
-.main .service-payment .service-form .service-form-title {
-    text-align: center;
-    text-transform: none;
-    font-family: sans-serif;
+.main form {
+  max-width: 80%;
+  text-align: center;
+  margin: 20px auto;
 }
-  
-.main .service-payment .column {
-    float: left;
-    width: 33%;
-    padding: 0 10px;
+.main .service-payment .service-form input, .main form textarea {
+  background-color: #F4F3EF;
+  border: 0;
+  outline: 0;
+  padding: 1em;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  font-family: "Merriweather", sans-serif;
+  -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  resize: none;
+}
+.main form input:focus, .main form textarea:focus {
+  -moz-box-shadow: 0 0px 2px #C5A275 !important;
+  -webkit-box-shadow: 0 0px 2px #C5A275 !important;
+  box-shadow: 0 0px 2px #C5A275 !important;
+}
+.main form #input-submit {
+  color: white;
+  background: #C5A275;
+  cursor: pointer;
+}
+.main form #input-submit:hover {
+  -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+  -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+  box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+}
+.main form textarea {
+  height: 126px;
+}
+.main .half-right-cf {
+  margin-bottom: 20px;
+}
+.main .service-payment .service-form .payment-button {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+@media (max-width: 480px) {
+  .main .half {
+    width: 100%;
+    float: none;
+    margin-bottom: 0;
   }
-  .main .service-payment .row {
-    margin: 20px -5px;
-  }
-  .main .service-payment .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  .main .service-payment .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    /* this adds the "card" effect */
-    padding: 16px;
+}
+.main .cf:before,
+.main .cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+.main .cf:after {
+  clear: both;
+}
+.main .main .service-payment .service-form {
+  margin-left: 30px;
+  margin-right: 30px;
+  box-shadow: 0px 2px 20px 0.5px #ccc;
+  border-radius: 4px;
+}
+.main .main .service-payment .service-form .service-form-title {
+  text-align: center;
+  text-transform: none;
+  font-family: sans-serif;
+}
+.main .main .service-payment .column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+.main .main .service-payment .row {
+  margin: 20px -5px;
+}
+.main .main .service-payment .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.main .main .service-payment .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* this adds the "card" effect */
+  padding: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #f4f3ef;
+}
+@media screen and (max-width: 600px) {
+  .main .main .service-payment .column {
+    width: 100%;
+    display: block;
     margin-bottom: 20px;
-    text-align: center;
-    background-color: #f4f3ef;
   }
-  @media screen and (max-width: 600px) {
-    .main .service-payment .column {
-      width: 100%;
-      display: block;
-      margin-bottom: 20px;
-    }
-  }
+}

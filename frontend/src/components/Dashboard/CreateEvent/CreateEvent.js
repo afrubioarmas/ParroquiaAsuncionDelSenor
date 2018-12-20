@@ -76,7 +76,7 @@ class CreateEvent extends Component {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label>Fecha Inicio</label>
-                                        <input type="text" className="form-control border-input" placeholder="Fecha inicio"  value={this.state.create.startDate.format('llll')} onClick={this.handleSaveStart} readOnly/>
+                                        <input type="text" className="form-control border-input" placeholder="Fecha inicio"  value={this.state.create.startDate.format('DD-MM-YYYY HH:mm')} onClick={this.handleSaveStart} readOnly/>
                                         <InputMoment 
                                             style= {{display: this.state.startDateVisibility ? "block" : "none"}}
                                             moment={this.state.create.startDate}
@@ -92,7 +92,7 @@ class CreateEvent extends Component {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label>Fecha Fin</label>
-                                        <input type="text" className="form-control border-input" placeholder="Fecha fin" value={this.state.create.endDate.format('llll')} onClick={this.handleSaveEnd} readOnly/>
+                                        <input type="text" className="form-control border-input" placeholder="Fecha fin" value={this.state.create.endDate.format('DD-MM-YYYY HH:mm')} onClick={this.handleSaveEnd} readOnly/>
                                         <InputMoment
                                             style= {{display: this.state.endDateVisibility ? "block" : "none"}}
                                             moment={this.state.create.endDate}

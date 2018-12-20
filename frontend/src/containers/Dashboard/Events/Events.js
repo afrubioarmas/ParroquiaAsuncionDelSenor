@@ -21,7 +21,7 @@ class Events extends Component {
 
     handleCreate= (create) => (e) =>{
         e.preventDefault();
-        console.log(this.state.create.name);
+        console.log(this.state.create.startDate.format('YYYY-MM-DD HH:mm'));
 
         let data = new FormData();
 
@@ -29,7 +29,7 @@ class Events extends Component {
         data.append('startDate', create.startDate.format('YYYY-MM-DD HH:mm'));
         data.append('endDate', create.endDate.format('YYYY-MM-DD HH:mm'));
 
-
+        
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
 
         axios.put('/calendar',data,config)

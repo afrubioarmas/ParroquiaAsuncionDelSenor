@@ -59,8 +59,11 @@ public class App
         ServiceVerticle service = new ServiceVerticle();
         vertx.deployVerticle(service,options);
 
-       PaymentVerticle payment = new PaymentVerticle();
+        PaymentVerticle payment = new PaymentVerticle();
         vertx.deployVerticle(payment,options);
+
+        ResourceVerticle resource = new ResourceVerticle();
+        vertx.deployVerticle(resource,options);
 
 
    }
