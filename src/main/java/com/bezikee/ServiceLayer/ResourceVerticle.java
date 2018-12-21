@@ -13,6 +13,7 @@ import io.vertx.ext.web.handler.BodyHandler;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Iterator;
+import java.util.Random;
 import java.util.Set;
 
 public class ResourceVerticle extends AbstractVerticle {
@@ -44,8 +45,13 @@ public class ResourceVerticle extends AbstractVerticle {
                 e.printStackTrace();
             }
 
-            String path = Registry.IMG_PATH;
-            vertx.fileSystem().writeFile(path+fileName,uploadedFile,result -> {
+            Random rand = new Random();
+
+            int n = rand.nextInt(1000) + 1;
+
+            String fullName = Integer.toString(n)+"-"+fileName;
+            String path = Registry.IMG_PATH+fullName;
+            vertx.fileSystem().writeFile(path,uploadedFile,result -> {
 
                 deleteFileUploads(routingContext);
 
@@ -53,10 +59,10 @@ public class ResourceVerticle extends AbstractVerticle {
                 response.putHeader("Content-Type", "application/json");
 
                 if (result.succeeded()) {
-                    LoggerOps.debug("ResourceVerticle - Success to write");
-                    response.setStatusCode(200).end("Success");
+                    LoggerOps.debug("ResourceVerticle - Success to write: " + path);
+                    response.setStatusCode(200).end(fullName);
                 } else {
-                    LoggerOps.error("ResourceVerticle - Failed to write");
+                    LoggerOps.error("ResourceVerticle - Failed to write: "+ path );
                     response.setStatusCode(400).end("Fail");
                 }
             });
