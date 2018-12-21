@@ -13,12 +13,11 @@ const AllNews = (props) => (
                     <table id="newsTable" className="table table-striped hover">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Titulo</th>
                                 <th style={{width:'50%'}}>Contenido</th>
                                 <th>Imagen</th>
                                 <th>Fecha</th>
-                                <th></th>
+                                <th style={{width:'10%'}}></th>
                             </tr>
                         </thead>
                         <tbody>

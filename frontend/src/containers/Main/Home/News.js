@@ -38,8 +38,7 @@ class NewsHome extends Component {
                 return (
                     <NewInstance 
                         key={newAux.id}
-                        title={newAux.title} 
-                        date={newAux.date}
+                        newInstance={newAux}
                         home={true}
                         />
                 );

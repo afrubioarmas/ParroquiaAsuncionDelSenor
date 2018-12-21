@@ -4,7 +4,8 @@ class EditNew extends Component {
 
     state = {content: this.props.edit.content};
 
-    handleChangeContent(event) {
+    handleChangeContent = (event)=> {
+
         this.setState({content: event.target.value});
         this.props.edit.content=event.target.value;
     }
@@ -48,7 +49,7 @@ class EditNew extends Component {
                                 <div className="col-md-6">
                                     <div className="form-group">
                                         <label>Imagen</label>
-                                        <input type="text" className="form-control border-input" placeholder="Subir imagen" defaultValue={this.props.edit.image} onChange={(evt) => { this.props.edit.image = evt.target.value }}/>
+                                        <input type="file" className="form-control" placeholder="Subir imagen" onChange={(evt) => { this.props.edit.image = evt.target.files[0];}}/>
                                     </div>
                                 </div>
                             </div>

@@ -3011,12 +3011,17 @@
   font-weight: lighter;
 }
 
-div.disabled
+.dashboard div.disabled
 {
   pointer-events: none;
 
   /* for "disabled" effect */
   opacity: 0.3;
+}
+
+.dashboard .image-thumbnail{
+  width: 70%;
+  height: auto;
 }
 
 

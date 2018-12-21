@@ -31,7 +31,7 @@ const createNew = (props) => (
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Imagen</label>
-                                <input type="file" className="form-control" placeholder="Subir imagen" onChange={(evt) => { props.create.image = evt.target.value }}/>
+                                <input type="file" className="form-control" placeholder="Subir imagen" onChange={(evt) => { props.create.image = evt.target.files[0];}}/>
                                                                
                             </div>
                         </div>

@@ -12,10 +12,11 @@ import axios from '../../../Axios';
 
 
 class News extends Component {
+    
 
     state = {
-        create:{title:'',content:'',image:'',video:'',date:moment()},
-        edit:{toggle:false,id:'',title:'',content:'',image:'',video:'',date:moment()},
+        create:{title:'',content:'',image:null,video:'',date:moment()},
+        edit:{toggle:false,id:'',title:'',content:'',image:null,video:'',date:moment(),previousUrl:''},
         news: [],
         error: false
     }
@@ -26,20 +27,36 @@ class News extends Component {
 
         let data = new FormData();
 
-        data.append('title', this.state.create.title);
-        data.append('content',  this.state.create.content);
-        data.append('image',  this.state.create.image);
-        data.append('video', '');
-        data.append('date', moment().format('YYYY-MM-DD HH:mm'));
-
+        data.append('file', this.state.create.image);
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
 
-        axios.put('/new',data,config)
+        axios.put('/upload',data,config)
             .then(response => {
                 //handle success
-                this.setState({news:[]});
-                //console.log(response);
+                let data = new FormData();
+
+                data.append('title', this.state.create.title);
+                data.append('content',  this.state.create.content);
+                data.append('image', response.data);
+                data.append('video', '');
+                data.append('date', moment().format('YYYY-MM-DD HH:mm'));
+
+
+                const config = { headers: {'Content-Type': 'multipart/form-data'}}
+
+                axios.put('/new',data,config)
+                    .then(response => {
+                        //handle success
+                        this.setState({news:[]});
+                        //console.log(response);
+                    })
+                    .catch(response => {
+                        //handle error
+                        //console.log(response);
+                    });
+                        this.setState({news:[]});
+                        //console.log(response);
             })
             .catch(response => {
                 //handle error
@@ -55,38 +72,87 @@ class News extends Component {
                         id:edit.id,
                         title:edit.title,
                         content:edit.content,
-                        image:edit.image,
+                        image:null,
                         video:edit.video,
-                        date:edit.date}
+                        date:edit.date,
+                        previousUrl:edit.image}
                     });
               
     }
 
     handleEdit= (e)=>{
         e.preventDefault();
+        var editAux=this.state.edit;
+        
+        if(editAux.image!=null){
+            console.log("Uploadding file");
+            let data = new FormData();
 
-        let data = new FormData();
+            data.append('file', editAux.image);
 
-        data.append('id',this.state.edit.id);
-        data.append('title', this.state.edit.title);
-        data.append('content', this.state.edit.content);
-        data.append('image', this.state.edit.image);
-        data.append('video',this.state.edit.video);
-        data.append('date', moment().format('YYYY-MM-DD HH:mm'));
+            const config = { headers: {'Content-Type': 'multipart/form-data'}}
+
+            axios.put('/upload',data,config)
+                .then(response => {
+                    editAux.image=response.data;
+
+                    let data = new FormData();
+
+                    data.append('id',editAux.id);
+                    data.append('title', editAux.title);
+                    data.append('content', editAux.content);
+                    data.append('image', editAux.image);
+                    data.append('video',editAux.video);
+                    data.append('date', moment().format('YYYY-MM-DD HH:mm'));
 
 
-        const config = { headers: {'Content-Type': 'multipart/form-data'}}
+                    const config = { headers: {'Content-Type': 'multipart/form-data'}}
 
-        axios.post('/new',data,config)
-            .then(response => {
-                //handle success
-                this.setState({news:[],edit:{toggle:false,id:'',title:'',content:'',image:'',video:'',date:moment()}});
-                //console.log(response);
-            })
-            .catch(response => {
-                //handle error
-                //console.log(response);
-            });
+                    axios.post('/new',data,config)
+                        .then(response => {
+                            //handle success
+                            this.setState({news:[],edit:{toggle:false,id:'',title:'',content:'',image:null,video:'',date:moment(),previousUrl:''}});
+                            //console.log(response);
+                        })
+                        .catch(response => {
+                            //handle error
+                            //console.log(response);
+                        });
+
+                })
+                .catch(response => {
+                    //handle error
+                    //console.log(response);
+                });
+        }else{
+            console.log("No Uploadding file")
+           
+            editAux.image=editAux.previousUrl;
+            console.log(editAux);
+            let data = new FormData();
+
+            data.append('id',editAux.id);
+            data.append('title', editAux.title);
+            data.append('content', editAux.content);
+            data.append('image', editAux.image);
+            data.append('video',editAux.video);
+            data.append('date', moment().format('YYYY-MM-DD HH:mm'));
+
+
+            const config = { headers: {'Content-Type': 'multipart/form-data'}}
+
+            axios.post('/new',data,config)
+                .then(response => {
+                    //handle success
+                    this.setState({news:[],edit:{toggle:false,id:'',title:'',content:'',image:null,video:'',date:moment(),previousUrl:''}});
+                    //console.log(response);
+                })
+                .catch(response => {
+                    //handle error
+                    //console.log(response);
+                });
+        }
+        
     }
 
     handleDelete = (id)=>(e) =>{

@@ -1369,9 +1369,9 @@ body {
   margin-bottom: 30px;
 }
 .main .news .news-image {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+  width: 60%;
+  max-width: 60%;
+  height: 150px;
   margin-bottom: 20px;
 }
 .main .news .news-title {
@@ -1636,4 +1636,9 @@ body {
   border-bottom-color: #8f7655 !important;
   border-width: 2px !important;
   color: #8f7655 !important;
+}
+
+.main .image-thumbnail{
+  width: 10%;
+  height: auto;
 }
