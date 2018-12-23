@@ -1149,13 +1149,14 @@ body {
   z-index: 999;
   background: white;
   text-align: center;
-  padding: 50px 0 30px;
+  padding: 10px 0 30px;
 }
 .main .branding {
   text-align: center;
 }
 .main .branding .logo {
   margin-bottom: 10px;
+  width: 15%;
 }
 .main .branding .site-title {
   color: #8f7655;
@@ -1330,11 +1331,23 @@ body {
   background: url(../images/pagination-current.png);
 }
 .main .hero .slides #slide-1 {
-  background: url(../images/slide-1.jpg);
+  background: url(../images/main/Iglesia-Anunciacion-del-Senor-.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;  
 }
 .main .hero .slides #slide-2 {
   background: url(../images/slide-1.jpg);
 }
+
+.main .greyed{
+  filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
+  -webkit-filter: grayscale(100%);
+  filter: gray;
+  
+}
+
 .main .page-head {
   background-size: cover;
   padding: 50px;

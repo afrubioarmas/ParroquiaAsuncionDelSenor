@@ -7,22 +7,13 @@ const carroussel = () => (
             <li id="slide-1">
                 <div className="container">
                     <div className="slide-content">
-                        <small className="slide-subtitle">True Church</small>
-                        <h2 className="slide-title">Place with a real love</h2>
-                        <a href="" className="button">See our families</a>
+                        <small className="slide-subtitle">Parroquia La Anunciación del Señor</small>
+                        <h2 className="slide-title">Iglesia la boyera</h2>
+                        <a href="" className="button">Conoce la organización</a>
                     </div>
                 </div>
             </li>
 
-            <li id="slide-2">
-                <div className="container">
-                    <div className="slide-content">
-                        <small className="slide-subtitle">True Church</small>
-                        <h2 className="slide-title">Place with a real love</h2>
-                        <a href="" className="button">See our families</a>
-                    </div>
-                </div>
-            </li>
         </div>
     </div>
 );
