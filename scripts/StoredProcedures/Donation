@@ -1,109 +1,91 @@
 -- Begin Create
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS DonationCreate $$
+DROP PROCEDURE IF EXISTS CreateDonation $$
+CREATE PROCEDURE CreateDonation(
+     IN name varchar(45),
+     IN email varchar(100),
+     IN amount float,
+     IN description varchar(45),
+     IN purpose varchar(45),
+     IN currency varchar(45),
+     IN date timestamp,
+     IN transferNum int,
+     IN status varchar(45)
+) BEGIN
 
-CREATE PROCEDURE DonationCreate(
-	IN	 NAME 			varchar(45),
-	IN	 AMOUNT 		float,
-	IN	 DESCRIPTION	varchar(45),
-	IN	 PURPOSE 		varchar(45),
-	IN	 CURRENCY 		varchar(45),
-	IN	 DATE 		timestamp
-)
-
-BEGIN
-
-	INSERT INTO DONATION (NAME,AMOUNT,DESCRIPTION,PURPOSE,CURRENCY,DATE)
-	VALUES (NAME,AMOUNT,DESCRIPTION,PURPOSE,CURRENCY,DATE);
+INSERT INTO DONATION (name,email,amount,description,purpose,currency,date,transferNum,status)
+VALUES (name,email,amount,description,purpose,currency,date,transferNum,status);
 
 END $$
 DELIMITER ;
 
--- CALL DonationCreate ("Andres",250.4,"testing donation","Test","USD","1992-11-26");
+-- CALL CreateDonation('string''string'34.6'string''string''string''string'53'string');
 -- End Create
-
--- Begin Get All
+-- Begin Get all
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS GetAllDonation $$
+DROP PROCEDURE IF EXISTS GetAllDonation$$
+CREATE PROCEDURE GetAllDonation(
+) BEGIN
 
-CREATE PROCEDURE GetAllDonation()
-	
-
-BEGIN
-
-	SELECT * FROM DONATION;
-
+SELECT * FROM DONATION;
 END $$
 DELIMITER ;
 
 -- CALL GetAllDonation();
 -- End Get All
-
 -- Begin Get
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS GetDonation $$
-
 CREATE PROCEDURE GetDonation(
-	IN	 ID 		int
-	)
-	
+IN ID int
+) BEGIN
 
-BEGIN
-
-	SELECT * FROM DONATION WHERE DONATION.id = ID;
-
+SELECT * FROM DONATION WHERE DONATION.id = ID;
 END $$
 DELIMITER ;
 
 -- CALL GetDonation(1);
--- End Get User
-
+-- End Get
 -- Begin Update
 
 DELIMITER $$
-DROP PROCEDURE IF EXISTS DonationUpdate $$
+DROP PROCEDURE IF EXISTS UpdateDonation $$
+CREATE PROCEDURE UpdateDonation(
+     IN name varchar(45),
+     IN email varchar(100),
+     IN amount float,
+     IN description varchar(45),
+     IN purpose varchar(45),
+     IN currency varchar(45),
+     IN date timestamp,
+     IN transferNum int,
+     IN status varchar(45),
+     IN ID int
+) BEGIN
 
-CREATE PROCEDURE DonationUpdate(
-	IN	 NAME 			varchar(45),
-	IN	 AMOUNT 		float,
-	IN	 DESCRIPTION	varchar(45),
-	IN	 PURPOSE 		varchar(45),
-	IN	 CURRENCY 		varchar(45),
-	IN	 DATE 			timestamp,
-	IN	 ID 			integer
-	)
-
-BEGIN
-
-	UPDATE DONATION SET NAME=NAME,AMOUNT=AMOUNT,DESCRIPTION=DESCRIPTION,PURPOSE=PURPOSE,CURRENCY=CURRENCY,DATE=DATE
-	WHERE DONATION.ID=ID;
-
+UPDATE DONATION SET name = name,email = email,amount = amount,description = description,purpose = purpose,currency = currency,date = date,transferNum = transferNum,status = status
+WHERE DONATION.ID=ID;
 END $$
 DELIMITER ;
 
--- CALL DonationUpdate ("Juan Rubio",536,"Testing Donation","Test","USD","1992-11-26",5);
--- End Update
+-- CALL UpdateDonation(1,'string''string'34.6'string''string''string''string'53'string');
+-- End Create
+
 
 -- Begin Delete
 
 DELIMITER $$
 DROP PROCEDURE IF EXISTS DeleteDonation $$
-
 CREATE PROCEDURE DeleteDonation(
-	IN	 ID 		int
-	)
-	
+IN ID int
+) BEGIN
 
-BEGIN
-
-	DELETE FROM DONATION WHERE DONATION.id = ID;
-
+DELETE FROM DONATION WHERE DONATION.id = ID;
 END $$
 DELIMITER ;
 
--- CALL DeleteDonation(7);
+-- CALL DeleteDonation(1);
 -- End Delete
-
