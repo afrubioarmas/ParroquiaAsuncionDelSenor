@@ -3026,4 +3026,8 @@
   height: auto;
 }
 
+.dashboard ul.nav.nav-tabs li.active a{
+  color: #eb5e28;
+} 
+
 

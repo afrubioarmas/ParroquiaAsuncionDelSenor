@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 
 import TopNav from '../../../components/Dashboard/TopNav/TopNav';
+import Donations from '../../../containers/Dashboard/Donations/Donations';
+import Nichos from '../../../containers/Dashboard/Nichos/Nichos';
+import Sacramentos from '../Sacramentos/Sacramentos';
+import Misas from '../Misas/Misas';
 
 
 class Payments extends Component {
 
-    componentDidMount(){
-        const $ = window.$;
-        $(document).ready( function () {
-            $('#paymentTable').DataTable();
-        } );
-    }
+    
     
     render() {
         return (
@@ -26,24 +25,24 @@ class Payments extends Component {
                                         <p className="category">Seleccione el tipo de pago que desea gestionar.</p>
                                     </div>
                                     <ul className="nav nav-tabs" style={{paddingLeft: '20px'}}>
-                                        <li className="active"><a data-toggle="tab" href="#home">Donaciones</a></li>
-                                        <li><a data-toggle="tab" href="#menu1">Nichos</a></li>
-                                        <li><a data-toggle="tab" href="#menu2">Sacramentos</a></li>
-                                        <li><a data-toggle="tab" href="#menu2">Misas</a></li>
+                                        <li className="active"><a data-toggle="tab" href="#donations">Donaciones</a></li>
+                                        <li><a data-toggle="tab" href="#nichos">Nichos</a></li>
+                                        <li><a data-toggle="tab" href="#sacramentos">Sacramentos</a></li>
+                                        <li><a data-toggle="tab" href="#misas">Misas</a></li>
                                     </ul>
 
                                     <div className="tab-content" style={{paddingLeft: '20px'}}>
-                                        <div id="home" className="tab-pane fade in active">
-                                            <h3>HOME</h3>
-                                            <p>Some content.</p>
+                                        <div id="donations" className="tab-pane fade in active">
+                                            <Donations />
                                         </div>
-                                        <div id="menu1" className="tab-pane fade">
-                                            <h3>Menu 1</h3>
-                                            <p>Some content in menu 1.</p>
+                                        <div id="nichos" className="tab-pane fade">
+                                            <Nichos/>
                                         </div>
-                                        <div id="menu2" className="tab-pane fade">
-                                            <h3>Menu 2</h3>
-                                            <p>Some content in menu 2.</p>
+                                        <div id="sacramentos" className="tab-pane fade">
+                                            <Sacramentos/>
+                                        </div>
+                                        <div id="misas" className="tab-pane fade">
+                                            <Misas/>
                                         </div>
                                     </div>
                                     
