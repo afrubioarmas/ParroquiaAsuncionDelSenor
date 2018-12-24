@@ -2,10 +2,7 @@ import React from 'react';
 import * as moment from 'moment';
 
 const donation = (props) => {
-    var statusToChange ={
-        id:props.donation.id,
-        status:''
-    }
+
     return (
         <tr>
             <td>{props.donation.name}</td>
@@ -15,7 +12,13 @@ const donation = (props) => {
             <td>{props.donation.description}</td>
             <td>{moment(props.donation.date).format('DD-MM-YYYY HH:mm')}</td>
             <td>{props.donation.transferNum}</td>
-            <td>{props.donation.status}</td>
+            <td>
+                <select defaultValue={props.donation.status} className="form-control" onChange={props.handleEditStatus(props.donation)}>
+                    <option>Por Confirmar</option>
+                    <option>Confirmada</option>
+                    <option>Confirmada Erroneamente</option>
+                </select>
+            </td>
         </tr>
     );
 };

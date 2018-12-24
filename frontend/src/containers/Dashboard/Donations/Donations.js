@@ -8,8 +8,42 @@ import Donation from './Donation';
 class Donations extends Component {
 
     state = {
+        
         donations: [],
         error: false
+    }
+
+    handleEditStatus=(donation)=>(e)=>{
+        e.preventDefault();
+
+        let data = new FormData();
+
+        data.append('id', donation.id);
+        data.append('name', donation.name);
+        data.append('email', donation.email);
+        data.append('amount', donation.amount);
+        data.append('description', donation.description);
+        data.append('purpose', donation.purpose);
+        data.append('currency', donation.currency);
+        data.append('date',moment(donation.date).format('YYYY-MM-DD HH:mm'));
+        data.append('transferNum', donation.transferNum);
+        data.append('status', e.target.value);
+       
+        console.log(donation.id);
+
+        const config = { headers: {'Content-Type': 'multipart/form-data'}}
+
+        axios.post('/donation',data,config)
+            .then(response => {
+                //handle success
+                this.setState({donations: []});
+                //console.log(response);
+            })
+            .catch(response => {
+                //handle error
+                //console.log(response);
+            });
+
     }
 
     componentDidMount () {
@@ -23,7 +57,7 @@ class Donations extends Component {
                     }
                 });
                 this.setState({donations: updatedDonations}); 
-                console.log(this.state.donations);
+                //console.log(this.state.donations);
                 //console.log( "respose" + response );
                 const $ = window.$;
                 $(document).ready( function () {
@@ -56,6 +90,8 @@ class Donations extends Component {
                     <Donation 
                         key={donation.id}
                         donation={donation}
+
+                        handleEditStatus={this.handleEditStatus}
                     />
                 );
             });
