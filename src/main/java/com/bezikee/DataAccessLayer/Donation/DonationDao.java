@@ -20,13 +20,16 @@ public class DonationDao implements IDonationDao{
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call DonationCreate (?,?,?,?,?,?)}");
+            Sentence = Dao.getCallableSentence("{Call CreateDonation (?,?,?,?,?,?,?,?,?)}");
             Sentence.setString(1, input.getName());
-            Sentence.setFloat(2, input.getAmount());
-            Sentence.setString(3, input.getDescription());
-            Sentence.setString(4, input.getPurpose());
-            Sentence.setString(5, input.getCurrency());
-            Sentence.setString(6, input.getDate());
+            Sentence.setString(2, input.getEmail());
+            Sentence.setFloat(3, input.getAmount());
+            Sentence.setString(4, input.getDescription());
+            Sentence.setString(5, input.getPurpose());
+            Sentence.setString(6, input.getCurrency());
+            Sentence.setString(7, input.getDate());
+            Sentence.setInt(8, input.getTransferNum());
+            Sentence.setString(9, input.getStatus());
             output = Dao.executeCall(Sentence);
             Dao.close();
 
@@ -91,15 +94,18 @@ public class DonationDao implements IDonationDao{
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call DonationUpdate (?,?,?,?,?,?,?)}");
+            Sentence = Dao.getCallableSentence("{Call UpdateDonation (?,?,?,?,?,?,?,?,?,?)}");
 
             Sentence.setString(1, input.getName());
-            Sentence.setFloat(2, input.getAmount());
-            Sentence.setString(3, input.getDescription());
-            Sentence.setString(4, input.getPurpose());
-            Sentence.setString(5, input.getCurrency());
-            Sentence.setString(6, input.getDate());
-            Sentence.setInt(7, input.getId());
+            Sentence.setString(2, input.getEmail());
+            Sentence.setFloat(3, input.getAmount());
+            Sentence.setString(4, input.getDescription());
+            Sentence.setString(5, input.getPurpose());
+            Sentence.setString(6, input.getCurrency());
+            Sentence.setString(7, input.getDate());
+            Sentence.setInt(8, input.getTransferNum());
+            Sentence.setString(9, input.getStatus());
+            Sentence.setInt(10, input.getId());
             output = Dao.executeCall(Sentence);
             Dao.close();
 
@@ -148,7 +154,10 @@ public class DonationDao implements IDonationDao{
                         rs.getString("description"),
                         rs.getString("purpose"),
                         rs.getString("currency"),
-                        rs.getString("date")
+                        rs.getString("date"),
+                        rs.getString("email"),
+                        rs.getInt("transferNum"),
+                        rs.getString("status")
                 );
                 output.add(aux);
             }
@@ -174,7 +183,10 @@ public class DonationDao implements IDonationDao{
                     rs.getString("description"),
                     rs.getString("purpose"),
                     rs.getString("currency"),
-                    rs.getString("date")
+                    rs.getString("date"),
+                    rs.getString("email"),
+                    rs.getInt("transferNum"),
+                    rs.getString("status")
             );
         }
 

@@ -12,31 +12,34 @@ public class DonationBean {
     private String purpose;
     private String currency;
     private String date;
+    private String email;
+    private int transferNum;
+    private String status;
 
-    public DonationBean(String name, float account, String description, String purpose, String currency, String date){
-
-        this.name = name;
-        this.amount = account;
-        this.description = description;
-        this.purpose = purpose;
-        this.currency = currency;
-        this.date = date;
-
-    }
-
-    public DonationBean(int id, String name, float account, String description, String purpose, String currency, String date){
-
+    public DonationBean(int id, String name, float amount, String description, String purpose, String currency, String date, String email, int transferNum, String status) {
         this.id = id;
         this.name = name;
-        this.amount = account;
+        this.amount = amount;
         this.description = description;
         this.purpose = purpose;
         this.currency = currency;
         this.date = date;
-
+        this.email = email;
+        this.transferNum = transferNum;
+        this.status = status;
     }
 
-
+    public DonationBean(String name, float amount, String description, String purpose, String currency, String date, String email, int transferNum, String status) {
+        this.name = name;
+        this.amount = amount;
+        this.description = description;
+        this.purpose = purpose;
+        this.currency = currency;
+        this.date = date;
+        this.email = email;
+        this.transferNum = transferNum;
+        this.status = status;
+    }
 
     public int getId() {
         return id;
@@ -93,5 +96,29 @@ public class DonationBean {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getTransferNum() {
+        return transferNum;
+    }
+
+    public void setTransferNum(int transferNum) {
+        this.transferNum = transferNum;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
