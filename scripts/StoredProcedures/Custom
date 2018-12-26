@@ -1,0 +1,19 @@
+-- Begin GetPaymentByService
+
+-- Begin GetPaymentByService
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetPaymentByService $$
+CREATE PROCEDURE GetPaymentByService(
+IN ID int
+) BEGIN
+
+SELECT p.id,p.service_Id as serviceId,p.name, p.personalId, p.amount, p.date, p.transferNum, p.email,p.status,s.name as serviceName, s.currency,s.category
+FROM Payment as P
+INNER JOIN Service as S ON p.Service_id=s.id
+where p.Service_id=ID;
+END $$
+DELIMITER ;
+
+-- Call GetPaymentByService(2)
+-- End GetPaymentByService

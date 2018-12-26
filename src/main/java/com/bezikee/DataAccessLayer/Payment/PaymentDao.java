@@ -18,17 +18,21 @@ public class PaymentDao implements IPaymentDao {
     public boolean create(PaymentBean input) {
         LoggerOps.debug("PaymentDao - create");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call CreatePayment (?,?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call CreatePayment (?,?,?,?,?,?,?,?)}");
             Sentence.setInt(1, input.getServiceId());
             Sentence.setString(2, input.getName());
             Sentence.setFloat(3, input.getPersonalId());
             Sentence.setFloat(4, input.getAmount());
             Sentence.setString(5,input.getDate());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            Sentence.setInt(6, input.getTransferNum());
+            Sentence.setString(7,input.getEmail());
+            Sentence.setString(8,input.getStatus());
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "PaymentDao - create", e.toString() );
@@ -42,14 +46,15 @@ public class PaymentDao implements IPaymentDao {
     public PaymentBean read(int id) {
         LoggerOps.debug("PaymentDao - read");
 
+        Dao dao = new Dao();
         PaymentBean output = null;
         ResultSet rs;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetPayment (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetPayment (?)}");
 
         try {
             Sentence.setInt(1, id);
 
-            rs =Dao.executeQuery(Sentence);
+            rs =dao.executeQuery(Sentence);
 
             if(rs!=null)
                 output = getResponseBD(rs);
@@ -58,7 +63,7 @@ public class PaymentDao implements IPaymentDao {
             e.printStackTrace();
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
-        Dao.close();
+        dao.close();
 
         return output;
 
@@ -68,18 +73,19 @@ public class PaymentDao implements IPaymentDao {
     public ArrayList<PaymentBean> readAll(){
         LoggerOps.debug("PaymentDao - readAll");
 
+        Dao dao = new Dao();
         ArrayList<PaymentBean> output = null;
         ResultSet rs;
 
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllPayment ()} ");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetAllPayment ()} ");
 
 
-        rs =Dao.executeQuery(Sentence);
+        rs =dao.executeQuery(Sentence);
 
         if(rs!=null)
             output = getResponseArrayListBD(rs);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -88,19 +94,23 @@ public class PaymentDao implements IPaymentDao {
 
         LoggerOps.debug("PaymentDao - update");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call UpdatePayment (?,?,?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call UpdatePayment (?,?,?,?,?,?,?,?,?)}");
 
             Sentence.setInt(1, input.getServiceId());
             Sentence.setString(2, input.getName());
             Sentence.setFloat(3, input.getPersonalId());
             Sentence.setFloat(4, input.getAmount());
             Sentence.setString(5,input.getDate());
-            Sentence.setInt(6, input.getId());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            Sentence.setInt(6, input.getTransferNum());
+            Sentence.setString(7,input.getEmail());
+            Sentence.setString(8,input.getStatus());
+            Sentence.setInt(9, input.getId());
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "PaymentDao - Update", e.toString() );
@@ -113,9 +123,9 @@ public class PaymentDao implements IPaymentDao {
     public boolean delete(int id) {
         LoggerOps.debug("PaymentDao - delete");
 
-
+        Dao dao = new Dao();
         boolean output;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call DeletePayment (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call DeletePayment (?)}");
 
 
         try {
@@ -125,15 +135,40 @@ public class PaymentDao implements IPaymentDao {
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        output = Dao.executeCall(Sentence);
+        output = dao.executeCall(Sentence);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
 
+    public ArrayList<PaymentBean> readByService(int serviceId){
+        LoggerOps.debug("PaymentDao - readByService");
 
-    private ArrayList<PaymentBean> getResponseArrayListBD(ResultSet rs){
+        Dao dao = new Dao();
+        ArrayList<PaymentBean> output = null;
+        ResultSet rs;
+
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetPaymentByService(?)} ");
+
+        try {
+            Sentence.setInt(1,serviceId );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        rs =dao.executeQuery(Sentence);
+
+        if(rs!=null)
+            output = getResponseArrayListBDreadByService(rs);
+
+        dao.close();
+
+        return output;
+    }
+
+    private ArrayList<PaymentBean> getResponseArrayListBDreadByService(ResultSet rs){
         LoggerOps.debug("PaymentDao - getResponseArrayListBD");
 
         ArrayList<PaymentBean> output = new ArrayList<PaymentBean>();
@@ -146,7 +181,43 @@ public class PaymentDao implements IPaymentDao {
                         rs.getString("name"),
                         rs.getInt("personalId"),
                         rs.getFloat("amount"),
-                        rs.getString("date")
+                        rs.getString("date"),
+                        rs.getInt("transferNum"),
+                        rs.getString("email"),
+                        rs.getString("status"),
+                        rs.getString("serviceName"),
+                        rs.getString("currency"),
+                        rs.getString("category")
+                );
+                output.add(aux);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("SQL Exception: "+ e.getErrorCode());
+        }
+
+        return output;
+
+    }
+
+
+    private ArrayList<PaymentBean> getResponseArrayListBD(ResultSet rs){
+        LoggerOps.debug("PaymentDao - getResponseArrayListBD");
+
+        ArrayList<PaymentBean> output = new ArrayList<PaymentBean>();
+
+        try {
+            while (rs.next()){
+                PaymentBean aux = new PaymentBean(
+                        rs.getInt("id"),
+                        rs.getInt("Service_id"),
+                        rs.getString("name"),
+                        rs.getInt("personalId"),
+                        rs.getFloat("amount"),
+                        rs.getString("date"),
+                        rs.getInt("transferNum"),
+                        rs.getString("email"),
+                        rs.getString("status")
                 );
                 output.add(aux);
             }
@@ -167,11 +238,14 @@ public class PaymentDao implements IPaymentDao {
         while (rs.next()){
             output = new PaymentBean(
                     rs.getInt("id"),
-                    rs.getInt("serviceId"),
+                    rs.getInt("Service_id"),
                     rs.getString("name"),
                     rs.getInt("personalId"),
                     rs.getFloat("amount"),
-                    rs.getString("date")
+                    rs.getString("date"),
+                    rs.getInt("transferNum"),
+                    rs.getString("email"),
+                    rs.getString("status")
             );
         }
 

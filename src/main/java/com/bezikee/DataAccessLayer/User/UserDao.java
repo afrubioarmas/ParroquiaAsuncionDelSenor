@@ -17,10 +17,11 @@ public class UserDao implements IUserDao{
     public boolean create(UserBean input) {
         LoggerOps.debug("UserDao - create");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call UserCreate (?,?,?,?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call UserCreate (?,?,?,?,?,?,?)}");
             Sentence.setString(1, input.getName());
             Sentence.setString(2, input.getLastName());
             Sentence.setString(3, input.getEmail());
@@ -28,8 +29,8 @@ public class UserDao implements IUserDao{
             Sentence.setString(5, input.getPassword());
             Sentence.setString(6, input.getBirthDate());
             Sentence.setString(7, input.getSex());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "UserDao - create", e.toString() );
@@ -43,14 +44,15 @@ public class UserDao implements IUserDao{
    public UserBean read(int id) {
        LoggerOps.debug("UserDao - read");
 
+        Dao dao = new Dao();
         UserBean output = null;
         ResultSet rs;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetUser (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetUser (?)}");
 
         try {
             Sentence.setInt(1, id);
 
-            rs =Dao.executeQuery(Sentence);
+            rs =dao.executeQuery(Sentence);
 
             if(rs!=null)
                 output = getResponseBD(rs);
@@ -59,7 +61,7 @@ public class UserDao implements IUserDao{
             e.printStackTrace();
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
-        Dao.close();
+        dao.close();
 
         return output;
 
@@ -69,18 +71,19 @@ public class UserDao implements IUserDao{
     public ArrayList<UserBean> readAll(){
         LoggerOps.debug("UserDao - readAll");
 
+        Dao dao = new Dao();
         ArrayList<UserBean> output = null;
         ResultSet rs;
 
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllUser ()} ");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetAllUser ()} ");
 
 
-        rs =Dao.executeQuery(Sentence);
+        rs =dao.executeQuery(Sentence);
 
         if(rs!=null)
             output = getResponseArrayListBD(rs);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -89,10 +92,11 @@ public class UserDao implements IUserDao{
 
        LoggerOps.debug("UserDao - update");
 
+       Dao dao = new Dao();
        CallableStatement Sentence;
        boolean output = false;
        try {
-           Sentence = Dao.getCallableSentence("{Call UserUpdate (?,?,?,?,?,?,?,?)}");
+           Sentence = dao.getCallableSentence("{Call UserUpdate (?,?,?,?,?,?,?,?)}");
            Sentence.setString(1, input.getName());
            Sentence.setString(2, input.getLastName());
            Sentence.setString(3, input.getEmail());
@@ -101,8 +105,8 @@ public class UserDao implements IUserDao{
            Sentence.setString(6, input.getBirthDate());
            Sentence.setString(7, input.getSex());
            Sentence.setInt(8, input.getId());
-           output = Dao.executeCall(Sentence);
-           Dao.close();
+           output = dao.executeCall(Sentence);
+           dao.close();
 
        } catch (Exception e) {
            logger.error( "Method: ", "UserDao - Update", e.toString() );
@@ -115,9 +119,9 @@ public class UserDao implements IUserDao{
     public boolean delete(int id) {
         LoggerOps.debug("UserDao - delete");
 
-
+        Dao dao = new Dao();
         boolean output;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call DeleteUser (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call DeleteUser (?)}");
 
 
         try {
@@ -127,9 +131,9 @@ public class UserDao implements IUserDao{
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        output = Dao.executeCall(Sentence);
+        output = dao.executeCall(Sentence);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }

@@ -17,10 +17,11 @@ public class DonationDao implements IDonationDao{
     public boolean create(DonationBean input) {
         LoggerOps.debug("DonationDao - create");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call CreateDonation (?,?,?,?,?,?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call CreateDonation (?,?,?,?,?,?,?,?,?)}");
             Sentence.setString(1, input.getName());
             Sentence.setString(2, input.getEmail());
             Sentence.setFloat(3, input.getAmount());
@@ -30,8 +31,8 @@ public class DonationDao implements IDonationDao{
             Sentence.setString(7, input.getDate());
             Sentence.setInt(8, input.getTransferNum());
             Sentence.setString(9, input.getStatus());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "DonationDao - create", e.toString() );
@@ -45,14 +46,15 @@ public class DonationDao implements IDonationDao{
     public DonationBean read(int id) {
         LoggerOps.debug("DonationDao - read");
 
+        Dao dao = new Dao();
         DonationBean output = null;
         ResultSet rs;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetDonation (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetDonation (?)}");
 
         try {
             Sentence.setInt(1, id);
 
-            rs =Dao.executeQuery(Sentence);
+            rs =dao.executeQuery(Sentence);
 
             if(rs!=null)
                 output = getResponseBD(rs);
@@ -61,7 +63,7 @@ public class DonationDao implements IDonationDao{
             e.printStackTrace();
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
-        Dao.close();
+        dao.close();
 
         return output;
 
@@ -71,18 +73,19 @@ public class DonationDao implements IDonationDao{
     public ArrayList<DonationBean> readAll(){
         LoggerOps.debug("DonationDao - readAll");
 
+        Dao dao = new Dao();
         ArrayList<DonationBean> output = null;
         ResultSet rs;
 
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllDonation ()} ");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetAllDonation ()} ");
 
 
-        rs =Dao.executeQuery(Sentence);
+        rs =dao.executeQuery(Sentence);
 
         if(rs!=null)
             output = getResponseArrayListBD(rs);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -91,10 +94,11 @@ public class DonationDao implements IDonationDao{
 
         LoggerOps.debug("DonationDao - update");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call UpdateDonation (?,?,?,?,?,?,?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call UpdateDonation (?,?,?,?,?,?,?,?,?,?)}");
 
             Sentence.setString(1, input.getName());
             Sentence.setString(2, input.getEmail());
@@ -106,8 +110,8 @@ public class DonationDao implements IDonationDao{
             Sentence.setInt(8, input.getTransferNum());
             Sentence.setString(9, input.getStatus());
             Sentence.setInt(10, input.getId());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "DonationDao - Update", e.toString() );
@@ -120,9 +124,9 @@ public class DonationDao implements IDonationDao{
     public boolean delete(int id) {
         LoggerOps.debug("DonationDao - delete");
 
-
+        Dao dao = new Dao();
         boolean output;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call DeleteDonation (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call DeleteDonation (?)}");
 
 
         try {
@@ -132,9 +136,9 @@ public class DonationDao implements IDonationDao{
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        output = Dao.executeCall(Sentence);
+        output = dao.executeCall(Sentence);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }

@@ -82,7 +82,8 @@ public class ServiceVerticle extends AbstractVerticle {
             ServiceBean bean = new ServiceBean(
                     routingContext.request().getParam("name"),
                     routingContext.request().getParam("currency"),
-                    Float.parseFloat(routingContext.request().getParam("basePrice"))
+                    Float.parseFloat(routingContext.request().getParam("basePrice")),
+                    routingContext.request().getParam("category")
             );
 
             CreateServiceCommand cmd = (CreateServiceCommand) CommandFactory.instantiateCreateService(bean);
@@ -151,7 +152,8 @@ public class ServiceVerticle extends AbstractVerticle {
                     Integer.parseInt(routingContext.request().getParam("id")),
                     routingContext.request().getParam("name"),
                     routingContext.request().getParam("currency"),
-                    Float.parseFloat(routingContext.request().getParam("basePrice"))
+                    Float.parseFloat(routingContext.request().getParam("basePrice")),
+                    routingContext.request().getParam("category")
             );
 
 
