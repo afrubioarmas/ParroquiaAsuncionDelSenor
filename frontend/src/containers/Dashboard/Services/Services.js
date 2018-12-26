@@ -15,7 +15,7 @@ class Services extends Component {
    
     state = {
         create:{name:'',currency:'',basePrice:''},
-        edit:{toggle:false,id:'',name:'',currency:'',basePrice:''},
+        edit:{toggle:false,id:'',name:'',currency:'',basePrice:'',category:''},
         services: [],
         error: false
     }
@@ -28,6 +28,7 @@ class Services extends Component {
         data.append('name', this.state.create.name);
         data.append('currency', this.state.create.currency);
         data.append('basePrice', this.state.create.basePrice);
+        data.append('category', this.state.create.category);
 
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
@@ -47,7 +48,7 @@ class Services extends Component {
     handleToggleEdit=(edit)=>(e)=>{
         e.preventDefault();
         
-        this.setState({edit:{toggle:true,id:edit.id,name:edit.name,currency:edit.currency,basePrice:edit.basePrice}});
+        this.setState({edit:{toggle:true,id:edit.id,name:edit.name,currency:edit.currency,basePrice:edit.basePrice,category:edit.category}});
 
     }
 
@@ -60,6 +61,7 @@ class Services extends Component {
         data.append('name', this.state.edit.name);
         data.append('currency', this.state.edit.currency);
         data.append('basePrice', this.state.edit.basePrice);
+        data.append('category', this.state.edit.category);
 
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
@@ -67,7 +69,7 @@ class Services extends Component {
         axios.post('/service',data,config)
             .then(response => {
                 //handle success
-                this.setState({services:[],edit:{toggle:false,id:'',name:'',currency:'',basePrice:''}});
+                this.setState({services:[],edit:{toggle:false,id:'',name:'',currency:'',basePrice:'',category:''}});
                 //console.log(response);
             })
             .catch(response => {
@@ -140,6 +142,7 @@ class Services extends Component {
                         name={service.name}
                         currency={service.currency}
                         basePrice={service.basePrice}
+                        category={service.category}
 
                         handleDelete={this.handleDelete}
 

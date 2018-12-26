@@ -5,12 +5,13 @@ import com.bezikee.Common.Registry;
 
 import java.sql.*;
 
-public abstract class Dao
+public class Dao
 {
 
-    private static Connection _conn;
 
-    private static void  connect()
+    private Connection _conn;
+
+    private void  connect()
     {
          try{
 
@@ -23,7 +24,7 @@ public abstract class Dao
     }
 
 
-    public static void close(){
+    public void close(){
         try{
             _conn.close();
         }catch ( SQLException e ){
@@ -31,7 +32,7 @@ public abstract class Dao
         }
     }
 
-    public static CallableStatement getCallableSentence (String statementDefinition){
+    public CallableStatement getCallableSentence (String statementDefinition){
         CallableStatement Sentence = null;
         try {
             connect();
@@ -42,7 +43,7 @@ public abstract class Dao
         return Sentence;
     }
 
-    public static ResultSet executeQuery(CallableStatement statement) {
+    public ResultSet executeQuery(CallableStatement statement) {
         ResultSet res;
         try {
             res = statement.executeQuery();
@@ -53,7 +54,7 @@ public abstract class Dao
         }
     }
 
-    public static boolean executeCall(CallableStatement statement) {
+    public boolean executeCall(CallableStatement statement) {
         try {
             statement.execute();
             return true;

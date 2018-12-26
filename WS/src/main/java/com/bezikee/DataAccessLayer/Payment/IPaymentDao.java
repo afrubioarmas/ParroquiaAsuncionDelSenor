@@ -13,4 +13,6 @@ public interface IPaymentDao {
     boolean update(PaymentBean toUpdate);
 
     boolean delete(int idToDelete);
+
+    ArrayList<PaymentBean> readByService(int serviceId);
 }

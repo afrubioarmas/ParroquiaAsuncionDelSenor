@@ -5,16 +5,17 @@ DROP PROCEDURE IF EXISTS CreateService $$
 CREATE PROCEDURE CreateService(
      IN name varchar(45),
      IN currency varchar(45),
-     IN basePrice float
+     IN basePrice float,
+     IN category varchar(45)
 ) BEGIN
 
-INSERT INTO SERVICE (name,currency,basePrice)
-VALUES (name,currency,basePrice);
+INSERT INTO SERVICE (name,currency,basePrice,category)
+VALUES (name,currency,basePrice,category);
 
 END $$
 DELIMITER ;
 
--- CALL CreateService('string''string'34.6);
+-- CALL CreateService('string''string'34.6'string');
 -- End Create
 -- Begin Get all
 
@@ -51,15 +52,16 @@ CREATE PROCEDURE UpdateService(
      IN name varchar(45),
      IN currency varchar(45),
      IN basePrice float,
+     IN category varchar(45),
      IN ID int
 ) BEGIN
 
-UPDATE SERVICE SET name = name,currency = currency,basePrice = basePrice
+UPDATE SERVICE SET name = name,currency = currency,basePrice = basePrice,category = category
 WHERE SERVICE.ID=ID;
 END $$
 DELIMITER ;
 
--- CALL UpdateService(1,'string''string'34.6);
+-- CALL UpdateService(1,'string''string'34.6'string');
 -- End Create
 
 

@@ -12,22 +12,49 @@ public class PaymentBean {
     private int personalId;
     private float amount;
     private String date;
+    private int transferNum;
+    private String email;
+    private String status;
+    private String serviceName;
+    private String currency;
+    private String category;
 
-    public PaymentBean(int id, int serviceId, String name, int personalId, float amount, String date) {
+    public PaymentBean(int id, int serviceId, String name, int personalId, float amount, String date, int transferNum, String email, String status) {
         this.id = id;
         this.serviceId = serviceId;
         this.name = name;
         this.personalId = personalId;
         this.amount = amount;
         this.date = date;
+        this.transferNum = transferNum;
+        this.email = email;
+        this.status = status;
     }
 
-    public PaymentBean(int serviceId, String name, int personalId, float amount, String date) {
+    public PaymentBean(int serviceId, String name, int personalId, float amount, String date, int transferNum, String email, String status) {
         this.serviceId = serviceId;
         this.name = name;
         this.personalId = personalId;
         this.amount = amount;
         this.date = date;
+        this.transferNum = transferNum;
+        this.email = email;
+        this.status = status;
+    }
+
+    public PaymentBean(int id,int serviceId, String name, int personalId, float amount, String date, int transferNum, String email, String status, String serviceName, String currency, String category) {
+        this.id = id;
+        this.serviceId = serviceId;
+        this.name = name;
+        this.personalId = personalId;
+        this.amount = amount;
+        this.date = date;
+        this.transferNum = transferNum;
+        this.email = email;
+        this.status = status;
+        this.serviceName = serviceName;
+        this.currency = currency;
+        this.category = category;
     }
 
     public int getId() {
@@ -76,5 +103,53 @@ public class PaymentBean {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public int getTransferNum() {
+        return transferNum;
+    }
+
+    public void setTransferNum(int transferNum) {
+        this.transferNum = transferNum;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

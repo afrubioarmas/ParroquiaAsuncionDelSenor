@@ -135,7 +135,7 @@ public class CommandFactory {
 
     //END SERVICE
 
-    //BEGIN SERVICE
+    //BEGIN Payment
 
     public static Object instantiateCreatePayment( PaymentBean bean) {
         return new CreatePaymentCommand(bean);
@@ -157,5 +157,9 @@ public class CommandFactory {
         return new DeletePaymentCommand(id);
     }
 
-    //END SERVICE
+    public static Object instantiateGetPaymentByService ( int id) {
+        return new GetPaymentByServiceCommand(id);
+    }
+
+    //END Payment
 }

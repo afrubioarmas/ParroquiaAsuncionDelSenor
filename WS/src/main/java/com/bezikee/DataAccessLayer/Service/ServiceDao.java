@@ -18,15 +18,17 @@ public class ServiceDao implements IServiceDao {
     public boolean create(ServiceBean input) {
         LoggerOps.debug("ServiceDao - create");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call CreateService (?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call CreateService (?,?,?,?)}");
             Sentence.setString(1, input.getName());
             Sentence.setString(2, input.getCurrency());
             Sentence.setFloat(3, input.getBasePrice());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            Sentence.setString(4, input.getCategory());
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "ServiceDao - create", e.toString() );
@@ -40,14 +42,15 @@ public class ServiceDao implements IServiceDao {
     public ServiceBean read(int id) {
         LoggerOps.debug("ServiceDao - read");
 
+        Dao dao = new Dao();
         ServiceBean output = null;
         ResultSet rs;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetService (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetService (?)}");
 
         try {
             Sentence.setInt(1, id);
 
-            rs =Dao.executeQuery(Sentence);
+            rs =dao.executeQuery(Sentence);
 
             if(rs!=null)
                 output = getResponseBD(rs);
@@ -56,7 +59,7 @@ public class ServiceDao implements IServiceDao {
             e.printStackTrace();
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
-        Dao.close();
+        dao.close();
 
         return output;
 
@@ -66,18 +69,19 @@ public class ServiceDao implements IServiceDao {
     public ArrayList<ServiceBean> readAll(){
         LoggerOps.debug("ServiceDao - readAll");
 
+        Dao dao = new Dao();
         ArrayList<ServiceBean> output = null;
         ResultSet rs;
 
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllService ()} ");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetAllService ()} ");
 
 
-        rs =Dao.executeQuery(Sentence);
+        rs =dao.executeQuery(Sentence);
 
         if(rs!=null)
             output = getResponseArrayListBD(rs);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -86,17 +90,19 @@ public class ServiceDao implements IServiceDao {
 
         LoggerOps.debug("ServiceDao - update");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call UpdateService (?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call UpdateService (?,?,?,?,?)}");
 
             Sentence.setString(1, input.getName());
             Sentence.setString(2, input.getCurrency());
             Sentence.setFloat(3, input.getBasePrice());
-            Sentence.setInt(4, input.getId());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            Sentence.setString(4, input.getCategory());
+            Sentence.setInt(5, input.getId());
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "ServiceDao - Update", e.toString() );
@@ -109,9 +115,9 @@ public class ServiceDao implements IServiceDao {
     public boolean delete(int id) {
         LoggerOps.debug("ServiceDao - delete");
 
-
+        Dao dao = new Dao();
         boolean output;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call DeleteService (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call DeleteService (?)}");
 
 
         try {
@@ -121,9 +127,9 @@ public class ServiceDao implements IServiceDao {
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        output = Dao.executeCall(Sentence);
+        output = dao.executeCall(Sentence);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -140,7 +146,8 @@ public class ServiceDao implements IServiceDao {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getString("currency"),
-                        rs.getFloat("basePrice")
+                        rs.getFloat("basePrice"),
+                        rs.getString("category")
                 );
                 output.add(aux);
             }
@@ -163,7 +170,8 @@ public class ServiceDao implements IServiceDao {
                     rs.getInt("id"),
                     rs.getString("name"),
                     rs.getString("currency"),
-                    rs.getFloat("basePrice")
+                    rs.getFloat("basePrice"),
+                    rs.getString("category")
             );
         }
 

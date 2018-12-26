@@ -17,15 +17,16 @@ public class CalendarDao implements ICalendarDao{
     public boolean create(CalendarBean input) {
         LoggerOps.debug("CalendarDao - create");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call CreateCalendar (?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call CreateCalendar (?,?,?)}");
             Sentence.setString(1, input.getStartDate());
             Sentence.setString(2, input.getEndDate());
             Sentence.setString(3, input.getName());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "CalendarDao - create", e.toString() );
@@ -39,14 +40,16 @@ public class CalendarDao implements ICalendarDao{
     public CalendarBean read(int id) {
         LoggerOps.debug("CalendarDao - read");
 
+        Dao dao = new Dao();
         CalendarBean output = null;
         ResultSet rs;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetCalendar (?)}");
+
 
         try {
+            CallableStatement Sentence = dao.getCallableSentence("{Call GetCalendar (?)}");
             Sentence.setInt(1, id);
 
-            rs =Dao.executeQuery(Sentence);
+            rs =dao.executeQuery(Sentence);
 
             if(rs!=null)
                 output = getResponseBD(rs);
@@ -55,7 +58,7 @@ public class CalendarDao implements ICalendarDao{
             e.printStackTrace();
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
-        Dao.close();
+        dao.close();
 
         return output;
 
@@ -65,18 +68,19 @@ public class CalendarDao implements ICalendarDao{
     public ArrayList<CalendarBean> readAll(){
         LoggerOps.debug("CalendarDao - readAll");
 
+        Dao dao = new Dao();
         ArrayList<CalendarBean> output = null;
         ResultSet rs;
 
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllCalendar ()} ");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetAllCalendar ()} ");
 
 
-        rs =Dao.executeQuery(Sentence);
+        rs =dao.executeQuery(Sentence);
 
         if(rs!=null)
             output = getResponseArrayListBD(rs);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -85,16 +89,17 @@ public class CalendarDao implements ICalendarDao{
 
         LoggerOps.debug("CalendarDao - update");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call UpdateCalendar (?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call UpdateCalendar (?,?,?,?)}");
             Sentence.setString(1, input.getStartDate());
             Sentence.setString(2, input.getEndDate());
             Sentence.setString(3, input.getName());
             Sentence.setInt(4, input.getId());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "CalendarDao - Update", e.toString() );
@@ -107,9 +112,9 @@ public class CalendarDao implements ICalendarDao{
     public boolean delete(int id) {
         LoggerOps.debug("CalendarDao - delete");
 
-
+        Dao dao = new Dao();
         boolean output;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call DeleteCalendar (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call DeleteCalendar (?)}");
 
 
         try {
@@ -119,9 +124,9 @@ public class CalendarDao implements ICalendarDao{
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        output = Dao.executeCall(Sentence);
+        output = dao.executeCall(Sentence);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -130,6 +135,7 @@ public class CalendarDao implements ICalendarDao{
     private ArrayList<CalendarBean> getResponseArrayListBD(ResultSet rs){
         LoggerOps.debug("CalendarDao - getResponseArrayListBD");
 
+        Dao dao = new Dao();
         ArrayList<CalendarBean> output = new ArrayList<CalendarBean>();
 
         try {

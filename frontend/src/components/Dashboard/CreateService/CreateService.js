@@ -21,13 +21,29 @@ const createService = (props) => (
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Moneda</label>
-                                <input type="text" className="form-control border-input" placeholder="Moneda" onChange={(evt) => { props.create.currency = evt.target.value }}/>
+                                <select className="form-control border-input" onChange={(evt) => { props.create.currency = evt.target.value }}>
+                                    <option>Usd</option>
+                                    <option>BsS</option>
+                                </select>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Precio Base</label>
                                 <input type="text" className="form-control border-input" placeholder="Precio base" onChange={(evt) => { props.create.basePrice = evt.target.value }}/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+                                <label>Categoria</label>
+                                <select className="form-control border-input" onChange={(evt) => { props.create.category = evt.target.value }}>
+                                    <option>Misas</option>
+                                    <option>Nichos</option>
+                                    <option>Sacramentos</option>
+                                </select>
                             </div>
                         </div>
                     </div>

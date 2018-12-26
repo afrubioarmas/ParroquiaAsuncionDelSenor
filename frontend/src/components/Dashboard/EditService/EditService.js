@@ -21,13 +21,29 @@ const editService = (props) => (
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Moneda</label>
-                                <input type="text" className="form-control border-input" placeholder="Moneda" defaultValue={props.edit.currency} onChange={(evt) => { props.edit.currency = evt.target.value }}/>
+                                <select defaultValue={props.edit.currency} className="form-control border-input"  onChange={(evt) => { props.edit.currency = evt.target.value }}>
+                                    <option>Usd</option>
+                                    <option>BsS</option>
+                                </select>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>Precio Base</label>
                                 <input type="text" className="form-control border-input" placeholder="Precio Base" defaultValue={props.edit.basePrice} onChange={(evt) => { props.edit.basePrice = evt.target.value }}/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-md-12">
+                            <div className="form-group">
+                                <label>Categoría</label>
+                                <select defaultValue={props.edit.category} className="form-control border-input" onChange={(evt) => { props.edit.category = evt.target.value }}>
+                                    <option>Misas</option>
+                                    <option>Nichos</option>
+                                    <option>Sacramentos</option>
+                                </select>
                             </div>
                         </div>
                     </div>

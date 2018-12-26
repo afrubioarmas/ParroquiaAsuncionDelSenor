@@ -18,17 +18,18 @@ public class NewDao implements INewDao {
     public boolean create(NewBean input) {
         LoggerOps.debug("NewDao - create");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call CreateNew (?,?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call CreateNew (?,?,?,?,?)}");
             Sentence.setString(1, input.getTitle());
             Sentence.setString(2, input.getContent());
             Sentence.setString(3, input.getImage());
             Sentence.setString(4, input.getVideo());
             Sentence.setString(5, input.getDate());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "NewDao - create", e.toString() );
@@ -42,14 +43,15 @@ public class NewDao implements INewDao {
     public NewBean read(int id) {
         LoggerOps.debug("NewDao - read");
 
+        Dao dao = new Dao();
         NewBean output = null;
         ResultSet rs;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetNew (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetNew (?)}");
 
         try {
             Sentence.setInt(1, id);
 
-            rs =Dao.executeQuery(Sentence);
+            rs =dao.executeQuery(Sentence);
 
             if(rs!=null)
                 output = getResponseBD(rs);
@@ -58,7 +60,7 @@ public class NewDao implements INewDao {
             e.printStackTrace();
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
-        Dao.close();
+        dao.close();
 
         return output;
 
@@ -68,18 +70,19 @@ public class NewDao implements INewDao {
     public ArrayList<NewBean> readAll(){
         LoggerOps.debug("NewDao - readAll");
 
+        Dao dao = new Dao();
         ArrayList<NewBean> output = null;
         ResultSet rs;
 
-        CallableStatement Sentence = Dao.getCallableSentence("{Call GetAllNew ()} ");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetAllNew ()} ");
 
 
-        rs =Dao.executeQuery(Sentence);
+        rs =dao.executeQuery(Sentence);
 
         if(rs!=null)
             output = getResponseArrayListBD(rs);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -88,10 +91,11 @@ public class NewDao implements INewDao {
 
         LoggerOps.debug("NewDao - update");
 
+        Dao dao = new Dao();
         CallableStatement Sentence;
         boolean output = false;
         try {
-            Sentence = Dao.getCallableSentence("{Call UpdateNew (?,?,?,?,?,?)}");
+            Sentence = dao.getCallableSentence("{Call UpdateNew (?,?,?,?,?,?)}");
 
             Sentence.setString(1, input.getTitle());
             Sentence.setString(2, input.getContent());
@@ -99,8 +103,8 @@ public class NewDao implements INewDao {
             Sentence.setString(4, input.getVideo());
             Sentence.setString(5, input.getDate());
             Sentence.setInt(6, input.getId());
-            output = Dao.executeCall(Sentence);
-            Dao.close();
+            output = dao.executeCall(Sentence);
+            dao.close();
 
         } catch (Exception e) {
             logger.error( "Method: ", "NewDao - Update", e.toString() );
@@ -113,9 +117,9 @@ public class NewDao implements INewDao {
     public boolean delete(int id) {
         LoggerOps.debug("NewDao - delete");
 
-
+        Dao dao = new Dao();
         boolean output;
-        CallableStatement Sentence = Dao.getCallableSentence("{Call DeleteNew (?)}");
+        CallableStatement Sentence = dao.getCallableSentence("{Call DeleteNew (?)}");
 
 
         try {
@@ -125,9 +129,9 @@ public class NewDao implements INewDao {
             System.out.println("SQL Exception: "+ e.getErrorCode());
         }
 
-        output = Dao.executeCall(Sentence);
+        output = dao.executeCall(Sentence);
 
-        Dao.close();
+        dao.close();
 
         return output;
     }
@@ -136,6 +140,7 @@ public class NewDao implements INewDao {
     private ArrayList<NewBean> getResponseArrayListBD(ResultSet rs){
         LoggerOps.debug("NewDao - getResponseArrayListBD");
 
+        Dao dao = new Dao();
         ArrayList<NewBean> output = new ArrayList<NewBean>();
 
         try {

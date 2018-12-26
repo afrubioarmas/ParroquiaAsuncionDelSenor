@@ -71,11 +71,11 @@ class Donations extends Component {
         }
 
         
-        componentDidUpdate(){
-            if(this.state.donations.length===0){
-            this.componentDidMount();
-            }
+    componentDidUpdate(){
+        if(this.state.donations.length===0){
+        this.componentDidMount();
         }
+    }
 
    
 

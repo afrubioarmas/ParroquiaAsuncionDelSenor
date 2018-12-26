@@ -29,6 +29,7 @@ public class PaymentVerticle extends AbstractVerticle {
         App.router.get("/payment").handler(this::handleGetAll);
         App.router.post("/payment").handler(this::handleUpdate);
         App.router.delete("/payment/:id").handler(this::handleDelete);
+        App.router.get("/paymentByService/:id").handler(this::handleGetByService);
 
         vertx.createHttpServer().requestHandler(App.router::accept).listen(8080);
     }
@@ -87,7 +88,10 @@ public class PaymentVerticle extends AbstractVerticle {
                     routingContext.request().getParam("name"),
                     Integer.parseInt(routingContext.request().getParam("personalId")),
                     Float.parseFloat(routingContext.request().getParam("amount")),
-                    routingContext.request().getParam("date")
+                    routingContext.request().getParam("date"),
+                    Integer.parseInt(routingContext.request().getParam("transferNum")),
+                    routingContext.request().getParam("email"),
+                    routingContext.request().getParam("status")
             );
 
             CreatePaymentCommand cmd = (CreatePaymentCommand) CommandFactory.instantiateCreatePayment(bean);
@@ -125,11 +129,6 @@ public class PaymentVerticle extends AbstractVerticle {
             return true;
         }
 
-        if ((request.getParam("date") == null) || !(request.getParam("date").matches("^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]" +
-                "))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$"))) {
-            LoggerOps.error("Wrong date: " + request.getParam("date"));
-            return true;
-        }
 
         return false;
     }
@@ -162,11 +161,15 @@ public class PaymentVerticle extends AbstractVerticle {
         } else {
 
             PaymentBean bean = new PaymentBean(
+                    Integer.parseInt(routingContext.request().getParam("id")),
                     Integer.parseInt(routingContext.request().getParam("serviceId")),
                     routingContext.request().getParam("name"),
                     Integer.parseInt(routingContext.request().getParam("personalId")),
                     Float.parseFloat(routingContext.request().getParam("amount")),
-                    routingContext.request().getParam("date")
+                    routingContext.request().getParam("date"),
+                    Integer.parseInt(routingContext.request().getParam("transferNum")),
+                    routingContext.request().getParam("email"),
+                    routingContext.request().getParam("status")
             );
 
 
@@ -210,6 +213,34 @@ public class PaymentVerticle extends AbstractVerticle {
     }
 
     private boolean validateParametersDelete(HttpServerRequest request) {
+
+        return validateParametersGet(request);
+    }
+
+    private void handleGetByService(RoutingContext routingContext) {
+        LoggerOps.debug("Handling Get Payment by Service.");
+
+        HttpServerResponse response = routingContext.response();
+
+        response.putHeader("Content-Type", "application/json");
+
+        if(validateParametersGetByService(routingContext.request())) {
+            response.setStatusCode(400).end(GsonOps.toJson("Parameter Error"));
+        } else {
+
+            int serviceId = Integer.parseInt(routingContext.request().getParam("id"));
+
+
+            GetPaymentByServiceCommand cmd = (GetPaymentByServiceCommand) CommandFactory.instantiateGetPaymentByService(serviceId);
+
+            cmd.execute();
+
+            LoggerOps.debug("ENDING - Responding Get Payment by Service.");
+            response.setStatusCode(cmd.getStatus() ? 200 : 400).end(cmd.getMessage());
+        }
+    }
+
+    private boolean validateParametersGetByService(HttpServerRequest request) {
 
         return validateParametersGet(request);
     }
