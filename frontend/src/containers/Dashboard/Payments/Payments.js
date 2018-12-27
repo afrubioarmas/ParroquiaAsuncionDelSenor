@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 import TopNav from '../../../components/Dashboard/TopNav/TopNav';
 import Donations from '../../../containers/Dashboard/Donations/Donations';
-import Nichos from '../../../containers/Dashboard/Nichos/Nichos';
-import Sacramentos from '../Sacramentos/Sacramentos';
-import Misas from '../Misas/Misas';
+import Pagos from '../Pagos/Pagos';
 
 
 class Payments extends Component {
@@ -36,13 +34,13 @@ class Payments extends Component {
                                             <Donations />
                                         </div>
                                         <div id="nichos" className="tab-pane fade">
-                                            <Nichos/>
+                                            <Pagos paymentType={'Nichos'}/>
                                         </div>
                                         <div id="sacramentos" className="tab-pane fade">
-                                            <Sacramentos/>
+                                            <Pagos paymentType={'Sacramentos'}/> 
                                         </div>
                                         <div id="misas" className="tab-pane fade">
-                                            <Misas/>
+                                            <Pagos paymentType={'Misas'}/>
                                         </div>
                                     </div>
                                     

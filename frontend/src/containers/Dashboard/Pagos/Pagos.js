@@ -3,39 +3,39 @@ import * as moment from 'moment';
 
 import axios from '../../../Axios';
 
-import Nicho from './Nicho';
+import Pago from './Pago';
 
 
-class Nichos extends Component {
+class Pagos extends Component {
 
     state = {
-        nichos: [],
+        pagos: [],
         error: false
     }
 
-    handleEditStatus=(nicho)=>(e)=>{
+    handleEditStatus=(pago)=>(e)=>{
         e.preventDefault();
 
         let data = new FormData();
 
-        data.append('id', nicho.id);
-        data.append('serviceId', nicho.serviceId);
-        data.append('name', nicho.name);
-        data.append('personalId', nicho.personalId  );
-        data.append('amount', nicho.amount);
-        data.append('date',moment(nicho.date).format('YYYY-MM-DD HH:mm'));
-        data.append('transferNum', nicho.transferNum);
-        data.append('email', nicho.email);
+        data.append('id', pago.id);
+        data.append('serviceId', pago.serviceId);
+        data.append('name', pago.name);
+        data.append('personalId', pago.personalId  );
+        data.append('amount', pago.amount);
+        data.append('date',moment(pago.date).format('YYYY-MM-DD HH:mm'));
+        data.append('transferNum', pago.transferNum);
+        data.append('email', pago.email);
         data.append('status', e.target.value);
        
-        console.log(nicho);
+        console.log(pago);
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
 
         axios.post('/payment',data,config)
             .then(response => {
                 //handle success
-                this.setState({nichos: []});
+                this.setState({pagos: []});
                 //console.log(response);
             })
             .catch(response => {
@@ -47,22 +47,23 @@ class Nichos extends Component {
 
     componentDidMount () {
         //console.log(this.props);
-        axios.get( '/paymentByService/2' )
+        axios.get( '/paymentByCategory/'+this.props.paymentType )
             .then( response => {
-                const nichos = response.data;
-                const updatedNichos = nichos.map(nicho => {
+                const pagos = response.data;
+                const updatedPagos = pagos.map(pago => {
                     return {
-                        ...nicho
+                        ...pago
                     }
                 });
-                this.setState({nichos: updatedNichos}); 
-                console.log(this.state.nichos);
+                this.setState({pagos: updatedPagos}); 
+                console.log(this.state.pagos);
                 //console.log( "respose" + response );
 
 
                 const $ = window.$;
+                const paymentType = this.props.paymentType;
                 $(document).ready( function () {
-                    $('#nichosTable').DataTable();
+                    $('#'+paymentType+'Table').DataTable();
                 } );
             } )
             .catch(error => {
@@ -73,22 +74,22 @@ class Nichos extends Component {
 
         
     componentDidUpdate(){
-        if(this.state.nichos.length===0){
+        if(this.state.pagos.length===0){
         this.componentDidMount();
         }
     }
 
     render() {
 
-        let nichos;
+        let pagos;
         if (!this.state.error) {
-            nichos = this.state.nichos.map(nicho => {
+            pagos = this.state.pagos.map(pago => {
                 //console.log(event);
                 return (
                     
-                    <Nicho 
-                        key={nicho.id}
-                        nicho={nicho}
+                    <Pago 
+                        key={pago.id}
+                        pago={pago}
 
                         handleEditStatus={this.handleEditStatus}
                     />
@@ -99,10 +100,10 @@ class Nichos extends Component {
 
         return (
             <div>
-                <h3>Nichos</h3>
-                <p>Lista de todos los pagos por Nichos realizadas por los usuarios.</p>
+                <h3>{this.props.paymentType}</h3>
+                <p>Lista de todos los pagos por {this.props.paymentType} realizadas por los usuarios.</p>
                 <div className="content table-responsive table-full-width">
-                    <table id="nichosTable" className="table table-striped hover">
+                    <table id={this.props.paymentType+"Table"} className="table table-striped hover">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
@@ -116,7 +117,7 @@ class Nichos extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {nichos}
+                            {pagos}
                         </tbody>
                     </table>
                 </div>
@@ -125,4 +126,4 @@ class Nichos extends Component {
     }
 }
 
-export default Nichos;
+export default Pagos;

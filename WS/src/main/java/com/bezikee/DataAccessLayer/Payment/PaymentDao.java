@@ -142,17 +142,17 @@ public class PaymentDao implements IPaymentDao {
         return output;
     }
 
-    public ArrayList<PaymentBean> readByService(int serviceId){
+    public ArrayList<PaymentBean> readByCategory(String category){
         LoggerOps.debug("PaymentDao - readByService");
 
         Dao dao = new Dao();
         ArrayList<PaymentBean> output = null;
         ResultSet rs;
 
-        CallableStatement Sentence = dao.getCallableSentence("{Call GetPaymentByService(?)} ");
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetPaymentByCategory(?)} ");
 
         try {
-            Sentence.setInt(1,serviceId );
+            Sentence.setString(1,category );
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -161,14 +161,14 @@ public class PaymentDao implements IPaymentDao {
         rs =dao.executeQuery(Sentence);
 
         if(rs!=null)
-            output = getResponseArrayListBDreadByService(rs);
+            output = getResponseArrayListBDreadByCat(rs);
 
         dao.close();
 
         return output;
     }
 
-    private ArrayList<PaymentBean> getResponseArrayListBDreadByService(ResultSet rs){
+    private ArrayList<PaymentBean> getResponseArrayListBDreadByCat(ResultSet rs){
         LoggerOps.debug("PaymentDao - getResponseArrayListBD");
 
         ArrayList<PaymentBean> output = new ArrayList<PaymentBean>();

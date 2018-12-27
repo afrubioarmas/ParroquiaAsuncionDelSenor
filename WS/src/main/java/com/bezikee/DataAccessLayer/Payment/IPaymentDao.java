@@ -14,5 +14,5 @@ public interface IPaymentDao {
 
     boolean delete(int idToDelete);
 
-    ArrayList<PaymentBean> readByService(int serviceId);
+    ArrayList<PaymentBean> readByCategory(String category);
 }
