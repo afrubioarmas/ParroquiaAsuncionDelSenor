@@ -9,25 +9,25 @@ import com.bezikee.DomainLogicLayer.Command;
 
 import java.util.ArrayList;
 
-public class GetPaymentByServiceCommand extends Command {
+public class GetPaymentByCategoryCommand extends Command {
 
-    private int _serviceId;
+    private String _category;
     private boolean _status;
     private String _message;
 
-    public GetPaymentByServiceCommand(int serviceId){
+    public GetPaymentByCategoryCommand(String category){
 
-        _serviceId = serviceId;
+        _category = category;
 
     }
 
     @Override
     public void execute() {
-        LoggerOps.debug("Executing GetPaymentCommand");
+        LoggerOps.debug("Executing GetPaymentByCategoryCommand");
 
         IPaymentDao dao = DaoFactory.instantiatePaymentDao();
 
-        ArrayList <PaymentBean> payments = dao.readByService(_serviceId);
+        ArrayList <PaymentBean> payments = dao.readByCategory(_category);
         if ( payments == null) {
             setStatus(false);
             setMessage(GsonOps.toJson("Server Side Error"));

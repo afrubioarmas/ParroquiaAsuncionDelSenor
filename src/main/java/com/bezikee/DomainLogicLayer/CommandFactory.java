@@ -157,8 +157,8 @@ public class CommandFactory {
         return new DeletePaymentCommand(id);
     }
 
-    public static Object instantiateGetPaymentByService ( int id) {
-        return new GetPaymentByServiceCommand(id);
+    public static Object instantiateGetPaymentByService ( String cat) {
+        return new GetPaymentByCategoryCommand(cat);
     }
 
     //END Payment
