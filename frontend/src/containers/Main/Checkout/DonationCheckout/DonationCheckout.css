@@ -1,9 +1,9 @@
-.main form {
+.donation-payment-wrapper form {
   max-width: 80%;
   text-align: center;
   margin: 20px auto;
 }
-.main .donation-payment .donation-form input, .main form textarea {
+.donation-payment-wrapper .donation-payment .donation-form input, .donation-payment-wrapper form textarea {
   background-color: #F4F3EF;
   border: 0;
   outline: 0;
@@ -20,73 +20,73 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   resize: none;
 }
-.main form input:focus, .main form textarea:focus {
+.donation-payment-wrapper form input:focus, .donation-payment-wrapper form textarea:focus {
   -moz-box-shadow: 0 0px 2px #C5A275 !important;
   -webkit-box-shadow: 0 0px 2px #C5A275 !important;
   box-shadow: 0 0px 2px #C5A275 !important;
 }
-.main form #input-submit {
+.donation-payment-wrapper form #input-submit {
   color: white;
   background: #C5A275;
   cursor: pointer;
 }
-.main form #input-submit:hover {
+.donation-payment-wrapper form #input-submit:hover {
   -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
   -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
   box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
 }
-.main form textarea {
+.donation-payment-wrapper form textarea {
   height: 126px;
 }
-.main .half-right-cf {
+.donation-payment-wrapper .half-right-cf {
   margin-bottom: 20px;
 }
-.main .donation-payment .donation-form .payment-button {
+.donation-payment-wrapper .donation-payment .donation-form .payment-button {
   margin-bottom: 20px;
   margin-top: 20px;
 }
 @media (max-width: 480px) {
-  .main .half {
+  .donation-payment-wrapper .half {
     width: 100%;
     float: none;
     margin-bottom: 0;
   }
 }
-.main .cf:before,
-.main .cf:after {
+.donation-payment-wrapper .cf:before,
+.donation-payment-wrapper .cf:after {
   content: " ";
   /* 1 */
   display: table;
   /* 2 */
 }
-.main .cf:after {
+.donation-payment-wrapper .cf:after {
   clear: both;
 }
-.main .main .donation-payment .donation-form {
+.donation-payment-wrapper .donation-payment .donation-form {
   margin-left: 30px;
   margin-right: 30px;
   box-shadow: 0px 2px 20px 0.5px #ccc;
   border-radius: 4px;
 }
-.main .main .donation-payment .donation-form .donation-form-title {
+.donation-payment-wrapper .donation-payment .donation-form .donation-form-title {
   text-align: center;
   text-transform: none;
   font-family: sans-serif;
 }
-.main .main .donation-payment .column {
+.donation-payment-wrapper .donation-payment .column {
   float: left;
   width: 33%;
   padding: 0 10px;
 }
-.main .main .donation-payment .row {
+.donation-payment-wrapper .donation-payment .row {
   margin: 20px -5px;
 }
-.main .main .donation-payment .row:after {
+.donation-payment-wrapper .donation-payment .row:after {
   content: "";
   display: table;
   clear: both;
 }
-.main .main .donation-payment .card {
+.donation-payment-wrapper .donation-payment .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* this adds the "card" effect */
   padding: 16px;
@@ -95,7 +95,7 @@
   background-color: #f4f3ef;
 }
 @media screen and (max-width: 600px) {
-  .main .main .donation-payment .column {
+  .donation-payment-wrapper .donation-payment .column {
     width: 100%;
     display: block;
     margin-bottom: 20px;

@@ -59,48 +59,69 @@ class DonationCheckout extends Component {
 
     render() {
         return (
-            <div className="donation-payment">
-                <div className="page-head" data-bg-image="images/page-head-1.jpg">
-                    <div className="container">
-                        <h2 className="page-title">Donación</h2>
-                    </div>
-                </div>
-                <div>
-                    <div className="row">
-                        <div className="column">
-                            <div className="card">
-                                <p>Banco 1</p>
-                            </div>
-                        </div>
-                        <div className="column">
-                            <div className="card">
-                                <p>Banco 2</p>
-                            </div>
-                        </div>
-                        <div className="column">
-                            <div className="card">
-                                <p>Banco 2</p>
-                            </div>
+            <div className="donation-payment-wrapper">
+                <div className="donation-payment">
+                    <div className="page-head" data-bg-image="images/page-head-1.jpg">
+                        <div className="container">
+                            <h2 className="page-title">Donación</h2>
                         </div>
                     </div>
-                    <div className="donation-form">
-                        <h3 className="donation-form-title">Si ya realizó la transferencia, introduzca sus datos</h3>
-                        <form className="cf">
-                            <div className="half left cf">
-                                <input type="text" name="name" placeholder="Nombre" value={this.state.name} onChange={this.inputChangeHandler}/>
-                                <input type="text" name="lastName" placeholder="Apellido" value={this.state.lastName} onChange={this.inputChangeHandler}/>
-                                <input type="number" name="price" placeholder="Monto" value={this.state.price} onChange={this.inputChangeHandler}/>
-                                <input type="number" name="transferNumber" placeholder="Numero de transferencia" value={this.state.transferNumber} onChange={this.inputChangeHandler}/>
+                    <div>
+                        <div className="row">
+                            <p>ESTO NO VA AQUI PORQUE ES PAJA QUE VAMOS A MOSTRAR LA INFO DEL BANCO DESPUES DE QUE YA SE REALIZO LA TRANSFERENCIA</p>
+                            <div className="column">
+                                <div className="card">
+                                    <p>Banco 1</p>
+                                </div>
                             </div>
-                            <div className="half right cf">
-                                <textarea name="description" type="text" placeholder="Descripcion (Opcional)" value={this.state.description} onChange={this.inputChangeHandler}></textarea>
-                            </div>  
-                            <button className="payment-button" onClick={this.paymentHandler}>Donar</button>
-                        </form>
+                            <div className="column">
+                                <div className="card">
+                                    <p>Banco 2</p>
+                                </div>
+                            </div>
+                            <div className="column">
+                                <div className="card">
+                                    <p>Banco 2</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="donation-form">
+                            <h3 className="donation-form-title">Introduzca los datos de la transferencia.</h3>
+                                    <div className="container">
+                                        <form className="cf">
+                                            <div className="row">
+                                                <div className="col-md-6">
+                                                    <input type="text" name="name" placeholder="Nombre" value={this.state.name} onChange={this.inputChangeHandler}/>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <input type="text" name="lastName" placeholder="Email" value={this.state.lastName} onChange={this.inputChangeHandler}/>
+                                                </div>
+                                            </div>
+                                            <div className="row">
+                                                <div className="col-md-4">
+                                                    <input type="number" name="price" placeholder="Monto" value={this.state.price} onChange={this.inputChangeHandler}/>
+                                                </div>
+                                                <div className="col-md-2">
+                                                    <select defaultValue="Moneda">
+                                                        <option>Moneda</option>
+                                                        <option value="Usd">Usd</option>
+                                                        <option value="BsS">BsS</option>
+                                                    </select>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <input type="number" name="transferNumber" placeholder="Numero de transferencia" value={this.state.transferNumber} onChange={this.inputChangeHandler}/>
+                                                </div>
+                                            </div>
+                                            <textarea name="description" type="text" placeholder="Descripcion (Opcional)" value={this.state.description} onChange={this.inputChangeHandler}></textarea>
+                                            <button className="payment-button" onClick={this.paymentHandler}>Donar</button>
+                                        </form>
+                                    </div>         
+                        </div>
+                            <button className="payment-button" onClick={this.cancelDonationHandler}>Cancelar</button>
                     </div>
-                        <button className="payment-button" onClick={this.cancelDonationHandler}>Cancelar</button>
                 </div>
             </div>
+                
         );
     }
 }

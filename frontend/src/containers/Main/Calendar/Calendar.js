@@ -56,8 +56,8 @@ class Calendar extends Component {
                 <main className="main-content">
                     <div className="fullwidth-block">
                         <div className="container">
-                            <div className="row center-block">
-                                <div className="content col-md-6 ">
+                            <div className="row">
+                                <div className="col-md-6 col-centered ">
                                     <h2 className="section-title">Proximos Eventos</h2>
                                     <ul className="event-list large">
                                         {events}

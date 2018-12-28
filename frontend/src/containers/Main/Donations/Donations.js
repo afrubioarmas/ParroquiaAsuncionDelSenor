@@ -57,22 +57,22 @@ class Donations extends Component {
                                         <h2 className="section-title">Parroquia</h2>
                                     </div>
                                 </div>
-                                <p className="donation-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis arcu id ex commodo, et imperdiet nulla placerat. Fusce tellus enim, eleifend sit amet ex vitae, consequat tempus quam. Etiam nec nisl at justo maximus laoreet in a eros. Cras semper lorem metus, id ultricies dui convallis vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent eu gravida mauris, id dictum tellus. Etiam sed ullamcorper elit, vitae pharetra neque. Fusce facilisis fermentum tincidunt. Maecenas non massa vel arcu porta vehicula. Phasellus quis dui vitae dolor consequat consequat.</p>
+                                <p className="donation-p">Las donaciones de la parroquia son para bla bla bla y van dirigidas a blab blab bal.</p>
                                 <div className="row">
                                     <div className="col-md-4 col-sm-6">
-                                        <div className="donation">
-                                            <img className="donation-image" src="images/news-thumb-1.jpg" alt=""></img>
-                                        </div>
+                                        
+                                            <img className="donation-image" src="images/iglesia.jpg" alt=""></img>
+                                        
                                     </div>
                                     <div className="col-md-4 col-sm-6">
-                                        <div className="donation">
-                                            <img className="donation-image" src="images/news-thumb-1.jpg" alt=""></img>
-                                        </div>
+                                        
+                                            <img className="donation-image" src="images/main/logo.jpeg" alt=""></img>
+                                        
                                     </div>
                                     <div className="col-md-4 col-sm-6">
-                                        <div className="donation">
-                                            <img className="donation-image" src="images/news-thumb-1.jpg" alt=""></img>
-                                        </div>
+                                       
+                                            <img className="donation-image" src="images/honneger.jpg" alt=""></img>
+                                        
                                     </div>
                                 </div>
                                 <div className="text-center">
@@ -90,22 +90,16 @@ class Donations extends Component {
                                         <h2 className="section-title">Caritas</h2>
                                     </div>
                                 </div>
-                                <p className="donation-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis arcu id ex commodo, et imperdiet nulla placerat. Fusce tellus enim, eleifend sit amet ex vitae, consequat tempus quam. Etiam nec nisl at justo maximus laoreet in a eros. Cras semper lorem metus, id ultricies dui convallis vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent eu gravida mauris, id dictum tellus. Etiam sed ullamcorper elit, vitae pharetra neque. Fusce facilisis fermentum tincidunt. Maecenas non massa vel arcu porta vehicula. Phasellus quis dui vitae dolor consequat consequat.</p>
+                                <p className="donation-p">Las donaciones de Caritas son para bla bla bla y van dirigidas a blab blab bal.</p>
                                 <div className="row">
                                     <div className="col-md-4 col-sm-6">
-                                        <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg" alt=""></img>
-                                        </div>
+                                            <img className="donation-image" src="images/Sección-Código-Caritas-Venezuela-Home.jpg" alt=""></img>
                                     </div>
                                     <div className="col-md-4 col-sm-6">
-                                        <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg" alt=""></img>
-                                        </div>
+                                            <img className="donation-image" src="images/caritas.jpg" alt=""></img>
                                     </div>
                                     <div className="col-md-4 col-sm-6">
-                                        <div className="news">
-                                            <img className="news-image" src="images/news-thumb-1.jpg" alt=""></img>
-                                        </div>
+                                            <img className="donation-image" src="images/cumpleanos_caritas1-1.jpg" alt=""></img>
                                     </div>
                                 </div>
                                 <div className="text-center">

@@ -1638,10 +1638,12 @@ body {
   border-bottom-color: #8f7655;
   border-width: 2px;
 }
-.main .donation .donation-image {
-  width: 100%;
-  max-width: 100%;
-  height: auto;
+.main .donation-image {
+  display:block;
+  margin:auto;
+  width: 65%;
+  max-width: 70%;
+  height: 200px;
   margin-bottom: 20px;
 }
 .main .active-menu {
@@ -1653,4 +1655,19 @@ body {
 .main .image-thumbnail{
   width: 10%;
   height: auto;
+}
+
+.main .col-centered{
+  float: none;
+  margin: 0 auto;
+}
+
+.main .center-content{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main .colophon{
+  text-align: center;
 }
