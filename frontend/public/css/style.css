@@ -1409,8 +1409,7 @@ body {
   margin-bottom: 30px;
 }
 .main .event-list li {
-  padding: 10px 50% 10px 0;
-  padding-right: 50%;
+  padding: 10px 0 10px 0;
   position: relative;
   border-bottom: 1px solid #e5e5e5;
 }
@@ -1418,11 +1417,12 @@ body {
   border-top: 1px solid #e5e5e5;
 }
 .main .event-list .event-title {
-  text-align: center;
+  text-align: left;
   display: inline-block;
   margin-bottom: 0;
   font-size: 20px;
   font-size: 1em;
+  width: 50%;
 }
 .main .event-list .event-meta {
   position: absolute;
@@ -1430,7 +1430,7 @@ body {
   right: 0;
   color: #a59e95;
   font-size: 12px;
-  font-size: 0.85714em;
+  font-size: 1.5rem;
   font-weight: 400;
   text-transform: uppercase;
   font-family: "Novecento Sans", "Raleway", "Noto Sans" "Open Sans", sans-serif;
@@ -1445,16 +1445,16 @@ body {
   height: 0;
 }
 .main .event-list .event-meta span {
-  width: 50%;
+  
   float: left;
   font-size: 12px;
-  font-size: 0.85714rem;
+  font-size: 1.5rem;
 }
 .main .event-list .event-meta span .fa {
   margin-right: 5px;
 }
 .main .event-list.large li {
-  padding: 20px 0;
+  padding: 5px 0;
 }
 .main .event-list.large .event-title {
   display: block;
@@ -1462,7 +1462,6 @@ body {
 }
 .main .event-list.large .event-meta {
   position: relative;
-  margin-bottom: 20px;
   display: block;
 }
 .main .event-list.large .event-meta span {

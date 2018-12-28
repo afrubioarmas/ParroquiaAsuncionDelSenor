@@ -10,6 +10,7 @@ import Footer from '../components/Main/Footer/Footer';
 import Services from '../containers/Main/Services/Services';
 import ServiceCheckout from '../containers/Main/Checkout/ServiceCheckout/ServiceCheckout';
 import DonationCheckout from '../containers/Main/Checkout/DonationCheckout/DonationCheckout';
+import contact from '../components/Main/Contact/Contact';
 
 class Main extends Component {
   render() {
@@ -24,6 +25,7 @@ class Main extends Component {
 						<Route path="/calendario" exact component={Calendar} />
 						<Route path="/donaciones" exact component={Donations} />
 						<Route path="/pagos" exact component={Services} />
+						<Route path="/contacto" exact component={contact} />
 						<Route path="/pago-servicio" exact component={ServiceCheckout} />
 						<Route path="/pago-donacion" exact component={DonationCheckout} />
 						<Route render={() => <h1>Not Found!</h1>} />
