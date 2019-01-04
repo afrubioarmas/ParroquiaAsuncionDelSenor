@@ -14,7 +14,7 @@ class Services extends Component {
    
    
     state = {
-        create:{name:'',currency:'',basePrice:''},
+        create:{name:'',currency:'Usd',basePrice:'',category:'Misas'},
         edit:{toggle:false,id:'',name:'',currency:'',basePrice:'',category:''},
         services: [],
         error: false
@@ -36,7 +36,7 @@ class Services extends Component {
         axios.put('/service',data,config)
             .then(response => {
                 //handle success
-                this.setState({services:[]});
+                this.componentDidMount();
                 //console.log(response);
             })
             .catch(response => {
@@ -69,7 +69,8 @@ class Services extends Component {
         axios.post('/service',data,config)
             .then(response => {
                 //handle success
-                this.setState({services:[],edit:{toggle:false,id:'',name:'',currency:'',basePrice:'',category:''}});
+                this.setState({edit:{toggle:false,id:'',name:'',currency:'',basePrice:'',category:''}});
+                this.componentDidMount();
                 //console.log(response);
             })
             .catch(response => {
@@ -85,7 +86,7 @@ class Services extends Component {
         axios.delete('/service/'+id)
             .then(response => {
                 //handle success
-                this.setState({services:[]});
+                this.componentDidMount();
                 //console.log(response);
             })
             .catch(response => {
@@ -119,12 +120,7 @@ class Services extends Component {
             });
         }
 
-        
-        componentDidUpdate(){
-            if(this.state.services.length===0){
-            this.componentDidMount();
-            }
-        }
+     
 
 
    

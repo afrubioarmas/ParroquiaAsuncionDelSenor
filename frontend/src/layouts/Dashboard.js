@@ -10,7 +10,7 @@ import Login from '../containers/Dashboard/Login/Login';
 
 class Dashboard extends Component {
 
-  state = {authenticated:false,error:false};
+  state = {authenticated:true,error:false};
   
 
   handleLogIn=(auth)=>(e)=>{

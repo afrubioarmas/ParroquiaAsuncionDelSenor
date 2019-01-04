@@ -48,7 +48,7 @@ class News extends Component {
                 axios.put('/new',data,config)
                     .then(response => {
                         //handle success
-                        this.setState({news:[]});
+                        this.componentDidMount();
                         //console.log(response);
                     })
                     .catch(response => {
@@ -111,7 +111,8 @@ class News extends Component {
                     axios.post('/new',data,config)
                         .then(response => {
                             //handle success
-                            this.setState({news:[],edit:{toggle:false,id:'',title:'',content:'',image:null,video:'',date:moment(),previousUrl:''}});
+                            this.setState({edit:{toggle:false,id:'',title:'',content:'',image:null,video:'',date:moment(),previousUrl:''}});
+                            this.componentDidMount();
                             //console.log(response);
                         })
                         .catch(response => {
@@ -144,7 +145,8 @@ class News extends Component {
             axios.post('/new',data,config)
                 .then(response => {
                     //handle success
-                    this.setState({news:[],edit:{toggle:false,id:'',title:'',content:'',image:null,video:'',date:moment(),previousUrl:''}});
+                    this.setState({edit:{toggle:false,id:'',title:'',content:'',image:null,video:'',date:moment(),previousUrl:''}});
+                    this.componentDidMount();
                     //console.log(response);
                 })
                 .catch(response => {
@@ -162,7 +164,7 @@ class News extends Component {
         axios.delete('/new/'+id)
             .then(response => {
                 //handle success
-                this.setState({news:[]});
+                this.componentDidMount();
                 //console.log(response);
             })
             .catch(response => {

@@ -11,10 +11,9 @@ class ServiceCheckout extends Component {
         service: '',
         price: '',
         name: '',
-        lastName: '',
+        email: '',
         id: '',
         transferNumber: '',
-        description: '',
         currency: ''
 
     }
@@ -33,11 +32,14 @@ class ServiceCheckout extends Component {
 
         let data = new FormData();
 
+        data.append('amount', this.state.price);
         data.append('serviceId', this.state.serviceId);
         data.append('name', this.state.name);
         data.append('personalId', this.state.id);
-        data.append('amount', this.state.price);
         data.append('date', moment().format('YYYY-MM-DD'));
+        data.append('transferNum', this.state.transferNumber);
+        data.append('status', "Por Confirmar");
+        data.append('email', this.state.email);
 
         //console.log(moment().format('YYYY-MM-DD'));
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
@@ -45,11 +47,11 @@ class ServiceCheckout extends Component {
         axios.put('/payment',data,config)
             .then(response => {
                 //handle success
-                console.log(response);
+                //console.log(response);
             })
             .catch(response => {
                 //handle error
-                console.log(response);
+                //console.log(response);
             });
     }
 
@@ -93,20 +95,20 @@ class ServiceCheckout extends Component {
                             <form className="cf">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <input type="text" name="name" placeholder="Nombre" onChange={this.inputChangeHandler}/>
+                                        <input type="text" name="name" placeholder="Nombre" value={this.state.name} onChange={this.inputChangeHandler}/>
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="number" name="id" placeholder="Cédula" onChange={this.inputChangeHandler}/>
+                                        <input type="number" name="id" placeholder="Cédula" value={this.state.id} onChange={this.inputChangeHandler}/>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-12">
-                                        <input type="text" name="email" placeholder="Correo" onChange={this.inputChangeHandler}/>
+                                        <input type="text" name="email" placeholder="Correo" value={this.state.email} onChange={this.inputChangeHandler}/>
                                     </div>
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4">
-                                        <input type="number" name="price" placeholder="Monto"onChange={this.inputChangeHandler}/>
+                                        <input type="number" name="price" placeholder="Monto" value={this.state.price} onChange={this.inputChangeHandler}/>
                                     </div>
                                     <div className="col-md-2">
                                         <select defaultValue="Moneda" name="currency" onChange={this.inputChangeHandler}>
@@ -116,10 +118,9 @@ class ServiceCheckout extends Component {
                                         </select>
                                     </div>
                                     <div className="col-md-6">
-                                        <input type="number" name="transferNumber" placeholder="Numero de transferencia" onChange={this.inputChangeHandler}/>
+                                        <input type="number" name="transferNumber" placeholder="Numero de transferencia" value={this.state.transferNumber} onChange={this.inputChangeHandler}/>
                                     </div>
                                 </div>
-                                <textarea name="description" type="text" placeholder="Descripcion (Opcional)" onChange={this.inputChangeHandler}></textarea>
                                 <button className="payment-button" onClick={this.paymentHandler}>Pagar</button>
                             </form>
                         </div>

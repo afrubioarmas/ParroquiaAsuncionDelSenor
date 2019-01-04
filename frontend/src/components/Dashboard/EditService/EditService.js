@@ -22,8 +22,8 @@ const editService = (props) => (
                             <div className="form-group">
                                 <label>Moneda</label>
                                 <select defaultValue={props.edit.currency} className="form-control border-input"  onChange={(evt) => { props.edit.currency = evt.target.value }}>
-                                    <option>Usd</option>
-                                    <option>BsS</option>
+                                    <option selected={props.edit.currency==="Usd" ? "selected":null}>Usd</option>
+                                    <option selected={props.edit.currency==="BsS" ? "selected" :null}>BsS</option>
                                 </select>
                             </div>
                         </div>
@@ -40,9 +40,9 @@ const editService = (props) => (
                             <div className="form-group">
                                 <label>Categoría</label>
                                 <select defaultValue={props.edit.category} className="form-control border-input" onChange={(evt) => { props.edit.category = evt.target.value }}>
-                                    <option>Misas</option>
-                                    <option>Nichos</option>
-                                    <option>Sacramentos</option>
+                                    <option selected={props.edit.category==="Misas" ? "selected" : null}>Misas</option>
+                                    <option selected={props.edit.category==="Nichos" ? "selected" : null}>Nichos</option>
+                                    <option selected={props.edit.category==="Sacramentos" ? "selected" : null}>Sacramentos</option>
                                 </select>
                             </div>
                         </div>

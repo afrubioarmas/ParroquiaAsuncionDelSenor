@@ -35,7 +35,7 @@ class Events extends Component {
         axios.put('/calendar',data,config)
             .then(response => {
                 //handle success
-                this.setState({events:[]});
+                this.componentDidMount();
                 //console.log(response);
             })
             .catch(response => {
@@ -67,7 +67,8 @@ class Events extends Component {
         axios.post('/calendar',data,config)
             .then(response => {
                 //handle success
-                this.setState({events:[],edit:{toggle:false,id:'',name:'',startDate:moment(),endDate:moment()}});
+                this.setState({edit:{toggle:false,id:'',name:'',startDate:moment(),endDate:moment()}});
+                this.componentDidMount();
                 //console.log(response);
             })
             .catch(response => {
@@ -83,7 +84,7 @@ class Events extends Component {
         axios.delete('/calendar/'+id)
             .then(response => {
                 //handle success
-                this.setState({events:[]});
+                this.componentDidMount();
                 //console.log(response);
             })
             .catch(response => {

@@ -28,14 +28,14 @@ class Pagos extends Component {
         data.append('email', pago.email);
         data.append('status', e.target.value);
        
-        console.log(pago);
+        //console.log(pago);
 
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
 
         axios.post('/payment',data,config)
             .then(response => {
                 //handle success
-                this.setState({pagos: []});
+                //this.componentDidMount();
                 //console.log(response);
             })
             .catch(response => {
@@ -56,28 +56,42 @@ class Pagos extends Component {
                     }
                 });
                 this.setState({pagos: updatedPagos}); 
-                console.log(this.state.pagos);
+                //console.log(this.state.pagos);
                 //console.log( "respose" + response );
 
 
                 const $ = window.$;
                 const paymentType = this.props.paymentType;
+
+                $.fn.dataTable.ext.order['dom-select'] = function  ( settings, col )
+                {
+                    return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
+                        return $('select', td).val();
+                    } );
+                }
+
                 $(document).ready( function () {
-                    $('#'+paymentType+'Table').DataTable();
+                    $('#'+paymentType+'Table').DataTable({
+                        "columns": [
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            { "orderDataType": "dom-select" }
+                        ]
+                    } );
                 } );
+                
             } )
             .catch(error => {
                 //console.log(error);
                 this.setState({error: true});
             });
-    }
-
-        
-    componentDidUpdate(){
-        if(this.state.pagos.length===0){
-        this.componentDidMount();
         }
-    }
+
 
     render() {
 
