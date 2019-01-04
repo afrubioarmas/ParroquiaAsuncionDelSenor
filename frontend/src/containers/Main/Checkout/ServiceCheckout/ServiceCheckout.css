@@ -1,12 +1,9 @@
-.main {
-  /* Clearfix */
-}
-.main form {
+.main .service-payment-wrapper form {
   max-width: 80%;
   text-align: center;
   margin: 20px auto;
 }
-.main .service-payment .service-form input, .main form textarea {
+.main .service-payment-wrapper .service-form input, .main .service-payment-wrapper form textarea {
   background-color: #F4F3EF;
   border: 0;
   outline: 0;
@@ -23,73 +20,90 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   resize: none;
 }
-.main form input:focus, .main form textarea:focus {
+.main .service-payment-wrapper form input:focus, .main .service-payment-wrapper form textarea:focus {
   -moz-box-shadow: 0 0px 2px #C5A275 !important;
   -webkit-box-shadow: 0 0px 2px #C5A275 !important;
   box-shadow: 0 0px 2px #C5A275 !important;
 }
-.main form #input-submit {
+.main .service-payment-wrapper form #input-submit {
   color: white;
   background: #C5A275;
   cursor: pointer;
 }
-.main form #input-submit:hover {
+.main .service-payment-wrapper form #input-submit:hover {
   -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
   -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
   box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
 }
-.main form textarea {
+.main .service-payment-wrapper form textarea {
   height: 126px;
 }
-.main .half-right-cf {
+.main .service-payment-wrapper .service-form select {
+  background-color: #F4F3EF;
+  border: 0;
+  outline: 0;
+  padding: 1em;
+  border-radius: 8px;
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  font-family: "Merriweather", sans-serif;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  resize: none;
+}
+.main .service-payment-wrapper .half-right-cf {
   margin-bottom: 20px;
 }
-.main .service-payment .service-form .payment-button {
+.main .service-payment-wrapper .service-form .payment-button {
   margin-bottom: 20px;
   margin-top: 20px;
 }
 @media (max-width: 480px) {
-  .main .half {
+  .main .service-payment-wrapper .half {
     width: 100%;
     float: none;
     margin-bottom: 0;
   }
 }
-.main .cf:before,
-.main .cf:after {
+.main .service-payment-wrapper .cf:before,
+.main .service-payment-wrapper .cf:after {
   content: " ";
   /* 1 */
   display: table;
   /* 2 */
 }
-.main .cf:after {
+.main .service-payment-wrapper .cf:after {
   clear: both;
 }
-.main .main .service-payment .service-form {
+.main .service-payment-wrapper .service-form {
+  margin-bottom: 30px;
   margin-left: 30px;
   margin-right: 30px;
   box-shadow: 0px 2px 20px 0.5px #ccc;
   border-radius: 4px;
 }
-.main .main .service-payment .service-form .service-form-title {
+.main .service-payment-wrapper .service-form .service-form-title {
+  color: #8f7655;
   text-align: center;
-  text-transform: none;
+  text-transform: uppercase;
   font-family: sans-serif;
+  margin-top: 20px;
 }
-.main .main .service-payment .column {
+.main .service-payment-wrapper .column {
   float: left;
   width: 33%;
   padding: 0 10px;
 }
-.main .main .service-payment .row {
+.main .service-payment-wrapper .row {
   margin: 20px -5px;
 }
-.main .main .service-payment .row:after {
+.main .service-payment-wrapper .row:after {
   content: "";
   display: table;
   clear: both;
 }
-.main .main .service-payment .card {
+.main .service-payment-wrapper .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* this adds the "card" effect */
   padding: 16px;
@@ -98,7 +112,7 @@
   background-color: #f4f3ef;
 }
 @media screen and (max-width: 600px) {
-  .main .main .service-payment .column {
+  .main .service-payment-wrapper .column {
     width: 100%;
     display: block;
     margin-bottom: 20px;

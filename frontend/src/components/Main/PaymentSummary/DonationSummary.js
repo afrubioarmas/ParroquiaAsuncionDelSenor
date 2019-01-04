@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './DonationSummary.css';
+
 const donationSummary = (props) => {
     return (
         <div className="conatiner">

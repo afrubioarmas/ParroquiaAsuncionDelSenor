@@ -118,11 +118,11 @@ class Events extends Component {
         }
 
         
-        componentDidUpdate(){
+        /* componentDidUpdate(){
             if(this.state.events.length===0){
             this.componentDidMount();
             }
-        }
+        } */
 
 
    

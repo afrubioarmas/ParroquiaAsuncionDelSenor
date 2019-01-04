@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from '../../../../Axios';
 import moment from 'moment';
 
+import Modal from '../../../../components/Main/UI/Modal/Modal';
+import DonationSummary from '../../../../components/Main/PaymentSummary/DonationSummary';
+
 import './DonationCheckout.css';
 
 class DonationCheckout extends Component {
@@ -10,10 +13,12 @@ class DonationCheckout extends Component {
         donation: '',
         price: '',
         name: '',
-        lastName: '',
+        email: '',
         transferNumber: '',
         description: '',
-        currency: 'Bs'
+        currency: '',
+        donationRegistered: false,
+        error: false
 
     }
 
@@ -26,25 +31,31 @@ class DonationCheckout extends Component {
     paymentHandler= (e) =>{
         e.preventDefault();
 
+        console.log(this.state.currency);
+
         let data = new FormData();
 
-        data.append('name', this.state.name + ' ' + this.state.lastName);
+        data.append('name', this.state.name);
+        data.append('email', this.state.email);
         data.append('amount', this.state.price);
         data.append('description', this.state.description);
         data.append('purpose', this.state.donation);
         data.append('currency', this.state.currency);
         data.append('date', moment().format('YYYY-MM-DD'));
+        data.append('transferNum', this.state.transferNumber);
+        data.append('status', 'Por Confirmar');
 
-        //console.log(moment().format('YYYY-MM-DD'));
         const config = { headers: {'Content-Type': 'multipart/form-data'}}
 
         axios.put('/donation',data,config)
             .then(response => {
                 //handle success
+                this.setState({donationRegistered: true});
                 console.log(response);
             })
             .catch(response => {
                 //handle error
+                this.setState({error: true});
                 console.log(response);
             });
     }
@@ -54,12 +65,34 @@ class DonationCheckout extends Component {
     }
 
     cancelDonationHandler = () => {
+        this.setState({donationRegistered: false});
         this.props.history.goBack();
     }
 
+    confirmDonationHandler = () => {
+        this.props.history.push({
+            pathname: '/'
+        });
+    }
+
     render() {
+
+        let thanks = null;
+
+        if (this.state.donationRegistered) {
+            thanks = (
+                <div> 
+                    <h2>Gracias por realizar la donación</h2>
+                    <button className="payment-button col-md-12" onClick={this.confirmDonationHandler}>Continuar</button>
+                </div>
+            );
+        }
+
         return (
             <div className="donation-payment-wrapper">
+                <Modal show={this.state.donationRegistered} modalClosed={this.cancelDonationHandler}>
+                    {thanks}
+                </Modal>
                 <div className="donation-payment">
                     <div className="page-head" data-bg-image="images/page-head-1.jpg">
                         <div className="container">
@@ -68,7 +101,6 @@ class DonationCheckout extends Component {
                     </div>
                     <div>
                         <div className="row">
-                            <p>ESTO NO VA AQUI PORQUE ES PAJA QUE VAMOS A MOSTRAR LA INFO DEL BANCO DESPUES DE QUE YA SE REALIZO LA TRANSFERENCIA</p>
                             <div className="column">
                                 <div className="card">
                                     <p>Banco 1</p>
@@ -86,38 +118,37 @@ class DonationCheckout extends Component {
                             </div>
                         </div>
                         <div className="donation-form">
-                            <h3 className="donation-form-title">Introduzca los datos de la transferencia.</h3>
-                                    <div className="container">
-                                        <form className="cf">
-                                            <div className="row">
-                                                <div className="col-md-6">
-                                                    <input type="text" name="name" placeholder="Nombre" value={this.state.name} onChange={this.inputChangeHandler}/>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <input type="text" name="lastName" placeholder="Email" value={this.state.lastName} onChange={this.inputChangeHandler}/>
-                                                </div>
-                                            </div>
-                                            <div className="row">
-                                                <div className="col-md-4">
-                                                    <input type="number" name="price" placeholder="Monto" value={this.state.price} onChange={this.inputChangeHandler}/>
-                                                </div>
-                                                <div className="col-md-2">
-                                                    <select defaultValue="Moneda">
-                                                        <option>Moneda</option>
-                                                        <option value="Usd">Usd</option>
-                                                        <option value="BsS">BsS</option>
-                                                    </select>
-                                                </div>
-                                                <div className="col-md-6">
-                                                    <input type="number" name="transferNumber" placeholder="Numero de transferencia" value={this.state.transferNumber} onChange={this.inputChangeHandler}/>
-                                                </div>
-                                            </div>
-                                            <textarea name="description" type="text" placeholder="Descripcion (Opcional)" value={this.state.description} onChange={this.inputChangeHandler}></textarea>
-                                            <button className="payment-button" onClick={this.paymentHandler}>Donar</button>
-                                        </form>
-                                    </div>         
+                            <div className="container">
+                                <h3 className="donation-form-title">Introduzca los datos de la transferencia</h3>
+                                <form className="cf">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <input type="text" name="name" placeholder="Nombre" value={this.state.name} onChange={this.inputChangeHandler}/>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <input type="text" name="email" placeholder="Correo" value={this.state.email} onChange={this.inputChangeHandler}/>
+                                        </div>
+                                    </div>
+                                    <div className="row">
+                                        <div className="col-md-4">
+                                            <input type="number" name="price" placeholder="Monto" value={this.state.price} onChange={this.inputChangeHandler}/>
+                                        </div>
+                                        <div className="col-md-2">
+                                            <select defaultValue="Moneda" name="currency" onChange={this.inputChangeHandler}>
+                                                <option>Moneda</option>
+                                                <option value="Usd">Usd</option>
+                                                <option value="BsS">BsS</option>
+                                            </select>
+                                        </div>
+                                        <div className="col-md-6">
+                                            <input type="number" name="transferNumber" placeholder="Numero de transferencia" value={this.state.transferNumber} onChange={this.inputChangeHandler}/>
+                                        </div>
+                                    </div>
+                                    <textarea name="description" type="text" placeholder="Descripcion (Opcional)" value={this.state.description} onChange={this.inputChangeHandler}></textarea>
+                                    <button className="payment-button" onClick={this.paymentHandler}>Donar</button>
+                                </form>
+                            </div>         
                         </div>
-                            <button className="payment-button" onClick={this.cancelDonationHandler}>Cancelar</button>
                     </div>
                 </div>
             </div>

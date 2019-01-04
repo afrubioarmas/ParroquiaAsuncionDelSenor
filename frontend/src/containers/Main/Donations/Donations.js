@@ -1,23 +1,18 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router';
 
-
-import DonationSummary from '../../../components/Main/PaymentSummary/DonationSummary';
-import Modal from '../../../components/Main/UI/Modal/Modal';
-
 import './Donations.css';
 
 class Donations extends Component {
 
     state = {
-        paying: false,
         selectedDonation: ""
     }
 
     paymentHandler = (donation) => {
-        this.setState({
-            paying: true,
-            selectedDonation: donation
+        this.props.history.push({
+            pathname: '/pago-donacion',
+            state: donation
         });
     }
 
@@ -28,20 +23,9 @@ class Donations extends Component {
         });
     }
 
-    acceptPaymentHandler = () => {
-            this.props.history.push({
-                pathname: '/pago-donacion',
-                state: this.state.selectedDonation
-            });
-        //console.log(this.state);
-    }
-
     render() {
         return (
             <div className="donations">
-                <Modal show={this.state.paying} modalClosed={this.paymentCancelHandler}>
-                    <DonationSummary donation={this.state.selectedDonation} clicked={this.acceptPaymentHandler}/>
-                </Modal>
                 <div className="page-head">
                     <div className="container">
                         <h2 className="page-title">Donaciones</h2>

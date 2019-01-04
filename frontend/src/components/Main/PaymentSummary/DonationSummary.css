@@ -1,0 +1,13 @@
+.main .payment-button {
+    border-width: 0px;
+    font-weight: 400;
+    line-height: normal;
+    color: #715b3e;
+    border-bottom: 1px solid #a68861;
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+    background: linear-gradient(#e2caae, #c39f70);
+    text-transform: uppercase;
+    padding: 10px 25px;
+    border-radius: 5px;
+}

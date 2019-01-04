@@ -1,9 +1,9 @@
-.donation-payment-wrapper form {
+.main .donation-payment-wrapper form {
   max-width: 80%;
   text-align: center;
   margin: 20px auto;
 }
-.donation-payment-wrapper .donation-payment .donation-form input, .donation-payment-wrapper form textarea {
+.main .donation-payment-wrapper .donation-payment .donation-form input, .main .donation-payment-wrapper form textarea {
   background-color: #F4F3EF;
   border: 0;
   outline: 0;
@@ -20,73 +20,90 @@
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   resize: none;
 }
-.donation-payment-wrapper form input:focus, .donation-payment-wrapper form textarea:focus {
+.main .donation-payment-wrapper form input:focus, .main .donation-payment-wrapper form textarea:focus {
   -moz-box-shadow: 0 0px 2px #C5A275 !important;
   -webkit-box-shadow: 0 0px 2px #C5A275 !important;
   box-shadow: 0 0px 2px #C5A275 !important;
 }
-.donation-payment-wrapper form #input-submit {
+.main .donation-payment-wrapper form #input-submit {
   color: white;
   background: #C5A275;
   cursor: pointer;
 }
-.donation-payment-wrapper form #input-submit:hover {
+.main .donation-payment-wrapper form #input-submit:hover {
   -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
   -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
   box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
 }
-.donation-payment-wrapper form textarea {
+.main .donation-payment-wrapper form textarea {
   height: 126px;
 }
-.donation-payment-wrapper .half-right-cf {
+.main .donation-payment-wrapper .donation-payment .donation-form select {
+  background-color: #F4F3EF;
+  border: 0;
+  outline: 0;
+  padding: 1em;
+  border-radius: 8px;
+  display: block;
+  width: 100%;
+  margin-bottom: 1em;
+  font-family: "Merriweather", sans-serif;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  resize: none;
+}
+.main .donation-payment-wrapper .half-right-cf {
   margin-bottom: 20px;
 }
-.donation-payment-wrapper .donation-payment .donation-form .payment-button {
+.main .donation-payment-wrapper .donation-payment .donation-form .payment-button {
   margin-bottom: 20px;
   margin-top: 20px;
 }
 @media (max-width: 480px) {
-  .donation-payment-wrapper .half {
+  .main .donation-payment-wrapper .half {
     width: 100%;
     float: none;
     margin-bottom: 0;
   }
 }
-.donation-payment-wrapper .cf:before,
-.donation-payment-wrapper .cf:after {
+.main .donation-payment-wrapper .cf:before,
+.main .donation-payment-wrapper .cf:after {
   content: " ";
   /* 1 */
   display: table;
   /* 2 */
 }
-.donation-payment-wrapper .cf:after {
+.main .donation-payment-wrapper .cf:after {
   clear: both;
 }
-.donation-payment-wrapper .donation-payment .donation-form {
+.main .donation-payment-wrapper .donation-payment .donation-form {
+  margin-bottom: 30px;
   margin-left: 30px;
   margin-right: 30px;
   box-shadow: 0px 2px 20px 0.5px #ccc;
   border-radius: 4px;
 }
-.donation-payment-wrapper .donation-payment .donation-form .donation-form-title {
+.main .donation-payment-wrapper .donation-payment .donation-form .donation-form-title {
+  color: #8f7655;
   text-align: center;
-  text-transform: none;
+  text-transform: uppercase;
   font-family: sans-serif;
+  margin-top: 20px;
 }
-.donation-payment-wrapper .donation-payment .column {
+.main .donation-payment-wrapper .donation-payment .column {
   float: left;
   width: 33%;
   padding: 0 10px;
 }
-.donation-payment-wrapper .donation-payment .row {
+.main .donation-payment-wrapper .donation-payment .row {
   margin: 20px -5px;
 }
-.donation-payment-wrapper .donation-payment .row:after {
+.main .donation-payment-wrapper .donation-payment .row:after {
   content: "";
   display: table;
   clear: both;
 }
-.donation-payment-wrapper .donation-payment .card {
+.main .donation-payment-wrapper .donation-payment .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* this adds the "card" effect */
   padding: 16px;
@@ -95,7 +112,7 @@
   background-color: #f4f3ef;
 }
 @media screen and (max-width: 600px) {
-  .donation-payment-wrapper .donation-payment .column {
+  .main .donation-payment-wrapper .donation-payment .column {
     width: 100%;
     display: block;
     margin-bottom: 20px;

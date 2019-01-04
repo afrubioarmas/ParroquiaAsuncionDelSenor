@@ -18,7 +18,7 @@ const header = () => (
                 <li className="menu-item"><NavLink to="/noticias" exact activeClassName="active-menu">Noticias</NavLink></li>
                 <li className="menu-item"><NavLink to="/calendario" exact activeClassName="active-menu">Calendario</NavLink></li>
                 <li className="menu-item"><NavLink to="/donaciones" exact activeClassName="active-menu">Donaciones</NavLink></li>
-                <li className="menu-item"><NavLink to="/pagos" exact activeClassName="active-menu">Servicios de Pagos</NavLink></li>
+                <li className="menu-item"><NavLink to="/pagos" exact activeClassName="active-menu">Pago de Servicios</NavLink></li>
                 <li className="menu-item"><NavLink to="/contacto" exact activeClassName="active-menu">Contacto</NavLink></li>
             </ul>
         </div>

@@ -41,7 +41,7 @@ class Services extends Component {
     }
 
     paymentHandler = (serviceId, service, price) => {
-        console.log(serviceId);
+        console.log(serviceId, service, price);
         this.setState({
             paying: true,
             selectedServiceId: serviceId,

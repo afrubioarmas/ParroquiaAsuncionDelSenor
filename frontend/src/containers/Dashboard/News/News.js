@@ -196,11 +196,11 @@ class News extends Component {
             });
     }
 
-    componentDidUpdate(){
+    /* componentDidUpdate(){
         if(this.state.news.length===0){
         this.componentDidMount();
         }
-    }
+    } */
 
     
 

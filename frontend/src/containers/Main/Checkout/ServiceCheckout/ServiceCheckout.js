@@ -15,11 +15,12 @@ class ServiceCheckout extends Component {
         id: '',
         transferNumber: '',
         description: '',
-        currency: 'Bs'
+        currency: ''
 
     }
 
     componentWillMount() {
+        console.log(this.props.location.state);
         this.setState({
             serviceId: this.props.location.state.serviceId,
             service: this.props.location.state.service,
@@ -33,7 +34,7 @@ class ServiceCheckout extends Component {
         let data = new FormData();
 
         data.append('serviceId', this.state.serviceId);
-        data.append('name', this.state.name + ' ' + this.state.lastName);
+        data.append('name', this.state.name);
         data.append('personalId', this.state.id);
         data.append('amount', this.state.price);
         data.append('date', moment().format('YYYY-MM-DD'));
@@ -62,14 +63,12 @@ class ServiceCheckout extends Component {
 
     render() {
         return (
-            <div className="service-payment">
+            <div className="service-payment-wrapper">
                 <div className="page-head" data-bg-image="images/page-head-1.jpg">
                     <div className="container">
                         <h2 className="page-title">Pago Servicio</h2>
                     </div>
                 </div>
-                <h4>Nombre de servicio: {this.state.service}</h4>
-                <h4>Precio base: {this.state.price}</h4>
                 <div>
                     <div className="row">
                         <div className="column">
@@ -89,22 +88,42 @@ class ServiceCheckout extends Component {
                         </div>
                     </div>
                     <div className="service-form">
-                        <h3 className="service-form-title">Si ya realizó la transferencia, introduzca sus datos</h3>
-                        <form className="cf">
-                            <div className="half left cf">
-                                <input type="text" name="name" placeholder="Nombre" value={this.state.name} onChange={this.inputChangeHandler}/>
-                                <input type="text" name="lastName" placeholder="Apellido" value={this.state.lastName} onChange={this.inputChangeHandler}/>
-                                <input type="number" name="id" placeholder="Cédula" value={this.state.id} onChange={this.inputChangeHandler}/>
-                                <input type="number" name="price" placeholder="Monto" value={this.state.price} onChange={this.inputChangeHandler}/>
-                                <input type="number" name="transferNumber" placeholder="Numero de transferencia" value={this.state.transferNumber} onChange={this.inputChangeHandler}/>
-                            </div>
-                            <div className="half right cf">
-                                <textarea name="description" type="text" placeholder="Descripcion (Opcional)" value={this.state.description} onChange={this.inputChangeHandler}></textarea>
-                            </div>  
-                            <button className="payment-button" onClick={this.paymentHandler}>Donar</button>
-                        </form>
+                        <div className="container">
+                            <h3 className="service-form-title">Introduzca los datos de la transferencia</h3>
+                            <form className="cf">
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <input type="text" name="name" placeholder="Nombre" onChange={this.inputChangeHandler}/>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <input type="number" name="id" placeholder="Cédula" onChange={this.inputChangeHandler}/>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        <input type="text" name="email" placeholder="Correo" onChange={this.inputChangeHandler}/>
+                                    </div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-md-4">
+                                        <input type="number" name="price" placeholder="Monto"onChange={this.inputChangeHandler}/>
+                                    </div>
+                                    <div className="col-md-2">
+                                        <select defaultValue="Moneda" name="currency" onChange={this.inputChangeHandler}>
+                                            <option >Moneda</option>
+                                            <option value="Usd">Usd</option>
+                                            <option value="BsS">BsS</option>
+                                        </select>
+                                    </div>
+                                    <div className="col-md-6">
+                                        <input type="number" name="transferNumber" placeholder="Numero de transferencia" onChange={this.inputChangeHandler}/>
+                                    </div>
+                                </div>
+                                <textarea name="description" type="text" placeholder="Descripcion (Opcional)" onChange={this.inputChangeHandler}></textarea>
+                                <button className="payment-button" onClick={this.paymentHandler}>Pagar</button>
+                            </form>
+                        </div>
                     </div>
-                        <button className="payment-button" onClick={this.cancelPaymentHandler}>Cancelar</button>
                 </div>
             </div>
         );
