@@ -87,7 +87,7 @@ public class DonationVerticle extends AbstractVerticle {
                     routingContext.request().getParam("currency"),
                     routingContext.request().getParam("date"),
                     routingContext.request().getParam("email"),
-                    Integer.parseInt(routingContext.request().getParam("transferNum")),
+                    routingContext.request().getParam("transferNum"),
                     routingContext.request().getParam("status")
 
             );
@@ -106,6 +106,50 @@ public class DonationVerticle extends AbstractVerticle {
         LoggerOps.debug("Validating Parameters Create donation.");
         //False = no errors
         //True = error
+        if ( (request.getParam("name") == null) || !(request.getParam("name").matches("[a-zA-Z ]+$"))) {
+            LoggerOps.error("Wrong name: " + request.getParam("name"));
+            return true;
+        }
+        if ((request.getParam("email") == null) || !(request.getParam("email").matches("^[-a-z0-9~!$%^&*_=+}{\\'?]+(\\.[-a-z0-9~!$%^&*_=+}{\\'?]+)" +
+                "*@([a-z0-9_][-a-z0-9_]*(\\.[-a-z0-9_]+)*\\.(aero|arpa|biz|com|coop|edu|gov|info|int|mil|museum|name" +
+                "|net|org|pro|travel|mobi|[a-z][a-z])|([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}))(:[0-9]" +
+                "{1,5})?$"))) {
+            LoggerOps.error("Wrong email: " + request.getParam("email"));
+            return true;
+        }
+        if ( (request.getParam("amount") == null) || !(request.getParam("amount").matches("[a-z A-Z 0-9]+$"))) {
+            LoggerOps.error("Wrong amount: " + request.getParam("amount"));
+            return true;
+        }
+        if ( (request.getParam("description") == null) || !(request.getParam("description").matches("[a-zA-Z 0-9]+$"))) {
+            LoggerOps.error("Wrong description: " + request.getParam("description"));
+            return true;
+        }
+        if ( (request.getParam("purpose") == null) || !(request.getParam("purpose").matches("[a-zA-Z 0-9]+$"))) {
+            LoggerOps.error("Wrong purpose: " + request.getParam("purpose"));
+            return true;
+        }
+        if ( (request.getParam("currency") == null) || !(request.getParam("currency").matches("[a-zA-Z 0-9]+$"))) {
+            LoggerOps.error("Wrong currency: " + request.getParam("currency"));
+            return true;
+        }
+        if ( (request.getParam("transferNum") == null) || !(request.getParam("transferNum").matches("[a-zA-Z 0-9]+$"))) {
+            LoggerOps.error("Wrong transferNum: " + request.getParam("transferNum"));
+            return true;
+        }
+        if ( (request.getParam("status") == null) || !(request.getParam("status").matches("[a-zA-Z 0-9]+$"))) {
+            LoggerOps.error("Wrong status: " + request.getParam("status"));
+            return true;
+        }
+        if ((request.getParam("date") == null) || !(request.getParam("date").matches("^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]" +
+                "))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$"))) {
+            LoggerOps.error("Wrong date: " + request.getParam("date"));
+            return true;
+        }
+
+
+
+
 
 
 
@@ -148,7 +192,7 @@ public class DonationVerticle extends AbstractVerticle {
                     routingContext.request().getParam("currency"),
                     routingContext.request().getParam("date"),
                     routingContext.request().getParam("email"),
-                    Integer.parseInt(routingContext.request().getParam("transferNum")),
+                    routingContext.request().getParam("transferNum"),
                     routingContext.request().getParam("status")
 
             );

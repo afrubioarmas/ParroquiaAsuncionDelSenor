@@ -16,3 +16,21 @@ DELIMITER ;
 
 Call GetPaymentByCategory('Misas')
 -- End GetPaymentByService
+
+
+-- Begin GetServiceByCategory
+
+DELIMITER $$
+DROP PROCEDURE IF EXISTS GetServiceByCategory $$
+CREATE PROCEDURE GetServiceByCategory(
+IN cat varchar(45)
+) BEGIN
+
+
+select * from service
+where category = cat;
+END $$
+DELIMITER ;
+
+Call GetServiceByCategory('Sacramentos')
+-- End GetServiceByCategory

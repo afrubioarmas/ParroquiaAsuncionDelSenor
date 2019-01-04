@@ -29,7 +29,7 @@ public class DonationDao implements IDonationDao{
             Sentence.setString(5, input.getPurpose());
             Sentence.setString(6, input.getCurrency());
             Sentence.setString(7, input.getDate());
-            Sentence.setInt(8, input.getTransferNum());
+            Sentence.setString(8, input.getTransferNum());
             Sentence.setString(9, input.getStatus());
             output = dao.executeCall(Sentence);
             dao.close();
@@ -107,7 +107,7 @@ public class DonationDao implements IDonationDao{
             Sentence.setString(5, input.getPurpose());
             Sentence.setString(6, input.getCurrency());
             Sentence.setString(7, input.getDate());
-            Sentence.setInt(8, input.getTransferNum());
+            Sentence.setString(8, input.getTransferNum());
             Sentence.setString(9, input.getStatus());
             Sentence.setInt(10, input.getId());
             output = dao.executeCall(Sentence);
@@ -160,7 +160,7 @@ public class DonationDao implements IDonationDao{
                         rs.getString("currency"),
                         rs.getString("date"),
                         rs.getString("email"),
-                        rs.getInt("transferNum"),
+                        rs.getString("transferNum"),
                         rs.getString("status")
                 );
                 output.add(aux);
@@ -189,7 +189,7 @@ public class DonationDao implements IDonationDao{
                     rs.getString("currency"),
                     rs.getString("date"),
                     rs.getString("email"),
-                    rs.getInt("transferNum"),
+                    rs.getString("transferNum"),
                     rs.getString("status")
             );
         }

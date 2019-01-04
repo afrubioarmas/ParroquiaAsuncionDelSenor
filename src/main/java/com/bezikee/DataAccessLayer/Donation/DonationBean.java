@@ -13,10 +13,10 @@ public class DonationBean {
     private String currency;
     private String date;
     private String email;
-    private int transferNum;
+    private String transferNum;
     private String status;
 
-    public DonationBean(int id, String name, float amount, String description, String purpose, String currency, String date, String email, int transferNum, String status) {
+    public DonationBean(int id, String name, float amount, String description, String purpose, String currency, String date, String email, String transferNum, String status) {
         this.id = id;
         this.name = name;
         this.amount = amount;
@@ -29,7 +29,7 @@ public class DonationBean {
         this.status = status;
     }
 
-    public DonationBean(String name, float amount, String description, String purpose, String currency, String date, String email, int transferNum, String status) {
+    public DonationBean(String name, float amount, String description, String purpose, String currency, String date, String email, String transferNum, String status) {
         this.name = name;
         this.amount = amount;
         this.description = description;
@@ -106,11 +106,11 @@ public class DonationBean {
         this.email = email;
     }
 
-    public int getTransferNum() {
+    public String getTransferNum() {
         return transferNum;
     }
 
-    public void setTransferNum(int transferNum) {
+    public void setTransferNum(String transferNum) {
         this.transferNum = transferNum;
     }
 

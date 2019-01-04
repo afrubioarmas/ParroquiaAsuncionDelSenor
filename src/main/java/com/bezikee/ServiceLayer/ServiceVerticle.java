@@ -6,6 +6,7 @@ import com.bezikee.Common.DateOps;
 import com.bezikee.Common.GsonOps;
 import com.bezikee.Common.LoggerOps;
 import com.bezikee.DataAccessLayer.Service.ServiceBean;
+import com.bezikee.DomainLogicLayer.Payment.GetPaymentByCategoryCommand;
 import com.bezikee.DomainLogicLayer.Service.*;
 import com.bezikee.DomainLogicLayer.CommandFactory;
 import io.vertx.core.AbstractVerticle;
@@ -29,6 +30,7 @@ public class ServiceVerticle extends AbstractVerticle {
         App.router.get("/service").handler(this::handleGetAll);
         App.router.post("/service").handler(this::handleUpdate);
         App.router.delete("/service/:id").handler(this::handleDelete);
+        App.router.get("/serviceByCategory/:category").handler(this::handleGetByCategory);
 
         vertx.createHttpServer().requestHandler(App.router::accept).listen(8080);
     }
@@ -199,6 +201,39 @@ public class ServiceVerticle extends AbstractVerticle {
     private boolean validateParametersDelete(HttpServerRequest request) {
 
         return validateParametersGet(request);
+    }
+
+    private void handleGetByCategory(RoutingContext routingContext) {
+        LoggerOps.debug("Handling Get Payment by Category.");
+
+        HttpServerResponse response = routingContext.response();
+
+        response.putHeader("Content-Type", "application/json");
+
+        if(validateParametersGetByCategory(routingContext.request())) {
+            response.setStatusCode(400).end(GsonOps.toJson("Parameter Error"));
+        } else {
+
+            String category= routingContext.request().getParam("category");
+
+
+            GetServiceByCategoryCommand cmd = (GetServiceByCategoryCommand) CommandFactory.instantiateGetServiceByCategory(category);
+
+            cmd.execute();
+
+            LoggerOps.debug("ENDING - Responding Get Payment by Category.");
+            response.setStatusCode(cmd.getStatus() ? 200 : 400).end(cmd.getMessage());
+        }
+    }
+
+    private boolean validateParametersGetByCategory(HttpServerRequest request) {
+
+        if ( (request.getParam("category") == null) || !(request.getParam("category").matches("[a-zA-Z ]+$"))) {
+            LoggerOps.error("Wrong category: " + request.getParam("name"));
+            return true;
+        }
+
+        return false;
     }
 
 }
