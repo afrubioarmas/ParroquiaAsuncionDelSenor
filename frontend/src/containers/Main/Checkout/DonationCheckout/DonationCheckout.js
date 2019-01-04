@@ -3,7 +3,6 @@ import axios from '../../../../Axios';
 import moment from 'moment';
 
 import Modal from '../../../../components/Main/UI/Modal/Modal';
-import DonationSummary from '../../../../components/Main/PaymentSummary/DonationSummary';
 
 import './DonationCheckout.css';
 

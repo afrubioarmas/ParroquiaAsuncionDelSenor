@@ -10,8 +10,7 @@ import Footer from '../components/Main/Footer/Footer';
 import Services from '../containers/Main/Services/Services';
 import ServiceCheckout from '../containers/Main/Checkout/ServiceCheckout/ServiceCheckout';
 import DonationCheckout from '../containers/Main/Checkout/DonationCheckout/DonationCheckout';
-import contact from '../components/Main/Contact/Contact';
-
+import contact from '../containers/Main/Contact/Contact';
 class Main extends Component {
   render() {
     return (
