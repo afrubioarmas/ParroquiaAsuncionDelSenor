@@ -8,7 +8,7 @@ CREATE PROCEDURE CreatePayment(
      IN personalId int,
      IN amount float,
      IN date timestamp,
-     IN transferNum int,
+     IN transferNum varchar(45),
      IN email varchar(100),
      IN status varchar(45)
 ) BEGIN
@@ -58,7 +58,7 @@ CREATE PROCEDURE UpdatePayment(
      IN personalId int,
      IN amount float,
      IN date timestamp,
-     IN transferNum int,
+     IN transferNum varchar(45),
      IN email varchar(100),
      IN status varchar(45),
      IN ID int

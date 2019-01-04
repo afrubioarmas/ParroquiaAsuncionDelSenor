@@ -12,14 +12,14 @@ public class PaymentBean {
     private int personalId;
     private float amount;
     private String date;
-    private int transferNum;
+    private String transferNum;
     private String email;
     private String status;
     private String serviceName;
     private String currency;
     private String category;
 
-    public PaymentBean(int id, int serviceId, String name, int personalId, float amount, String date, int transferNum, String email, String status) {
+    public PaymentBean(int id, int serviceId, String name, int personalId, float amount, String date, String transferNum, String email, String status) {
         this.id = id;
         this.serviceId = serviceId;
         this.name = name;
@@ -31,7 +31,7 @@ public class PaymentBean {
         this.status = status;
     }
 
-    public PaymentBean(int serviceId, String name, int personalId, float amount, String date, int transferNum, String email, String status) {
+    public PaymentBean(int serviceId, String name, int personalId, float amount, String date, String transferNum, String email, String status) {
         this.serviceId = serviceId;
         this.name = name;
         this.personalId = personalId;
@@ -42,7 +42,7 @@ public class PaymentBean {
         this.status = status;
     }
 
-    public PaymentBean(int id,int serviceId, String name, int personalId, float amount, String date, int transferNum, String email, String status, String serviceName, String currency, String category) {
+    public PaymentBean(int id, int serviceId, String name, int personalId, float amount, String date, String transferNum, String email, String status, String serviceName, String currency, String category) {
         this.id = id;
         this.serviceId = serviceId;
         this.name = name;
@@ -105,11 +105,11 @@ public class PaymentBean {
         this.date = date;
     }
 
-    public int getTransferNum() {
+    public String getTransferNum() {
         return transferNum;
     }
 
-    public void setTransferNum(int transferNum) {
+    public void setTransferNum(String transferNum) {
         this.transferNum = transferNum;
     }
 

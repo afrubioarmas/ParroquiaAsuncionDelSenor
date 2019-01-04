@@ -10,7 +10,7 @@ CREATE PROCEDURE CreateDonation(
      IN purpose varchar(45),
      IN currency varchar(45),
      IN date timestamp,
-     IN transferNum int,
+     IN transferNum varchar(45),
      IN status varchar(45)
 ) BEGIN
 
@@ -61,7 +61,7 @@ CREATE PROCEDURE UpdateDonation(
      IN purpose varchar(45),
      IN currency varchar(45),
      IN date timestamp,
-     IN transferNum int,
+     IN transferNum varchar(45),
      IN status varchar(45),
      IN ID int
 ) BEGIN

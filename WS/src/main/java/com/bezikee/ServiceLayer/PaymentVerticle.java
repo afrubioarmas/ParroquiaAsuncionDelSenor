@@ -87,7 +87,7 @@ public class PaymentVerticle extends AbstractVerticle {
                     Integer.parseInt(routingContext.request().getParam("personalId")),
                     Float.parseFloat(routingContext.request().getParam("amount")),
                     routingContext.request().getParam("date"),
-                    Integer.parseInt(routingContext.request().getParam("transferNum")),
+                   routingContext.request().getParam("transferNum"),
                     routingContext.request().getParam("email"),
                     routingContext.request().getParam("status")
             );
@@ -165,7 +165,7 @@ public class PaymentVerticle extends AbstractVerticle {
                     Integer.parseInt(routingContext.request().getParam("personalId")),
                     Float.parseFloat(routingContext.request().getParam("amount")),
                     routingContext.request().getParam("date"),
-                    Integer.parseInt(routingContext.request().getParam("transferNum")),
+                    routingContext.request().getParam("transferNum"),
                     routingContext.request().getParam("email"),
                     routingContext.request().getParam("status")
             );
@@ -229,7 +229,7 @@ public class PaymentVerticle extends AbstractVerticle {
             String category= routingContext.request().getParam("category");
 
 
-            GetPaymentByCategoryCommand cmd = (GetPaymentByCategoryCommand) CommandFactory.instantiateGetPaymentByService(category);
+            GetPaymentByCategoryCommand cmd = (GetPaymentByCategoryCommand) CommandFactory.instantiateGetPaymentByCategory(category);
 
             cmd.execute();
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const leftMenu = () => (
+const leftMenu = (props) => (
 
   <div className="sidebar" data-background-color="white" data-active-color="danger">
     <div className="sidebar-wrapper">
@@ -36,7 +36,7 @@ const leftMenu = () => (
                   </NavLink>
               </li>
               <li className="active-pro">
-                  <NavLink to="/dashboard/logout" exact activeClassName="active">
+                  <NavLink to="/dashboard/logout" exact activeClassName="active" onClick={props.handleLogOut}>
                       <i className="ti-export"></i>
                       <p>Salir</p>
                   </NavLink>

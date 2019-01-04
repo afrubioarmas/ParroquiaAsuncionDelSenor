@@ -13,4 +13,6 @@ public interface IServiceDao {
     boolean update(ServiceBean toUpdate);
 
     boolean delete(int idToDelete);
+
+    ArrayList<ServiceBean> readByCategory(String category);
 }

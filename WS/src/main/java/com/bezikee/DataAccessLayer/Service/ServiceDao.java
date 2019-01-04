@@ -134,6 +134,32 @@ public class ServiceDao implements IServiceDao {
         return output;
     }
 
+    public ArrayList<ServiceBean> readByCategory(String category){
+        LoggerOps.debug("ServiceDao - readByService");
+
+        Dao dao = new Dao();
+        ArrayList<ServiceBean> output = null;
+        ResultSet rs;
+
+        CallableStatement Sentence = dao.getCallableSentence("{Call GetServiceByCategory(?)} ");
+
+        try {
+            Sentence.setString(1,category );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        rs =dao.executeQuery(Sentence);
+
+        if(rs!=null)
+            output = getResponseArrayListBD(rs);
+
+        dao.close();
+
+        return output;
+    }
+
 
     private ArrayList<ServiceBean> getResponseArrayListBD(ResultSet rs){
         LoggerOps.debug("ServiceDao - getResponseArrayListBD");

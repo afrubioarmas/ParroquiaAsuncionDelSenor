@@ -16,21 +16,55 @@ class Services extends Component {
         paying: false,
         selectedService: "",
         selectedPrice: 0,
-        services: [],
+        sacramentos: [],
+        nichos: [],
+        misas: [],
         error: false
     }
 
     componentDidMount () {
         //console.log(this.props);
-        axios.get( '/service' )
+        axios.get( '/serviceByCategory/Nichos' )
             .then( response => {
-                const services = response.data;
-                const updatedServices = services.map(service => {
+                const nichos = response.data;
+                const updatedNichos = nichos.map(nicho => {
                     return {
-                        ...service
+                        ...nicho
                     }
                 });
-                this.setState({services: updatedServices}); 
+                this.setState({nichos: updatedNichos}); 
+                //console.log(this.state.events);
+                //console.log("response" + response );
+            } )
+            .catch(error => {
+                //console.log(error);
+                this.setState({error: true});
+            });
+            axios.get( '/serviceByCategory/Sacramentos' )
+            .then( response => {
+                const sacramentos = response.data;
+                const updatedSacramentos = sacramentos.map(sacramento => {
+                    return {
+                        ...sacramento
+                    }
+                });
+                this.setState({sacramentos: updatedSacramentos}); 
+                //console.log(this.state.events);
+                //console.log("response" + response );
+            } )
+            .catch(error => {
+                //console.log(error);
+                this.setState({error: true});
+            });
+            axios.get( '/serviceByCategory/Misas' )
+            .then( response => {
+                const misas = response.data;
+                const updatedMisas = misas.map(misa => {
+                    return {
+                        ...misa
+                    }
+                });
+                this.setState({misas: updatedMisas}); 
                 //console.log(this.state.events);
                 //console.log("response" + response );
             } )
@@ -77,16 +111,46 @@ class Services extends Component {
 
     render() {
 
-        let services = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
+        let nichos = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
         if (!this.state.error) {
-            services = this.state.services.map(service => {
+            nichos = this.state.nichos.map(nicho => {
                 return (
                     <Service 
-                        key={service.id}
-                        id={service.id}
-                        name={service.name}
+                        key={nicho.id}
+                        id={nicho.id}
+                        name={nicho.name}
                         information="Informacion"
-                        price={service.basePrice}
+                        price={nicho.basePrice}
+                        clicked={this.paymentHandler}
+                    />
+                );
+            });
+        }
+        let sacramentos = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
+        if (!this.state.error) {
+            sacramentos = this.state.sacramentos.map(sacramento => {
+                return (
+                    <Service 
+                        key={sacramento.id}
+                        id={sacramento.id}
+                        name={sacramento.name}
+                        information="Informacion"
+                        price={sacramento.basePrice}
+                        clicked={this.paymentHandler}
+                    />
+                );
+            });
+        }
+        let misas = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
+        if (!this.state.error) {
+            misas = this.state.misas.map(misa => {
+                return (
+                    <Service 
+                        key={misa.id}
+                        id={misa.id}
+                        name={misa.name}
+                        information="Informacion"
+                        price={misa.basePrice}
                         clicked={this.paymentHandler}
                     />
                 );
@@ -129,36 +193,31 @@ class Services extends Component {
                                 </div>
                                 <p className="donation-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis arcu id ex commodo, et imperdiet nulla placerat. Fusce tellus enim, eleifend sit amet ex vitae, consequat tempus quam. Etiam nec nisl at justo maximus laoreet in a eros. Cras semper lorem metus, id ultricies dui convallis vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent eu gravida mauris, id dictum tellus. Etiam sed ullamcorper elit, vitae pharetra neque. Fusce facilisis fermentum tincidunt. Maecenas non massa vel arcu porta vehicula. Phasellus quis dui vitae dolor consequat consequat.</p>
                                 <div className="row">
-                                    <Service 
-                                        name="Pago Inicial"
-                                        information="Informacion"
-                                        price={100}
-                                        clicked={this.paymentHandler}
-                                    />
-                                    <Service 
-                                        name="Pago Anual"
-                                        information="Informacion"
-                                        price={50}
-                                        clicked={this.paymentHandler}
-                                    />
-                                    <Service 
-                                        name="Mantenimiento"
-                                        information="Informacion"
-                                        price={75}
-                                        clicked={this.paymentHandler}
-                                    />
+                                    {nichos}
                                 </div>
                             </div>
                             <hr className="p-separator"/>
                             <div className="donation-div">
                                 <div className="row">
                                     <div className="content col-md-12">
-                                        <h2 className="section-title">Servicios</h2>
+                                        <h2 className="section-title">Sacramentos</h2>
                                     </div>
                                 </div>
                                 <p className="donation-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis arcu id ex commodo, et imperdiet nulla placerat. Fusce tellus enim, eleifend sit amet ex vitae, consequat tempus quam. Etiam nec nisl at justo maximus laoreet in a eros. Cras semper lorem metus, id ultricies dui convallis vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent eu gravida mauris, id dictum tellus. Etiam sed ullamcorper elit, vitae pharetra neque. Fusce facilisis fermentum tincidunt. Maecenas non massa vel arcu porta vehicula. Phasellus quis dui vitae dolor consequat consequat.</p>
                                 <div className="row">
-                                    {services}
+                                    {sacramentos}
+                                </div>
+                            </div>
+                            <hr className="p-separator"/>
+                            <div className="donation-div">
+                                <div className="row">
+                                    <div className="content col-md-12">
+                                        <h2 className="section-title">Misas</h2>
+                                    </div>
+                                </div>
+                                <p className="donation-p">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam facilisis arcu id ex commodo, et imperdiet nulla placerat. Fusce tellus enim, eleifend sit amet ex vitae, consequat tempus quam. Etiam nec nisl at justo maximus laoreet in a eros. Cras semper lorem metus, id ultricies dui convallis vel. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent eu gravida mauris, id dictum tellus. Etiam sed ullamcorper elit, vitae pharetra neque. Fusce facilisis fermentum tincidunt. Maecenas non massa vel arcu porta vehicula. Phasellus quis dui vitae dolor consequat consequat.</p>
+                                <div className="row">
+                                    {misas}
                                 </div>
                             </div>
                         </div>

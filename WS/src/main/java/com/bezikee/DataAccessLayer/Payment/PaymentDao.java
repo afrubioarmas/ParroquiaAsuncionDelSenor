@@ -28,7 +28,7 @@ public class PaymentDao implements IPaymentDao {
             Sentence.setFloat(3, input.getPersonalId());
             Sentence.setFloat(4, input.getAmount());
             Sentence.setString(5,input.getDate());
-            Sentence.setInt(6, input.getTransferNum());
+            Sentence.setString(6, input.getTransferNum());
             Sentence.setString(7,input.getEmail());
             Sentence.setString(8,input.getStatus());
             output = dao.executeCall(Sentence);
@@ -105,7 +105,7 @@ public class PaymentDao implements IPaymentDao {
             Sentence.setFloat(3, input.getPersonalId());
             Sentence.setFloat(4, input.getAmount());
             Sentence.setString(5,input.getDate());
-            Sentence.setInt(6, input.getTransferNum());
+            Sentence.setString(6, input.getTransferNum());
             Sentence.setString(7,input.getEmail());
             Sentence.setString(8,input.getStatus());
             Sentence.setInt(9, input.getId());
@@ -182,7 +182,7 @@ public class PaymentDao implements IPaymentDao {
                         rs.getInt("personalId"),
                         rs.getFloat("amount"),
                         rs.getString("date"),
-                        rs.getInt("transferNum"),
+                        rs.getString("transferNum"),
                         rs.getString("email"),
                         rs.getString("status"),
                         rs.getString("serviceName"),
@@ -215,7 +215,7 @@ public class PaymentDao implements IPaymentDao {
                         rs.getInt("personalId"),
                         rs.getFloat("amount"),
                         rs.getString("date"),
-                        rs.getInt("transferNum"),
+                        rs.getString("transferNum"),
                         rs.getString("email"),
                         rs.getString("status")
                 );
@@ -243,7 +243,7 @@ public class PaymentDao implements IPaymentDao {
                     rs.getInt("personalId"),
                     rs.getFloat("amount"),
                     rs.getString("date"),
-                    rs.getInt("transferNum"),
+                    rs.getString("transferNum"),
                     rs.getString("email"),
                     rs.getString("status")
             );

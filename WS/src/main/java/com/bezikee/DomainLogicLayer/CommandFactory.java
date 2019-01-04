@@ -133,6 +133,10 @@ public class CommandFactory {
         return new DeleteServiceCommand(id);
     }
 
+    public static Object instantiateGetServiceByCategory ( String cat) {
+        return new GetServiceByCategoryCommand(cat);
+    }
+
     //END SERVICE
 
     //BEGIN Payment
@@ -157,7 +161,7 @@ public class CommandFactory {
         return new DeletePaymentCommand(id);
     }
 
-    public static Object instantiateGetPaymentByService ( String cat) {
+    public static Object instantiateGetPaymentByCategory ( String cat) {
         return new GetPaymentByCategoryCommand(cat);
     }
 
