@@ -122,13 +122,15 @@
     }
   }
   .main .contact-cards h4{
-    margin-top: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     text-transform: none;
   }
   .main .contact-cards .contact-card-title {
       color: #8f7655;
   }
   .main .contact-cards .contact-icons {
+      font-size: 30px;
       color: #8f7655;
   }
   .main .contact-button {

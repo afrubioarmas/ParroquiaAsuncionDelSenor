@@ -57,7 +57,7 @@ class News extends Component {
                     <div className="fullwidth-block">
                         <div className="container">
                             <div className="row">
-                                <div className="content col-md-12">
+                                <div className="content col-md-6 col-centered">
                                     <h2 className="section-title">Últimas Noticias</h2>
                                     <ul className="seremon-list large">
                                         {news}
