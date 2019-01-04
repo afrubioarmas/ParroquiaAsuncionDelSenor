@@ -10,8 +10,6 @@ import axios from '../../../Axios';
 
 
 class Services extends Component {
-
-   
    
     state = {
         create:{name:'',currency:'Usd',basePrice:'',category:'Misas'},
@@ -119,11 +117,6 @@ class Services extends Component {
                 this.setState({error: true});
             });
         }
-
-     
-
-
-   
 
     render() {
         let services;

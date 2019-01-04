@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as moment from 'moment';
+import * as emailjs from 'emailjs-com';
 
 import axios from '../../../Axios';
 
@@ -13,8 +14,29 @@ class Pagos extends Component {
         error: false
     }
 
+    sendMail = (pago, status) => {
+        var template_params = {
+            "reply_to": "reply_to_value",
+            "from_name": 'Iglesia',
+            "to_name": pago.email,
+            "message_html": 'El pago de su servicio ha sido: ' + status
+         }
+         
+         var service_id = "default_service";
+         var template_id = "template_Oz3iTuaa";
+         emailjs.send(service_id,template_id,template_params,'user_AqEQMEXCf7JxMP3QGWJRy')
+            .then(response => {
+                console.log('Mensaje enviado:' + response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }
+
     handleEditStatus=(pago)=>(e)=>{
         e.preventDefault();
+        let status = e.target.value;
 
         let data = new FormData();
 
@@ -34,9 +56,11 @@ class Pagos extends Component {
 
         axios.post('/payment',data,config)
             .then(response => {
+                this.sendMail(pago, status);
                 //handle success
                 //this.componentDidMount();
                 //console.log(response);
+
             })
             .catch(response => {
                 //handle error

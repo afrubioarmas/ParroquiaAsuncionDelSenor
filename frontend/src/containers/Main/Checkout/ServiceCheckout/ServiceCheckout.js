@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from '../../../../Axios';
 import moment from 'moment';
 
+import Modal from '../../../../components/Main/UI/Modal/Modal';
+
 import './ServiceCheckout.css';
 
 class ServiceCheckout extends Component {
@@ -14,7 +16,8 @@ class ServiceCheckout extends Component {
         email: '',
         id: '',
         transferNumber: '',
-        currency: ''
+        currency: '',
+        paymentRegistered: false
 
     }
 
@@ -47,7 +50,8 @@ class ServiceCheckout extends Component {
         axios.put('/payment',data,config)
             .then(response => {
                 //handle success
-                //console.log(response);
+                this.setState({paymentRegistered: true});
+                console.log(response);
             })
             .catch(response => {
                 //handle error
@@ -63,9 +67,31 @@ class ServiceCheckout extends Component {
         this.props.history.goBack();
     }
 
+    confirmPaymentHandler = () => {
+        this.setState({paymentRegistered: false});
+        this.props.history.push({
+            pathname: '/pagos'
+        });
+    }
+
     render() {
+
+        let thanks = null;
+
+        if (this.state.paymentRegistered) {
+            thanks = (
+                <div> 
+                    <h2>Su pago ha sido registrado</h2>
+                    <button className="payment-button col-md-12" onClick={this.confirmPaymentHandler}>Continuar</button>
+                </div>
+            );
+        }
+
         return (
             <div className="service-payment-wrapper">
+            <Modal show={this.state.paymentRegistered} modalClosed={this.cancelPaymentHandler}>
+                {thanks}
+            </Modal>
                 <div className="page-head" data-bg-image="images/page-head-1.jpg">
                     <div className="container">
                         <h2 className="page-title">Pago Servicio</h2>

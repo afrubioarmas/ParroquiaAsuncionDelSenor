@@ -119,7 +119,6 @@ class Services extends Component {
                         key={nicho.id}
                         id={nicho.id}
                         name={nicho.name}
-                        information="Informacion"
                         price={nicho.basePrice}
                         clicked={this.paymentHandler}
                     />
@@ -134,7 +133,6 @@ class Services extends Component {
                         key={sacramento.id}
                         id={sacramento.id}
                         name={sacramento.name}
-                        information="Informacion"
                         price={sacramento.basePrice}
                         clicked={this.paymentHandler}
                     />
@@ -149,7 +147,6 @@ class Services extends Component {
                         key={misa.id}
                         id={misa.id}
                         name={misa.name}
-                        information="Informacion"
                         price={misa.basePrice}
                         clicked={this.paymentHandler}
                     />

@@ -70,7 +70,7 @@ class DonationCheckout extends Component {
 
     confirmDonationHandler = () => {
         this.props.history.push({
-            pathname: '/'
+            pathname: '/donaciones'
         });
     }
 
