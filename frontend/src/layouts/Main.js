@@ -11,6 +11,8 @@ import Services from '../containers/Main/Services/Services';
 import ServiceCheckout from '../containers/Main/Checkout/ServiceCheckout/ServiceCheckout';
 import DonationCheckout from '../containers/Main/Checkout/DonationCheckout/DonationCheckout';
 import contact from '../containers/Main/Contact/Contact';
+import organizacion from '../containers/Main/EclesiasticOrganization/EclesiasticOrganization';
+
 class Main extends Component {
   render() {
     return (
@@ -20,6 +22,7 @@ class Main extends Component {
 					<Header />
 					<Switch>
 						<Route path="/" exact component={Home} />
+						<Route path="/organizacion" exact component={organizacion} />
 						<Route path="/noticias" exact component={News} />
 						<Route path="/calendario" exact component={Calendar} />
 						<Route path="/donaciones" exact component={Donations} />
