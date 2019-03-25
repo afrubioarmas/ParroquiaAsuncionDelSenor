@@ -12,7 +12,6 @@ class Services extends Component {
 
     state = {
         selectedServiceId: '',
-        accepted: false,
         paying: false,
         selectedService: "",
         selectedPrice: 0,
@@ -93,10 +92,6 @@ class Services extends Component {
         });
     }
 
-    acceptDisclaimerHandler = () => {
-        this.setState({accepted: true});
-    }
-
     acceptPaymentHandler = () => {
             this.props.history.push({
                 pathname: '/pago-servicio',
@@ -156,8 +151,13 @@ class Services extends Component {
 
         let summary = (
             <div>
+                <ServiceSummary 
+                    serviceId={this.state.selectedServiceId}
+                    service={this.state.selectedService} 
+                    price={this.state.selectedPrice}
+                    />
                 <p>Disclaimer de aceptar que habló con la Iglesia previamente</p>
-                <button className="payment-button" onClick={this.acceptDisclaimerHandler}>Si hablé con la iglesia</button>
+                <button className="payment-button" onClick={this.acceptPaymentHandler}>Si hablé con la iglesia</button>
             </div>
         );
         if (this.state.accepted) {

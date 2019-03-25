@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import Collapse, { Panel } from 'rc-collapse';
 import 'rc-collapse/assets/index.css';
 
+import './EclesiasticOrganization.css';
+
 import info from '../../../assets/EclesiasticOrganizationText';
 
 class EclesiasticOrganization extends Component {
@@ -17,9 +19,14 @@ class EclesiasticOrganization extends Component {
         for (let i = 0; i < info.length; i++) {
             let auxInside = [];
             for (let j = 0; j < info[i][2].length; j++) {
+                let img = null;
+                if (info[i][2][j][2] != "") {
+                    img = <img className="organization-image" src={"images/OrganizacionEclesiastica/"+info[i][2][j][2]}></img>
+                }
                 auxInside.push(
                     <Panel header={info[i][2][j][0]} key={j}>
-                        <p>{info[i][2][j][1]}</p>
+                        <p className="panel-text" >{info[i][2][j][1]}</p>
+                        {img}
                     </Panel>
                 );
             }
@@ -43,7 +50,7 @@ class EclesiasticOrganization extends Component {
                         <h2 className="page-title">Organización Eclesiástica</h2>
                     </div>
                 </div>
-                <div style={{ margin: '5%', marginTop: '20px' ,marginBottom: '20px', width: '90%' }}>
+                <div className="organization-container">
                     <Collapse defaultActiveKey="0" accordion={true}>
                         {this.getItems()}
                     </Collapse>
