@@ -97,7 +97,7 @@
   box-shadow: 0px 2px 20px 0.5px #ccc;
   border-radius: 4px;
 }
-.main .donation-payment-wrapper .donation-payment .donation-form .donation-form-title {
+.main .donation-payment-wrapper .donation-form-title {
   color: #8f7655;
   text-align: center;
   text-transform: uppercase;
@@ -105,9 +105,9 @@
   margin-top: 20px;
 }
 .main .donation-payment-wrapper .donation-payment .column {
-  float: left;
-  width: 33%;
-  padding: 0 10px;
+  float: none;
+  width: 36%;
+  margin-left: 32%;
 }
 .main .donation-payment-wrapper .donation-payment .row {
   margin: 20px -5px;
@@ -118,6 +118,8 @@
   clear: both;
 }
 .main .donation-payment-wrapper .donation-payment .card {
+  display: table;
+  vertical-align: middle;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* this adds the "card" effect */
   padding: 16px;
@@ -126,9 +128,10 @@
   background-color: #f4f3ef;
 }
 @media screen and (max-width: 600px) {
-  .main .donation-payment-wrapper .donation-payment .column {
-    width: 100%;
+  .main .donation-payment-wrapper .card {
+    margin-left: 35px;
+    margin-right: 35px;
     display: block;
-    margin-bottom: 20px;
+    word-break: break-word;
   }
 }

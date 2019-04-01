@@ -53,7 +53,7 @@ class CalendarHome extends Component {
                 </ul>
 
                 <div className="text-center">
-                    <a href="" className="button">Ver todos los eventos</a>
+                    <a href="http://localhost:3000/calendario" className="button">Ver todos los eventos</a>
                 </div>
             </div>
         );

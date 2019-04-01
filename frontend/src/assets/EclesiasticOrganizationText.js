@@ -63,7 +63,7 @@ const text = [
             [
                 "Coro Parroquial y Grupos de Animación",
                 "Estos grupos animan las celebraciones litúrgicas dominicales y momentos especiales. Están conformados por Cuatro grupos fijos. La mayoría de sus integrantes son señoras que ayudan además en otras áreas pastorales como: la catequesis, los lectores, ministros eucarísticos, las escuelas de formación cristiana y algunas de las  cofradías. Los grupos se encargan de las misas, sabatina y dominical en los horarios comprendidos de las 9:00 am; 12:00 m; y 6:00 pm y  ensayan en distintos horarios, en el salón parroquial. El Sr. José Romero es el Director del Coro Parroquial. Luis Arias es  Director del Coro Sabatino. Maritza Ochoa responsable del grupo de canto de las 12:00 m; y Magaly Dittmar responsable del Coro los domingos 6:00 pm.",
-                ""
+                "coro.jpg"
             ],
             [
                 "Cofradía del santísimo Sacramento",
@@ -84,12 +84,12 @@ const text = [
             [
                 "Catequesis Pre-Bautismal",
                 "En la parroquia se realizan charlas preparatorias para el bautizo todos los días sábados a las 10:30 am. Los señores Rafael Mata y Juan Carlos Marrón, Ministros de la Eucaristía, son los encargados de la misma y en algunos momentos cuando ha sido imposible su presencia, la charla la han realizado los Sacerdotes de la iglesia u otros Lectores o Ministros de la Eucaristía. Los bautizos son comunitarios y normalmente se realizan los días sábados a las 3:00 pm, aunque en algunas ocasiones se ha dado el caso de bautizos particulares.",
-                ""
+                "bautismal.jpg"
             ],
             [
                 "Catequesis de Primera Comunión",
                 "Esta catequesis se imparte los días viernes en la tarde. La celebración del Sacramento se realiza para el mes de junio del año en curso, en la mañana. Los encargados de la catequesis de primera comunión de la parroquia son 10, quienes se reúnen todos los miércoles para los encuentros de evaluación, planificación y formación. Nuestra catequesis parroquial, además de las clases propiamente dichas, trata de preparar a nuestros niños mediante: películas, talleres, actividades especiales, convivencias y un retiro anual para los niños y sus padres.",
-                ""
+                "primeraComunion.jpg"
             ],
             [
                 "Catequesis de Confirmación para Jóvenes",
@@ -104,27 +104,27 @@ const text = [
             [
                 "Domingo infantil",
                 "Estos encuentros se realizan los domingos al mediodía, con la finalidad de que los padres y representantes de los niños, puedan asistir a la misa, mientras su hijos pequeños animados por la Hna. Flor, disfrutan del Evangelio del día, con dibujos, dinámicas y cantos. Los catequistas que acompañan esta catequesis son tres y también tratan de participar de los encuentros de evaluación, planificación y formación que se efectúan un  domingo, cada tres meses, de acuerdo a sus posibilidades.",
-                ""
+                "domingoInfantil.jpg"
             ],
             [
                 "Monaguillos y Servidoras del Altar",
                 "Este grupo de niños y niñas de nuestra parroquia, están acompañado de los Seminaristas, se reúne un sábado al mes, por la mañana para estudiar la Palabra, estudiar los principios fundamentales de la liturgia y ensayar las ceremonias. Los domingos, y en ocasiones especiales, ellos prestan su servicio en el altar. El grupo está constituido por unos 8 niños y niñas. La mayoría son varones.",
-                ""
+                "monaguilloTemp.jpg"
             ],
             [
                 "Escuela Inmediata de preparación al matrimonio",
                 "Esta escuela tiene la finalidad de preparar a los novios y parejas de esposos sin el sacramento, para que vivan y testimonien en la comunidad su vocación cristiana a través de la opción matrimonial, consolidándose así como futuros cónyuges con un compromiso serio en fidelidad y amor. En nuestra parroquia esta Escuela está dirigida por cuatro parejas de esposos de nuestra comunidad y otra pareja que se está adiestrando para integrar el grupo próximamente. El curso dura unos tres meses y medio y consta de siete encuentros (quincenales) en los que se tratan temas como: El Matrimonio: Plan de Dios para los hombres, La Comunicación, La Sexualidad, La Planificación Familiar, El Sacramento del Matrimonio, los Impedimentos, las Nulidades, La Paternidad Responsable, El Rito Matrimonial, etc.",
-                ""
+                "preparacionMatrimonio.jpg"
             ],
             [
                 "Escuela para Padres",
                 "Esta Escuela congrega y forma doctrinalmente a los padres y representantes de los niños y jóvenes de la catequesis. Ha sido una experiencia bastante aceptable y que cada año da mejores frutos. Los padres y representantes de los niños de toda la Comunidad, son invitados para reunirse por varios domingos consecutivos con la intención de participar de un taller de formación con temas que consideramos de interés y de ayuda para la formación idónea de sus hijos. Denominado “PECES”, es un taller abierto para todos los que quieran realizarlo, y al final se le confiere a los participantes un certificado de asistencia.",
-                ""
+                "peces.jpg"
             ],
             [
                 "Escuela de Formación Permanente",
                 "Al evaluar el trabajo pastoral del año se vio la necesidad de propiciar instancias de formación en nuestra parroquia, y de allí surgió la idea de estudiar como comunidad, los distintos documentos emanados del Concilio Plenario de Venezuela. Posteriormente se han compartido diversos temas dirigidos a toda la comunidad con la intención de formarlos y prepararlos para vivir más plenamente su fe cristiana y responder al llamado que Dios les hace para vivir su vocación específica. Por otra parte, se ha tratado de que los temas sean presentados por especialistas. Entre estos Temas hemos ofrecidos: Cursos sobre la Biblia, Oratoria, sobre Liturgia, sobre Formación Humana, en Valores, Sectas, Temas concernientes a la situación País que vivimos actualmente como resiliencia, etc.",
-                ""
+                "formacionPermanente.jpg"
             ]
         ]
     ],
@@ -135,7 +135,7 @@ const text = [
             [
                 "Movimiento Sacerdotal Mariano",
                 "Está constituido este grupo por unos doce miembros, de los cuales algunos se reúnen el primer viernes del mes para hacer la Vigilia de Oración toda la noche junto con los miembros del Apostolado de la Oración, culminando esta actividad con la asistencia de todo el grupo el sábado a las 6:00 am, al Cenáculo Mariano, con la finalidad de hacer el Rosario,  meditar las reflexiones del Padre Gobi y terminar con la consagración al Inmaculado Corazón de María y la Santa Misa. Este grupo tiene como objetivo fundamental, además de propiciar la Devoción a la Virgen María, orar por las vocaciones consagradas y ayudar económicamente a los Seminarios de Caracas.",
-                ""
+                "movimiento.jpg"
             ]
         ]
     ],
@@ -146,7 +146,7 @@ const text = [
             [
                 "Caritas Parroquial",
                 "Este apostolado atiende a los ancianos y personas más necesitados de nuestra comunidad. El grupo está conformado por unos doce voluntarios que son acompañados y apoyados por un  médico y una fisioterapeuta. Se reúnen todos los viernes de 7:30 a 12.00 am aprox. Hay alrededor de 80 personas que disfrutan del programa, divididos en dos grupos (amarillo y verde),  que asisten cada 15 días y que son atendidos por ellos. A estos hermanos se les brinda comida, atención médica, medicamentos y algo de dinero. Además se tiene con ellos momentos de oración, de lectura bíblica, de recreación y de rezo del rosario, y en días especiales del año litúrgico, se les celebra la misa,  les confesamos, les impartimos la unción para los enfermos, o compartimos los Vía Crucis y otras devociones cristianas. El equipo se ayuda para realizar estas obras con las donaciones de los feligreses y algunas instituciones de nuestra ciudad, con la colecta que mensualmente se hace con ese propósito en las misas del último fin de semana de mes y con otras ayudas particulares que van llegando a la iglesia.",
-                ""
+                "caritas.jpg"
             ],
             [
                 "Grupo Servir",

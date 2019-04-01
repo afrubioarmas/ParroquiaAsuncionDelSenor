@@ -1,3 +1,9 @@
-.summary-p {
+.summary .service-summary-title {
+    color: #8f7655;
     text-align: center;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin-top: 20px;
+    font-weight: 600;
 }
+

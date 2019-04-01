@@ -41,7 +41,15 @@ class Donations extends Component {
                                         <h2 className="section-title">Parroquia</h2>
                                     </div>
                                 </div>
-                                <p className="donation-p">Las donaciones de la parroquia son para bla bla bla y van dirigidas a blab blab bal.</p>
+                                <p className="donation-p">
+                                    Acción de manera voluntaria que realizan los feligreses 
+                                    a la Parroquia mediante entrega de dinero o bienes como un acto 
+                                    caritativo para el sostenimiento de la infraestructura y pago del 
+                                    personal que presta sus servicios en la Iglesia. La iglesia católica 
+                                    en Venezuela depende únicamente del aporte generoso de los feligreses 
+                                    que contribuyen económicamente y con generosidad sin esperar ninguna 
+                                    exigencia del clero.
+                                </p>
                                 <div className="row">
                                     <div className="col-md-4 col-sm-6">
                                         
@@ -74,7 +82,13 @@ class Donations extends Component {
                                         <h2 className="section-title">Caritas</h2>
                                     </div>
                                 </div>
-                                <p className="donation-p">Las donaciones de Caritas son para bla bla bla y van dirigidas a blab blab bal.</p>
+                                <p className="donation-p">
+                                    Integrado por voluntarios quienes, en nombre de la comunidad parroquial, 
+                                    ejercen el servicio de la caridad acompañando a 120 ancianos que  se encuentran 
+                                    en una situación de exclusión social. La mayoría padecen de enfermedades crónicas. 
+                                    Reciben el apoyo económico, su alimentación nutritiva y la cobertura de las necesidades básicas, 
+                                    con la entrega de alimentos y medicinas, todos los viernes. Horario de 7.am. hasta las 12.m.
+                                </p>
                                 <div className="row">
                                     <div className="col-md-4 col-sm-6">
                                             <img className="donation-image" src="images/Sección-Código-Caritas-Venezuela-Home.jpg" alt=""></img>

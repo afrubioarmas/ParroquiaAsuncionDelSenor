@@ -20,8 +20,12 @@ class EclesiasticOrganization extends Component {
             let auxInside = [];
             for (let j = 0; j < info[i][2].length; j++) {
                 let img = null;
-                if (info[i][2][j][2] != "") {
-                    img = <img className="organization-image" src={"images/OrganizacionEclesiastica/"+info[i][2][j][2]}></img>
+                if (info[i][2][j][2] !== "") {
+                    img =   <img 
+                                className="organization-image" 
+                                src={"images/OrganizacionEclesiastica/"+info[i][2][j][2]}
+                                alt={"img"+i+j}
+                            />
                 }
                 auxInside.push(
                     <Panel header={info[i][2][j][0]} key={j}>

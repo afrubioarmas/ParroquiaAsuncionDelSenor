@@ -6,7 +6,7 @@ const service = (props) => {
             <div className="card">
                 <h3>{props.name}</h3>
                 <div className="text-center">
-                    <button className="payment-button" onClick={() => props.clicked(props.id, props.name, props.price)}>Pagar</button>
+                    <button className="payment-button" onClick={() => props.clicked(props.id, props.name, props.price, props.currency, props.bank)}>Pagar</button>
                 </div>
             </div>
         </div>

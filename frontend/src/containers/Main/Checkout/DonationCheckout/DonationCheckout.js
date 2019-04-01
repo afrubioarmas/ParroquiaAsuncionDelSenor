@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../../../Axios';
 import moment from 'moment';
+import * as emailjs from 'emailjs-com';
 
 import Modal from '../../../../components/Main/UI/Modal/Modal';
 
@@ -27,6 +28,26 @@ class DonationCheckout extends Component {
             });
     }
 
+    sendMail = () => {
+        var template_params = {
+            "reply_to": "reply_to_value",
+            "from_name": 'Iglesia',
+            "to_name": 'ratuozzo@gmail.com',
+            "message_html": 'Se ha recibido una donación a: ' + this.state.donation
+         }
+         
+         var service_id = "default_service";
+         var template_id = "template_Oz3iTuaa";
+         emailjs.send(service_id,template_id,template_params,'user_AqEQMEXCf7JxMP3QGWJRy')
+            .then(response => {
+                console.log('Mensaje enviado:' + response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+    }
+
     paymentHandler= (e) =>{
         e.preventDefault();
 
@@ -50,6 +71,7 @@ class DonationCheckout extends Component {
             .then(response => {
                 //handle success
                 this.setState({donationRegistered: true});
+                this.sendMail();
                 console.log(response);
             })
             .catch(response => {
@@ -87,6 +109,41 @@ class DonationCheckout extends Component {
             );
         }
 
+        let bank = null;
+
+        switch(this.state.donation) {
+            case 'Parroquia':
+                bank = (
+                        <div className="card center-block">
+                            <div className="card-content">
+                                <h2 className="donation-form-title">Datos Bancarios</h2>
+                                <h3><strong>Nombre: </strong>Parroquia La Anunciación del Señor</h3>
+                                <h3><strong>RIF: </strong>J-307726032</h3>
+                                <h3><strong>Banco: </strong>Banco Venezolano de Crédito</h3>
+                                <h3><strong>Nro. Cuenta: </strong>0104-0026-19-0260061275</h3>
+                                <h3><strong>Correo: </strong>iglesialaboyera@gmail.com</h3>
+                            </div>
+                        </div>
+                );
+                break;
+            case 'Caritas':
+                bank = (
+                        <div className="card center-block">
+                            <div className="card-content">
+                                <h3 className="donation-form-title">Datos Bancarios</h3>
+                                <h3><strong>Nombre: </strong>Parroquia La Anunciación del Señor</h3>
+                                <h3><strong>RIF: </strong>J-307726032</h3>
+                                <h3><strong>Banco: </strong>Banco Banesco</h3>
+                                <h3><strong>Nro. Cuenta: </strong>0134-0185-37-1851026060</h3>
+                                <h3><strong>Correo: </strong>iglesialaboyera@gmail.com</h3>
+                            </div>
+                        </div>
+                );
+                break;
+            default:
+                break;
+        }
+
         return (
             <div className="donation-payment-wrapper">
                 <Modal show={this.state.donationRegistered} modalClosed={this.cancelDonationHandler}>
@@ -100,21 +157,7 @@ class DonationCheckout extends Component {
                     </div>
                     <div>
                         <div className="row">
-                            <div className="column">
-                                <div className="card">
-                                    <p>Banco 1</p>
-                                </div>
-                            </div>
-                            <div className="column">
-                                <div className="card">
-                                    <p>Banco 2</p>
-                                </div>
-                            </div>
-                            <div className="column">
-                                <div className="card">
-                                    <p>Banco 2</p>
-                                </div>
-                            </div>
+                            {bank}
                         </div>
                         <div className="donation-form">
                             <div className="container">

@@ -4,9 +4,11 @@ import './ServiceSummary.css';
 
 const serviceSummary = (props) => {
     return (
-        <div>
-            <p className="summary-p">Servicio a pagar: <strong>{props.service}</strong></p>
-            <p className="summary-p">Precio Base: <strong>{props.price}</strong></p>
+        <div className="summary">
+            <h3 className="service-summary-title">Servicio</h3>
+            <h4>{props.service}</h4>
+            <h3 className="service-summary-title">Precio Base</h3> 
+            <h4>{props.price} {props.currency}</h4>
         </div>
     );
 };

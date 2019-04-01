@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from '../../../../Axios';
 import moment from 'moment';
+import * as emailjs from 'emailjs-com';
 
 import Modal from '../../../../components/Main/UI/Modal/Modal';
 
@@ -12,6 +13,7 @@ class ServiceCheckout extends Component {
         serviceId: '',
         service: '',
         price: '',
+        bank: '',
         name: '',
         email: '',
         id: '',
@@ -26,8 +28,29 @@ class ServiceCheckout extends Component {
         this.setState({
             serviceId: this.props.location.state.serviceId,
             service: this.props.location.state.service,
-            price: this.props.location.state.price
+            price: this.props.location.state.price,
+            bank: this.props.location.state.bank
         });
+    }
+
+    sendMail = () => {
+        var template_params = {
+            "reply_to": "reply_to_value",
+            "from_name": 'Iglesia',
+            "to_name": 'ratuozzo@gmail.com',
+            "message_html": 'Se ha realizado un pago de: ' + this.state.service
+         }
+         
+         var service_id = "default_service";
+         var template_id = "template_Oz3iTuaa";
+         emailjs.send(service_id,template_id,template_params,'user_AqEQMEXCf7JxMP3QGWJRy')
+            .then(response => {
+                console.log('Mensaje enviado:' + response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
     }
 
     paymentHandler= (e) =>{
@@ -51,6 +74,7 @@ class ServiceCheckout extends Component {
             .then(response => {
                 //handle success
                 this.setState({paymentRegistered: true});
+                this.sendMail();
                 console.log(response);
             })
             .catch(response => {
@@ -87,6 +111,42 @@ class ServiceCheckout extends Component {
             );
         }
 
+        let bank = null;
+
+        switch(this.state.bank) {
+            case 'nichos':
+                bank = (
+                        <div className="card center-block">
+                            <div className="card-content">
+                                <h2 className="service-form-title">Datos Bancarios</h2>
+                                <h3><strong>Nombre: </strong>Parroquia La Anunciación del Señor</h3>
+                                <h3><strong>RIF: </strong>J-307726032</h3>
+                                <h3><strong>Banco: </strong>Banco Mercantil</h3>
+                                <h3><strong>Nro. Cuenta: </strong>0105-0145-80-1145077951</h3>
+                                <h3><strong>Correo: </strong>nichosjardindelaesperanza@gmail.com</h3>
+                            </div>
+                        </div>
+                );
+                break;
+            case 'parroquia':
+                bank = (
+                        <div className="card center-block">
+                            <div className="card-content">
+                                <h2 className="service-form-title">Datos Bancarios</h2>
+                                <h3><strong>Nombre: </strong>Parroquia La Anunciación del Señor</h3>
+                                <h3><strong>RIF: </strong>J-307726032</h3>
+                                <h3><strong>Banco: </strong>Banco Venezolano de Crédito</h3>
+                                <h3><strong>Nro. Cuenta: </strong>0104-0026-19-0260061275</h3>
+                                <h3><strong>Correo: </strong>iglesialaboyera@gmail.com</h3>
+                            </div>
+                        </div>
+                );
+                break;
+            default:
+                break;
+        }
+
+
         return (
             <div className="service-payment-wrapper">
             <Modal show={this.state.paymentRegistered} modalClosed={this.cancelPaymentHandler}>
@@ -99,21 +159,7 @@ class ServiceCheckout extends Component {
                 </div>
                 <div>
                     <div className="row">
-                        <div className="column">
-                            <div className="card">
-                                <p>Banco 1</p>
-                            </div>
-                        </div>
-                        <div className="column">
-                            <div className="card">
-                                <p>Banco 2</p>
-                            </div>
-                        </div>
-                        <div className="column">
-                            <div className="card">
-                                <p>Banco 2</p>
-                            </div>
-                        </div>
+                        {bank}
                     </div>
                     <div className="service-form">
                         <div className="container">

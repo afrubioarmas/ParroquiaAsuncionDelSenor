@@ -98,7 +98,7 @@
   box-shadow: 0px 2px 20px 0.5px #ccc;
   border-radius: 4px;
 }
-.main .service-payment-wrapper .service-form .service-form-title {
+.main .service-payment-wrapper .service-form-title {
   color: #8f7655;
   text-align: center;
   text-transform: uppercase;
@@ -106,9 +106,9 @@
   margin-top: 20px;
 }
 .main .service-payment-wrapper .column {
-  float: left;
-  width: 33%;
-  padding: 0 10px;
+  float: none;
+  width: 36%;
+  margin-left: 32%;
 }
 .main .service-payment-wrapper .row {
   margin: 20px -5px;
@@ -119,6 +119,8 @@
   clear: both;
 }
 .main .service-payment-wrapper .card {
+  display: table;
+  vertical-align: middle;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* this adds the "card" effect */
   padding: 16px;
@@ -127,9 +129,10 @@
   background-color: #f4f3ef;
 }
 @media screen and (max-width: 600px) {
-  .main .service-payment-wrapper .column {
-    width: 100%;
+  .main .service-payment-wrapper .card {
+    margin-left: 35px;
+    margin-right: 35px;
     display: block;
-    margin-bottom: 20px;
+    word-break: break-word;
   }
 }
