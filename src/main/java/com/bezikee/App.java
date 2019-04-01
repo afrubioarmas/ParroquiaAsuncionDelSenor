@@ -2,10 +2,7 @@ package com.bezikee;
 
 import com.bezikee.Common.LoggerOps;
 import com.bezikee.ServiceLayer.*;
-import io.vertx.core.AbstractVerticle;
-import io.vertx.core.DeploymentOptions;
-import io.vertx.core.Verticle;
-import io.vertx.core.Vertx;
+import io.vertx.core.*;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.spi.VerticleFactory;
 import io.vertx.ext.web.Router;
@@ -15,13 +12,13 @@ import io.vertx.maven.MavenVerticleFactory;
 import java.util.HashSet;
 import java.util.Set;
 
-public class App
+public class App extends AbstractVerticle
 {
 
     public static Vertx vertx = Vertx.vertx();
     public static Router router = Router.router(vertx);
 
-    public static void main(String [ ] args) {
+    public void start(Future<Void> fut) {
        LoggerOps.debug("Starting vertx.");
 
 
