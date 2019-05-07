@@ -114,14 +114,15 @@ class Contact extends Component {
                         <div className="card">
                             <h3 className="contact-card-title">Correo</h3>
                             <span className="ti-email contact-icons"></span>
-                            <h4>iglesialaboyera@gmail.com</h4>
+                            <h4><strong>Iglesia: </strong>iglesialaboyera@gmail.com</h4>
+                            <h4><strong>Nichos: </strong>nichosjardindelaesperanza@gmail.com</h4>
                         </div>
                     </div>
                     <div className="column">
                         <div className="card">
-                            <h3 className="contact-card-title">Información sobre nichos</h3>
-                            <span className="ti-email contact-icons"></span>
-                            <h4>nichosjardindelaesperanza@gmail.com</h4>
+                            <h3 className="contact-card-title">Horarios</h3>
+                            <span className="ti-time contact-icons"></span>
+                            <h4><strong>Martes a Sábado: </strong> Hora: 6:00 p.m. <br/><strong>Domingo:  </strong>Hora: 9:00 a.m.   12:00 m.  6:00 p.m</h4>
                         </div>
                     </div>
                 </div>
