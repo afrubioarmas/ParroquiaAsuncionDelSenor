@@ -1,0 +1,151 @@
+.main .contact-wrapper form {
+    max-width: 80%;
+    text-align: center;
+    margin: 20px auto;
+  }
+  .main .contact-wrapper .contact-form input, .main .contact-wrapper form textarea {
+    color: #000;
+    background-color: #F4F3EF;
+    border: 0;
+    outline: 0;
+    padding: 1em;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+    font-family: "Merriweather", sans-serif;
+    -moz-box-shadow: 0 1px 1px rgba(214, 162, 162, 0.1);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    resize: none;
+  }
+  .main .contact-wrapper form input:focus, .main .contact-wrapper form textarea:focus {
+    -moz-box-shadow: 0 0px 2px #C5A275 !important;
+    -webkit-box-shadow: 0 0px 2px #C5A275 !important;
+    box-shadow: 0 0px 2px #C5A275 !important;
+  }
+  .main .contact-wrapper form #input-submit {
+    color: white;
+    background: #C5A275;
+    cursor: pointer;
+  }
+  .main .contact-wrapper form #input-submit:hover {
+    -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+    -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+    box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+  }
+  .main .contact-wrapper form textarea {
+    height: 126px;
+  }
+  .main .contact-wrapper .contact-form select {
+    background-color: #F4F3EF;
+    border: 0;
+    outline: 0;
+    padding: 1em;
+    border-radius: 8px;
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+    font-family: "Merriweather", sans-serif;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    resize: none;
+  }
+  .main .contact-wrapper .half-right-cf {
+    margin-bottom: 20px;
+  }
+  .main .contact-wrapper .contact-form .payment-button {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  @media (max-width: 480px) {
+    .main .contact-wrapper .half {
+      width: 100%;
+      float: none;
+      margin-bottom: 0;
+    }
+  }
+  .main .contact-wrapper .cf:before,
+  .main .contact-wrapper .cf:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */
+  }
+  .main .contact-wrapper .cf:after {
+    clear: both;
+  }
+  .main .contact-wrapper .contact-form {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 30px;
+    margin-right: 30px;
+    box-shadow: 0px 2px 20px 0.5px #ccc;
+    border-radius: 4px;
+  }
+  .main .contact-wrapper .contact-form .contact-form-title {
+    color: #8f7655;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: sans-serif;
+    margin-top: 20px;
+  }
+  .main .contact-wrapper .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+  }
+  .main .contact-wrapper .row {
+    margin: 20px -5px;
+  }
+  .main .contact-wrapper .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  .main .contact-wrapper .card {
+    display: table-cell;
+    width: 25%;
+    vertical-align: middle;
+    height: 214px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    /* this adds the "card" effect */
+    padding: 16px;
+    margin-bottom: 20px;
+    text-align: center;
+    background-color: #f4f3ef;
+  }
+  @media screen and (max-width: 600px) {
+    .main .contact-wrapper .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
+  .main .contact-cards h4{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-transform: none;
+  }
+  .main .contact-cards .contact-card-title {
+      color: #8f7655;
+  }
+  .main .contact-cards .contact-icons {
+      font-size: 30px;
+      color: #8f7655;
+  }
+  .main .contact-button {
+    border-width: 0px;
+    font-weight: 400;
+    line-height: normal;
+    color: #715b3e;
+    border-bottom: 1px solid #a68861;
+    -webkit-box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+    background: linear-gradient(#e2caae, #c39f70);
+    text-transform: uppercase;
+    padding: 10px 25px;
+    border-radius: 5px;
+  }

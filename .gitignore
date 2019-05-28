@@ -1,0 +1,12 @@
+WS/\.idea/
+WS/target/
+WS/\.idea/
+WS/scripts/DataBase/ER\.mwb\.bak
+WS/\.idea/
+WS/file-uploads
+
+frontend/public/dashboard/js/bootstrap-datetimepicker\.min\.js
+
+frontend/public/dashboard/css/bootstrap-datetimepicker\.min\.css
+
+frontend/public/images/app/

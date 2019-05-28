@@ -1,0 +1,52 @@
+.main .services a {
+  margin-top: 10px;
+}
+.main .services input {
+  border-style: groove;
+  border-radius: 5px;
+  background-color: #e2e1dc 6b;
+}
+.main .services .column {
+  float: left;
+  width: 33%;
+  padding: 0 10px;
+}
+.main .services .row {
+  margin: 20px -5px;
+}
+.main .services .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.main .services .card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* this adds the "card" effect */
+  padding: 16px;
+  margin-bottom: 20px;
+  text-align: center;
+  background-color: #f4f3ef;
+}
+@media screen and (max-width: 600px) {
+  .main .services .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+.main .services .payment-button {
+  border-width: 0px;
+  font-weight: 400;
+  line-height: normal;
+  color: #715b3e;
+  border-bottom: 1px solid #a68861;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+  background: linear-gradient(#e2caae, #c39f70);
+  text-transform: uppercase;
+  padding: 10px 25px;
+  border-radius: 5px;
+}
+
+.main p {
+  text-align: center;
+}
